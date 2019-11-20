@@ -5,14 +5,10 @@ for this project. Please keep this document organized using Markdown. If you
 click on this file in your team's GitHub repository website, then you will see
 that the Markdown is transformed into nice looking HTML.
 
-Here is a sample entry (delete this line; also: feel free to copy/paste/modify):
+## TUES 2019-11-19 @ 11:55 PM EST
 
-## SUN 2019-04-05 @ 11:55 PM EST
+1. **DONE:** Thoroughly explained and wrote down our thought process and our logic for the group 2 game, Mancala. We have shared blueprints and possible UI files for Mancala and the Menu Screen amongst a shared google doc.
 
-1. **DONE:** Downloaded the skeleton code.
+2. **TODO:** By our next reflection, our goal is to have a functioning Menu Screen, have the physical scene graph of Mancala, and the beginning of our logic for the group 1 game.
 
-2. **TODO:** Finish reading the project description.
-
-3. **PROB:** Had a hard time scheduling physicial meetings with each other at
-   first, but now that we've settled on a regular day/time things are looking
-   great!
+3. **PROB:** Deciding on where to begin our logic for the group 1 game has been a struggle. Although hesitant to begin, we are looking forward to shedding more light on the group 1 game.
