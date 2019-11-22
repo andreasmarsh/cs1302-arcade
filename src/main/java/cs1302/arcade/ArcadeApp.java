@@ -35,33 +35,51 @@ public class ArcadeApp extends Application {
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
-        String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();
+        //String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
+        String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();//title
+        String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
+        String mHighStr = ArcadeApp.class.getResource("/mHigh.png").toExternalForm();
+        String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
+        String gHighStr = ArcadeApp.class.getResource("/gHigh.png").toExternalForm();
+        String scoreStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
 
         VBox vbox = new VBox();
         HBox hbox = new HBox();
-        Image bgImage = new Image(bgString);
+        GridPane gpane = new GridPane();
+        gpane.setGridLinesVisible(true);
+        // =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
         Image titleImage = new Image(titleStr);
         ImageView titleIV = new ImageView(titleImage);
         Insets titlePad = new Insets(30.0, 0.0, 0.0, 60.0);
-        String style = "-fx-background-color: rgb(170, 69, 67);";
+        String style = "-fx-background-color: rgb(170, 69, 67);"; // background color
 
-        vbox.getChildren().addAll(titleIV, hbox);
-        vbox.setMargin(titleIV, titlePad);
+        // =-=-=-=-=-=-=-= hbox with IVs =-=-=-=-=-=-=-=-=-=
+        Insets ivPad = new Insets(50.0, 0.0, 0.0, 0.0);
+        Image group1Img = new Image(gStr);
+        ImageView group1IV = new ImageView(group1Img);
+        Image scoreImg = new Image(scoreStr);
+        ImageView scoreIV = new ImageView(scoreImg);
+        Image mancalaImg = new Image(mStr);
+        ImageView mancalaIV = new ImageView(mancalaImg);
 
-        vbox.setPrefSize(700,700);
-        vbox.setStyle(style);
-        /*vbox.setBackground
-            (new Background
-             (new BackgroundImage(bgImage,
-                                  BackgroundRepeat.NO_REPEAT,
-                                  BackgroundRepeat.NO_REPEAT,
-                                  BackgroundPosition.DEFAULT,
-                                  new BackgroundSize(BackgroundSize.AUTO,
-                                                     BackgroundSize. AUTO,
-                                                     false, false, true,
-                                                     false))));
+        if (group1IV.isHover()) {
+            group1Img = new Image(gHighStr);
+            group1IV = new ImageView(group1Img);
+        } else {
+            group1Img = new Image(gStr);
+            group1IV = new ImageView(group1Img);
+        }
+
+        gpane.add(group1IV, 0, 0);
+        gpane.add(scoreIV, 1, 0);
+        gpane.add(mancalaIV, 2, 0);
+        /*
+        hbox.getChildren().addAll(group1IV, scoreIV, mancalaIV);
+        hbox.setAlignment(Pos.BOTTOM_CENTER);
         */
+        vbox.getChildren().addAll(titleIV, gpane);
+        vbox.setMargin(titleIV, titlePad);
+        vbox.setStyle(style);
 
         Scene scene = new Scene(vbox, 700, 700);
         stage.setTitle("cs1302-arcade");
