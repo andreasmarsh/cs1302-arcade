@@ -1,5 +1,6 @@
 package cs1302.arcade;
 
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.util.Random;
 import javafx.scene.image.Image;
@@ -9,6 +10,9 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,20 +35,33 @@ public class ArcadeApp extends Application {
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        VBox vbox = new VBox();
         String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
-        Image bgImage = new Image(bg);
+        String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();
 
+        VBox vbox = new VBox();
+        HBox hbox = new HBox();
+        Image bgImage = new Image(bgString);
+        Image titleImage = new Image(titleStr);
+        ImageView titleIV = new ImageView(titleImage);
+        Insets titlePad = new Insets(30.0, 0.0, 0.0, 60.0);
+        String style = "-fx-background-color: rgb(170, 69, 67);";
+
+        vbox.getChildren().addAll(titleIV, hbox);
+        vbox.setMargin(titleIV, titlePad);
 
         vbox.setPrefSize(700,700);
-        vbox.setBackground(new Background(new BackgroundImage(bgImage,
-                                                              BackgroundRepeat.NO_REPEAT,
-                                                              BackgroundRepeat.NO_REPEAT,
-                                                              BackgroundPosition.DEFAULT,
-                                                              new BackgroundSize(BackgroundSize.AUTO,
-                                                                                 BackgroundSize. AUTO,
-                                                                                 false, false, true,
-                                                                                 false))));
+        vbox.setStyle(style);
+        /*vbox.setBackground
+            (new Background
+             (new BackgroundImage(bgImage,
+                                  BackgroundRepeat.NO_REPEAT,
+                                  BackgroundRepeat.NO_REPEAT,
+                                  BackgroundPosition.DEFAULT,
+                                  new BackgroundSize(BackgroundSize.AUTO,
+                                                     BackgroundSize. AUTO,
+                                                     false, false, true,
+                                                     false))));
+        */
 
         Scene scene = new Scene(vbox, 700, 700);
         stage.setTitle("cs1302-arcade");
