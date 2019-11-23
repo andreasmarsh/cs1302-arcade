@@ -61,6 +61,7 @@ public class ArcadeApp extends Application {
         // =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
         Image titleImage = new Image(titleStr);
         ImageView titleIV = new ImageView(titleImage);
+        ImageView prompt = new ImageView(); //instructions
         Insets titlePad = new Insets(30.0, 0.0, 0.0, 60.0);
         String style = "-fx-background-color: rgb(170, 69, 67);"; // background color
 
@@ -69,13 +70,15 @@ public class ArcadeApp extends Application {
         Image group1Img = new Image(gStr);
         ImageView group1IV = new ImageView(group1Img);
         Image scoreImg = new Image(scoreStr);
-        ImageView scoreIV = new ImageView(scoreImg);
+        ImageView scoreIV = new ImageView();
         Image mancalaImg = new Image(mStr);
         ImageView mancalaIV = new ImageView(mancalaImg);
         ImageView mTitle = new ImageView();
         ImageView gTitle = new ImageView();
         ImageView sTitle = new ImageView();
         mTitle.setFitHeight(75.0);
+        mancalaIV.setFitHeight(404);
+        prompt.setFitHeight(100);
 
         gpane.add(gTitle, 0, 0);
         gpane.add(sTitle, 1, 0);
@@ -84,12 +87,16 @@ public class ArcadeApp extends Application {
         gpane.add(scoreIV, 1, 1);
         gpane.add(mancalaIV, 2, 1);
         mancalaIV.setOnMouseEntered(mEnter());
+
+
+
         //mancalaIV.setOnMouseMoved(mInside());
         //mancalaIV.getOnMouseExited(mExit());
 
 
-        vbox.getChildren().addAll(titleIV, hbox, gpane);
+        vbox.getChildren().addAll(titleIV, prompt, gpane);
         vbox.setMargin(titleIV, titlePad);
+
         vbox.setStyle(style);
 
         Scene scene = new Scene(vbox, 700, 700);
