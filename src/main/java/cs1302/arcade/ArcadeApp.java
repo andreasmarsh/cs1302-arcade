@@ -1,5 +1,6 @@
 package cs1302.arcade;
-
+import javafx.scene.Cursor;
+import java.lang.Runnable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.util.Random;
@@ -32,14 +33,22 @@ import javafx.scene.input.MouseEvent;
  */
 public class ArcadeApp extends Application {
 
+    ImageView mancalaIV;
+    Image mancalaImg;
+    GridPane gpane;
+    String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
+
+    String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
+
+
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
         //String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
         String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();//title
-        String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
-        String mHighStr = ArcadeApp.class.getResource("/mHigh.png").toExternalForm();
-        String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
+
+
+
         String gHighStr = ArcadeApp.class.getResource("/gHigh.png").toExternalForm();
         String scoreStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
 
@@ -62,6 +71,7 @@ public class ArcadeApp extends Application {
         Image mancalaImg = new Image(mStr);
         ImageView mancalaIV = new ImageView(mancalaImg);
 
+        /*
         if (group1IV.isHover()) {
             group1Img = new Image(gHighStr);
             group1IV = new ImageView(group1Img);
@@ -69,11 +79,14 @@ public class ArcadeApp extends Application {
             group1Img = new Image(gStr);
             group1IV = new ImageView(group1Img);
         }
+        */
 
         gpane.add(group1IV, 0, 0);
         gpane.add(scoreIV, 1, 0);
         gpane.add(mancalaIV, 2, 0);
-        /*
+        mancalaIV.setOnMouseEntered(this::mEnter);
+
+/*
         hbox.getChildren().addAll(group1IV, scoreIV, mancalaIV);
         hbox.setAlignment(Pos.BOTTOM_CENTER);
         */
@@ -88,5 +101,31 @@ public class ArcadeApp extends Application {
         stage.show();
 
     } // start
+
+    private void  mEnter(MouseEvent e) {
+                System.out.println("enter mancala");
+                //event.getScene().setCursor(Cursor.HAND); // on enter sent cursor to hand
+                //mancalaImg = new Image(mHighStr);
+                mancalaIV = new ImageView();
+                gpane = new GridPane();
+                Runnable r = () -> {
+                    String mHighStr = ArcadeApp.class.getResource("/mHigh.png").toExternalForm();
+                    System.out.println("runnable");
+                    Platform.runLater(() -> {
+                            mancalaIV.setImage(new Image(mHighStr));
+                            gpane.add(mancalaIV, 2, 0);
+
+                        });
+                    Platform.runLater(() -> System.out.println("later"));
+                };
+
+                Thread t = new Thread(r);
+                t.setDaemon(true);
+                t.start();
+
+                //gpane.add(mancalaIV, 2, 0);
+    }
+
+
 
 } // ArcadeApp
