@@ -33,25 +33,25 @@ import javafx.scene.input.MouseEvent;
  */
 public class ArcadeApp extends Application {
 
-    ImageView mancalaIV;
+    Scene scene;
+    ImageView gTitle;
     ImageView mTitle;
+    ImageView sTitle;
+    Image group1Img;
     Image mancalaImg;
     GridPane gpane = new GridPane();
     String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
     String mHighStr = ArcadeApp.class.getResource("/mTitle.png").toExternalForm();
     String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
-
+    String gHighStr = ArcadeApp.class.getResource("/gTitle.png").toExternalForm();
+    String sStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
+    String sHighStr = ArcadeApp.class.getResource("/sTitle.png").toExternalForm(); //scores
 
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
         //String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
         String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();//title
-
-
-
-        String gHighStr = ArcadeApp.class.getResource("/gHigh.png").toExternalForm();
-        String scoreStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
 
         VBox vbox = new VBox();
         HBox hbox = new HBox();
@@ -69,14 +69,14 @@ public class ArcadeApp extends Application {
         Insets ivPad = new Insets(50.0, 0.0, 0.0, 0.0);
         Image group1Img = new Image(gStr);
         ImageView group1IV = new ImageView(group1Img);
-        Image scoreImg = new Image(scoreStr);
-        ImageView scoreIV = new ImageView();
+        Image scoreImg = new Image(sStr);
+        ImageView scoreIV = new ImageView(scoreImg);
         Image mancalaImg = new Image(mStr);
         ImageView mancalaIV = new ImageView(mancalaImg);
         ImageView mTitle = new ImageView();
         ImageView gTitle = new ImageView();
         ImageView sTitle = new ImageView();
-        mTitle.setFitHeight(75.0);
+        gTitle.setFitHeight(75.0);
         mancalaIV.setFitHeight(404);
         prompt.setFitHeight(100);
 
@@ -86,6 +86,10 @@ public class ArcadeApp extends Application {
         gpane.add(group1IV, 0, 1);
         gpane.add(scoreIV, 1, 1);
         gpane.add(mancalaIV, 2, 1);
+        group1IV.setOnMouseEntered(gEnter());
+        group1IV.setOnMouseMoved(gMove());
+        group1IV.setOnMouseExited(gExit());
+        scoreIV.setOnMouseEntered(sEnter());
         mancalaIV.setOnMouseEntered(mEnter());
 
 
@@ -100,6 +104,7 @@ public class ArcadeApp extends Application {
         vbox.setStyle(style);
 
         Scene scene = new Scene(vbox, 700, 700);
+        //scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
         stage.setTitle("cs1302-arcade");
         stage.setScene(scene);
         stage.sizeToScene();
@@ -111,14 +116,57 @@ public class ArcadeApp extends Application {
         return event -> {
             System.out.println("enter mancala");
             mTitle = new ImageView();
-            //System.out.println("runnable");
-
             mTitle.setImage(new Image(mHighStr));
-            //mancalaIV.getScene().setCursor(Cursor.HAND);
+
             gpane.add(mTitle, 2, 0);
         }; //event
     } // mEnter()
-    /*
+
+    private EventHandler<? super MouseEvent> sEnter() {
+        return event -> {
+            System.out.println("enter scores");
+            sTitle = new ImageView();
+            sTitle.setImage(new Image(sHighStr));
+
+            gpane.add(sTitle, 1, 0);
+        }; //event
+    } // mEnter()
+
+    private EventHandler<? super MouseEvent> gEnter() {
+        return event -> {
+            System.out.println("enter group1");
+            gTitle = new ImageView();
+            gTitle.setImage(new Image(gHighStr));
+
+            gpane.add(gTitle, 0, 0);
+        }; //event
+    } // mEnter()
+
+    private EventHandler<? super MouseEvent> gExit() {
+        return event -> {
+            System.out.println("exit group1");
+            gTitle = new ImageView();
+            gTitle.setImage(null);
+
+            gpane.add(gTitle, 0, 0);
+        }; //event
+    } // mEnter()
+
+    private EventHandler<? super MouseEvent> gMove() {
+        return event -> {
+            System.out.println("move group1");
+            Image check = new Image(gHighStr);
+            if (gTitle.getImage() != check) {
+                gTitle = new ImageView();
+                gTitle.setImage(new Image(gHighStr));
+
+                gpane.add(gTitle, 0, 0);
+            }
+        }; //event
+    } // mEnter()
+
+
+/*
     private EventHandler<? super MouseEvent> mInside() {
         return event -> {
             Image check = new Image(mHighStr);
