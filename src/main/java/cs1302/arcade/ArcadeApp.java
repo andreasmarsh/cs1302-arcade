@@ -46,6 +46,7 @@ public class ArcadeApp extends Application {
     String gHighStr = ArcadeApp.class.getResource("/gTitle.png").toExternalForm();
     String sStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
     String sHighStr = ArcadeApp.class.getResource("/sTitle.png").toExternalForm(); //scores
+    String blankStr = ArcadeApp.class.getResource("/blankTItle.png").toExternalForm();
 
 /** {@inheritDoc} */
     @Override
@@ -147,6 +148,7 @@ public class ArcadeApp extends Application {
             System.out.println("exit group1");
             gTitle = new ImageView();
             gTitle.setImage(null);
+            gTitle.setImage(new Image(blankStr));
 
             gpane.add(gTitle, 0, 0);
         }; //event
