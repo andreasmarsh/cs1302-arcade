@@ -35,9 +35,9 @@ public class ArcadeApp extends Application {
 
     ImageView mancalaIV;
     Image mancalaImg;
-    GridPane gpane;
+    GridPane gpane = new GridPane();
     String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
-
+    String mHighStr = ArcadeApp.class.getResource("/mHigh.png").toExternalForm();
     String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
 
 
@@ -54,8 +54,9 @@ public class ArcadeApp extends Application {
 
         VBox vbox = new VBox();
         HBox hbox = new HBox();
-        GridPane gpane = new GridPane();
+
         gpane.setGridLinesVisible(true);
+
         // =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
         Image titleImage = new Image(titleStr);
         ImageView titleIV = new ImageView(titleImage);
@@ -81,16 +82,18 @@ public class ArcadeApp extends Application {
         }
         */
 
-        gpane.add(group1IV, 0, 0);
-        gpane.add(scoreIV, 1, 0);
-        gpane.add(mancalaIV, 2, 0);
-        mancalaIV.setOnMouseEntered(this::mEnter);
 
+        gpane.add(group1IV, 0, 1);
+        gpane.add(scoreIV, 1, 1);
+        gpane.add(mancalaIV, 2, 1);
+        mancalaIV.setOnMouseEntered(mEnter());
+        mancalaIV.setOnMouseMoved(mInside());
+        mancalaIV.getOnMouseExited(mExit());
 /*
         hbox.getChildren().addAll(group1IV, scoreIV, mancalaIV);
         hbox.setAlignment(Pos.BOTTOM_CENTER);
         */
-        vbox.getChildren().addAll(titleIV, gpane);
+        vbox.getChildren().addAll(titleIV, hbox, gpane);
         vbox.setMargin(titleIV, titlePad);
         vbox.setStyle(style);
 
@@ -102,30 +105,44 @@ public class ArcadeApp extends Application {
 
     } // start
 
-    private void  mEnter(MouseEvent e) {
-                System.out.println("enter mancala");
-                //event.getScene().setCursor(Cursor.HAND); // on enter sent cursor to hand
-                //mancalaImg = new Image(mHighStr);
+    private EventHandler<? super MouseEvent> mEnter() {
+        return event -> {
+            System.out.println("enter mancala");
+            mancalaIV = new ImageView();
+
+            //System.out.println("runnable");
+
+            mancalaIV.setImage(new Image(mHighStr));
+            //mancalaIV.getScene().setCursor(Cursor.HAND);
+            gpane.add(mancalaIV, 2, 0);
+        }; //event
+    } // mEnter()
+
+    private EventHandler<? super MouseEvent> mInside() {
+        return event -> {
+            Image check = new Image(mHighStr);
+            if (mancalaIV.getImage() != check) {
+                System.out.println("inside");
                 mancalaIV = new ImageView();
-                gpane = new GridPane();
-                Runnable r = () -> {
-                    String mHighStr = ArcadeApp.class.getResource("/mHigh.png").toExternalForm();
-                    System.out.println("runnable");
-                    Platform.runLater(() -> {
-                            mancalaIV.setImage(new Image(mHighStr));
-                            gpane.add(mancalaIV, 2, 0);
 
-                        });
-                    Platform.runLater(() -> System.out.println("later"));
-                };
+            //System.out.println("runnable");
 
-                Thread t = new Thread(r);
-                t.setDaemon(true);
-                t.start();
-
-                //gpane.add(mancalaIV, 2, 0);
+                mancalaIV.setImage(new Image(mHighStr));
+                //mancalaIV.getScene().setCursor(Cursor.HAND);
+                gpane.add(mancalaIV, 2, 0);
+            }
+        }; //event
     }
 
+    private EventHandler<? super MouseEvent> mExit() {
+
+        return event -> {
+            System.out.println("exit mancala");
+            mancalaIV = new ImageView();
+            mancalaIV.setImage(new Image(mStr));
+            gpane.add(mancalaIV, 2, 0);
+        }; //event
+    } // mExit
 
 
 } // ArcadeApp
