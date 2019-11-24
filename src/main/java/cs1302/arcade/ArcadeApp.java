@@ -34,166 +34,113 @@ import javafx.scene.input.MouseEvent;
 public class ArcadeApp extends Application {
 
     Scene scene;
-    ImageView gTitle;
-    ImageView mTitle;
-    ImageView sTitle;
-    Image group1Img;
-    Image mancalaImg;
-    GridPane gpane = new GridPane();
-    String mStr = ArcadeApp.class.getResource("/m.png").toExternalForm();         //mancala
-    String mHighStr = ArcadeApp.class.getResource("/mTitle.png").toExternalForm();
-    String gStr = ArcadeApp.class.getResource("/g.png").toExternalForm();         //group1
-    String gHighStr = ArcadeApp.class.getResource("/gTitle.png").toExternalForm();
-    String sStr = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
-    String sHighStr = ArcadeApp.class.getResource("/sTitle.png").toExternalForm(); //scores
-    String blankStr = ArcadeApp.class.getResource("/blankTItle.png").toExternalForm();
+    ImageView gLabelIV;
+    ImageView mLabelIV;
+    ImageView sLabelIV;
+    String mPath = ArcadeApp.class.getResource("/m.png").toExternalForm();//mancala
+    String mLabelPath = ArcadeApp.class.getResource("/mTitle.png").toExternalForm();
+    String gPath = ArcadeApp.class.getResource("/g.png").toExternalForm(); //group1
+    String gLabelPath = ArcadeApp.class.getResource("/gTitle.png").toExternalForm();
+    String sPath = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
+    String sLabelPath = ArcadeApp.class.getResource("/sTitle.png").toExternalForm();
+    String blankImgPath = ArcadeApp.class.getResource("/blankTItle.png").toExternalForm();
+    String blankSPath = ArcadeApp.class.getResource("/bsTitle.png").toExternalForm();
 
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        //String bgString = ArcadeApp.class.getResource("/mainMenuBG.png").toExternalForm();
         String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();//title
 
+        GridPane gpane = new GridPane();
         VBox vbox = new VBox();
         HBox hbox = new HBox();
 
-        gpane.setGridLinesVisible(true);
+        //gpane.setGridLinesVisible(true);
 
-        // =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
+// =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
+// this section will eventually be put in a seperate method to
+// fit the < 60 lined method rule
         Image titleImage = new Image(titleStr);
         ImageView titleIV = new ImageView(titleImage);
         ImageView prompt = new ImageView(); //instructions
         Insets titlePad = new Insets(30.0, 0.0, 0.0, 60.0);
         String style = "-fx-background-color: rgb(170, 69, 67);"; // background color
 
-        // =-=-=-=-=-=-=-= hbox with IVs =-=-=-=-=-=-=-=-=-=
+// =-=-=-=-=-=-=-= gridpane with children =-=-=-=-=-=-=-=-=-=
+// this section will eventually be put in a seperate method to
+// fit the < 60 lined method rule
         Insets ivPad = new Insets(50.0, 0.0, 0.0, 0.0);
-        Image group1Img = new Image(gStr);
-        ImageView group1IV = new ImageView(group1Img);
-        Image scoreImg = new Image(sStr);
-        ImageView scoreIV = new ImageView(scoreImg);
-        Image mancalaImg = new Image(mStr);
-        ImageView mancalaIV = new ImageView(mancalaImg);
-        ImageView mTitle = new ImageView();
-        ImageView gTitle = new ImageView();
+        Image blankImg = new Image(blankImgPath);
+        Image blankSImg = new Image(blankSPath);
+// variables for group1Game visuals
+        Image gImg = new Image(gPath); // image for green arcade box
+        Image gLabel = new Image(gLabelPath); // label on top of green
+        ImageView gIV = new ImageView(gImg); // set green
+        ImageView gTitle = new ImageView(); // to be used onMouseEnter
+// variables for score visuals
+        Image sImg = new Image(sPath); // image for plaque
+        Image sLabel = new Image(sLabelPath); // label on top of plaque
+        ImageView sIV = new ImageView(sImg); // set plaque
         ImageView sTitle = new ImageView();
+// variables for mancala visuals
+        Image mImg = new Image(mPath); // image for blue arcade box
+        Image mLabel = new Image(mLabelPath); // labe on top of blue
+        ImageView mIV = new ImageView(mImg); // set blue
+        ImageView mTitle = new ImageView();
+// add some padding
         gTitle.setFitHeight(75.0);
-        mancalaIV.setFitHeight(404);
+        gTitle.setFitWidth(300.0);
+        mIV.setFitHeight(404);
         prompt.setFitHeight(100);
-
-        gpane.add(gTitle, 0, 0);
+// add IV's to gidpane
+        gpane.add(gTitle, 0, 0); // labels
         gpane.add(sTitle, 1, 0);
         gpane.add(mTitle, 2, 0);
-        gpane.add(group1IV, 0, 1);
-        gpane.add(scoreIV, 1, 1);
-        gpane.add(mancalaIV, 2, 1);
-        group1IV.setOnMouseEntered(gEnter());
-        group1IV.setOnMouseMoved(gMove());
-        group1IV.setOnMouseExited(gExit());
-        scoreIV.setOnMouseEntered(sEnter());
-        mancalaIV.setOnMouseEntered(mEnter());
+        gpane.add(gIV, 0, 1); // machines and plaque
+        gpane.add(sIV, 1, 1);
+        gpane.add(mIV, 2, 1);
 
-
-
-        //mancalaIV.setOnMouseMoved(mInside());
-        //mancalaIV.getOnMouseExited(mExit());
+// =-=-=-=-=-=-=-= mouse events =-=-=-=-=-=-=-=-=-=
+// group1Game
+        gIV.setOnMouseEntered(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.HAND);
+                gTitle.setImage(gLabel);
+            });
+        gIV.setOnMouseExited(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+                gTitle.setImage(blankImg); // on exit remove label
+            });
+// scores
+        sIV.setOnMouseEntered(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.HAND);
+                sTitle.setImage(sLabel);
+            });
+        sIV.setOnMouseExited(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+                sTitle.setImage(blankSImg);
+            });
+// mancala
+        mIV.setOnMouseEntered(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.HAND);
+                mTitle.setImage(mLabel);
+            });
+        mIV.setOnMouseExited(e -> {
+                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+                mTitle.setImage(blankImg);
+            });
 
 
         vbox.getChildren().addAll(titleIV, prompt, gpane);
         vbox.setMargin(titleIV, titlePad);
-
         vbox.setStyle(style);
 
         Scene scene = new Scene(vbox, 700, 700);
-        //scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
+//scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
         stage.setTitle("cs1302-arcade");
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();
 
     } // start
-
-    private EventHandler<? super MouseEvent> mEnter() {
-        return event -> {
-            System.out.println("enter mancala");
-            mTitle = new ImageView();
-            mTitle.setImage(new Image(mHighStr));
-
-            gpane.add(mTitle, 2, 0);
-        }; //event
-    } // mEnter()
-
-    private EventHandler<? super MouseEvent> sEnter() {
-        return event -> {
-            System.out.println("enter scores");
-            sTitle = new ImageView();
-            sTitle.setImage(new Image(sHighStr));
-
-            gpane.add(sTitle, 1, 0);
-        }; //event
-    } // mEnter()
-
-    private EventHandler<? super MouseEvent> gEnter() {
-        return event -> {
-            System.out.println("enter group1");
-            gTitle = new ImageView();
-            gTitle.setImage(new Image(gHighStr));
-
-            gpane.add(gTitle, 0, 0);
-        }; //event
-    } // mEnter()
-
-    private EventHandler<? super MouseEvent> gExit() {
-        return event -> {
-            System.out.println("exit group1");
-            gTitle = new ImageView();
-            gTitle.setImage(null);
-            gTitle.setImage(new Image(blankStr));
-
-            gpane.add(gTitle, 0, 0);
-        }; //event
-    } // mEnter()
-
-    private EventHandler<? super MouseEvent> gMove() {
-        return event -> {
-            System.out.println("move group1");
-            Image check = new Image(gHighStr);
-            if (gTitle.getImage() != check) {
-                gTitle = new ImageView();
-                gTitle.setImage(new Image(gHighStr));
-
-                gpane.add(gTitle, 0, 0);
-            }
-        }; //event
-    } // mEnter()
-
-
-/*
-    private EventHandler<? super MouseEvent> mInside() {
-        return event -> {
-            Image check = new Image(mHighStr);
-            if (mancalaIV.getImage() != check) {
-                System.out.println("inside");
-                mancalaIV = new ImageView();
-
-            //System.out.println("runnable");
-
-                mancalaIV.setImage(new Image(mHighStr));
-                //mancalaIV.getScene().setCursor(Cursor.HAND);
-                gpane.add(mancalaIV, 2, 0);
-            }
-        }; //event
-    }
-
-    private EventHandler<? super MouseEvent> mExit() {
-
-        return event -> {
-            System.out.println("exit mancala");
-            mancalaIV = new ImageView();
-            mancalaIV.setImage(new Image(mStr));
-            gpane.add(mancalaIV, 2, 0);
-        }; //event
-    } // mExit
-    */
 
 } // ArcadeApp
