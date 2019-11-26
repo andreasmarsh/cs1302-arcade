@@ -65,6 +65,7 @@ public class ArcadeApp extends Application {
         ImageView prompt = new ImageView(); //instructions
         Insets titlePad = new Insets(30.0, 0.0, 0.0, 60.0);
         String style = "-fx-background-color: rgb(170, 69, 67);"; // background color
+        String mStyle = "-fx-background-color: rgb(150, 59, 57);"; // background color
 
 // =-=-=-=-=-=-=-= gridpane with children =-=-=-=-=-=-=-=-=-=
 // this section will eventually be put in a seperate method to
@@ -128,7 +129,16 @@ public class ArcadeApp extends Application {
                 stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
                 mTitle.setImage(blankImg);
             });
+        mIV.setOnMouseClicked(e -> {
 
+                Mancala mGame = new Mancala();
+                stage.getScene().setRoot(mGame.getRoot());
+/*                vbox.getChildren().clear();
+                VBox test = new VBox();
+                test.setStyle(mStyle);
+                Scene mScene = new Scene(test);
+*/
+           });
 
         vbox.getChildren().addAll(titleIV, prompt, gpane);
         vbox.setMargin(titleIV, titlePad);
