@@ -37,19 +37,20 @@ public class ArcadeApp extends Application {
     ImageView gLabelIV;
     ImageView mLabelIV;
     ImageView sLabelIV;
-    String mPath = ArcadeApp.class.getResource("/m.png").toExternalForm();//mancala
-    String mLabelPath = ArcadeApp.class.getResource("/mTitle.png").toExternalForm();
-    String gPath = ArcadeApp.class.getResource("/g.png").toExternalForm(); //group1
-    String gLabelPath = ArcadeApp.class.getResource("/gTitle.png").toExternalForm();
-    String sPath = ArcadeApp.class.getResource("/score.png").toExternalForm(); //scores
-    String sLabelPath = ArcadeApp.class.getResource("/sTitle.png").toExternalForm();
-    String blankImgPath = ArcadeApp.class.getResource("/blankTItle.png").toExternalForm();
-    String blankSPath = ArcadeApp.class.getResource("/bsTitle.png").toExternalForm();
+    private String mPath = ArcadeApp.class.getResource("/menu/m.png").toExternalForm();//mancala
+    private String mLabelPath = ArcadeApp.class.getResource("/menu/mTitle.png").toExternalForm();
+    private String gPath = ArcadeApp.class.getResource("/menu/g.png").toExternalForm(); //group1
+    private String gLabelPath = ArcadeApp.class.getResource("/menu/gTitle.png").toExternalForm();
+    private String sPath = ArcadeApp.class.getResource("/menu/score.png").toExternalForm(); //scores
+    private String sLabelPath = ArcadeApp.class.getResource("/menu/sTitle.png").toExternalForm();
+    private String blankImgPath = ArcadeApp.class
+        .getResource("/menu/blankTItle.png").toExternalForm();
+    private String blankSPath = ArcadeApp.class.getResource("/menu/bsTitle.png").toExternalForm();
 
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        String titleStr = ArcadeApp.class.getResource("/mainTitle.png").toExternalForm();//title
+        String titleStr = ArcadeApp.class.getResource("/menu/mainTitle.png").toExternalForm();
 
         GridPane gpane = new GridPane();
         VBox vbox = new VBox();
@@ -132,7 +133,9 @@ public class ArcadeApp extends Application {
         mIV.setOnMouseClicked(e -> {
 
                 Mancala mGame = new Mancala();
-                stage.getScene().setRoot(mGame.getRoot());
+                Scene mScene = new Scene(mGame.getRoot(), 700, 700);
+                stage.setScene(mScene);
+                //stage.getScene().setRoot(mGame.getRoot());
 /*                vbox.getChildren().clear();
                 VBox test = new VBox();
                 test.setStyle(mStyle);
