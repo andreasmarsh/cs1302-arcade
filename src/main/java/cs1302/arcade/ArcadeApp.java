@@ -112,6 +112,11 @@ public class ArcadeApp extends Application {
                 stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
                 gTitle.setImage(blankImg); // on exit remove label
             });
+        gIV.setOnMouseClicked(e -> {
+                Tetris tGame = new Tetris();
+                Scene tScene = new Scene(tGame.getRoot(), 700, 700);
+                stage.setScene(tScene);
+            });
 // scores
         sIV.setOnMouseEntered(e -> {
                 stage.getScene().getRoot().setCursor(Cursor.HAND);

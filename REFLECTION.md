@@ -12,3 +12,11 @@ that the Markdown is transformed into nice looking HTML.
 2. **TODO:** By our next reflection, our goal is to have a functioning Menu Screen, have the physical scene graph of Mancala, and the beginning of our logic for the group 1 game.
 
 3. **PROB:** Deciding on where to begin our logic for the group 1 game has been a struggle. Although hesitant to begin, we are looking forward to shedding more light on the group 1 game.
+
+## TUES 2019-11-26 @ 11:55 PM EST
+
+    1. **DONE:** Created a function menu screen, and decided on a group 1 game. Set up the mancala scene.
+
+    2. **TODO:** By our next reflection our goal is to have the logic of tetris planned out as well as a fully function mancala.
+
+    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out.
