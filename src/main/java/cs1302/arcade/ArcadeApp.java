@@ -116,6 +116,7 @@ public class ArcadeApp extends Application {
                 Tetris tGame = new Tetris();
                 Scene tScene = new Scene(tGame.getRoot(), 700, 700);
                 stage.setScene(tScene);
+                stage.setResizable(false);
             });
 // scores
         sIV.setOnMouseEntered(e -> {
@@ -140,8 +141,9 @@ public class ArcadeApp extends Application {
                 Mancala mGame = new Mancala();
                 Scene mScene = new Scene(mGame.getRoot(), 700, 700);
                 stage.setScene(mScene);
+                stage.setResizable(false);
                 //stage.getScene().setRoot(mGame.getRoot());
-/*                vbox.getChildren().clear();
+/*              vbox.getChildren().clear();
                 VBox test = new VBox();
                 test.setStyle(mStyle);
                 Scene mScene = new Scene(test);
@@ -157,6 +159,7 @@ public class ArcadeApp extends Application {
         stage.setTitle("cs1302-arcade");
         stage.setScene(scene);
         stage.sizeToScene();
+        stage.setResizable(false);
         stage.show();
 
     } // start

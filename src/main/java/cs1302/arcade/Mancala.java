@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 
 // TO DO:
 // set up grid pane/IVs for board
@@ -15,6 +16,7 @@ public class Mancala {
 
     private VBox root;
     private HBox hbox;
+    private HBox title;
     private String BG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
     private String titleStr = Mancala.class.getResource("/mancala/mancalaTitle.png").toExternalForm();
     private ImageView titleIV;
@@ -26,6 +28,7 @@ public class Mancala {
         gpane.setGridLinesVisible(true);
         root = new VBox();
         hbox = new HBox();
+        title = new HBox();
 
         Image titleImage = new Image(titleStr);
         titleIV = new ImageView(titleImage);
@@ -85,8 +88,10 @@ public class Mancala {
         String styleBG = "-fx-background-image: url(\'" + BG + "\')";
         Insets titlePad = new Insets(30.0, 0.0, 0.0, 100.0);
 
-        root.getChildren().addAll(titleIV, prompt, hbox);
+        title.getChildren().addAll(titleIV);
+        root.getChildren().addAll(title, prompt, hbox);
         root.setMargin(titleIV, titlePad);
+        title.setAlignment(Pos.CENTER);
         root.setStyle(styleBG);
         return root;
     }
