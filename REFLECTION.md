@@ -19,4 +19,4 @@ that the Markdown is transformed into nice looking HTML.
 
     2. **TODO:** By our next reflection our goal is to have the logic of tetris planned out as well as a fully function mancala.
 
-    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out.
+    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out. Also difficulties with configuring hwo to iterate through the mancala board.
