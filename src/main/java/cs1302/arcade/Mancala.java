@@ -86,11 +86,11 @@ public class Mancala {
 
     public VBox getRoot() {
         String styleBG = "-fx-background-image: url(\'" + BG + "\')";
-        Insets titlePad = new Insets(30.0, 0.0, 0.0, 100.0);
+        Insets titlePad = new Insets(50.0, 0.0, 0.0, 00.0);
 
         title.getChildren().addAll(titleIV);
         root.getChildren().addAll(title, prompt, hbox);
-        root.setMargin(titleIV, titlePad);
+        root.setMargin(title, titlePad);
         title.setAlignment(Pos.CENTER);
         root.setStyle(styleBG);
         return root;
