@@ -19,9 +19,19 @@ public class Mancala {
     private HBox title;
     private String BG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
     private String titleStr = Mancala.class.getResource("/mancala/mancalaTitle.png").toExternalForm();
+    private ImageView filler;
     private ImageView titleIV;
-    private ImageView prompt;
+    private GridPane prompt;
     private ImageView[] marblesIV;
+
+    private String menuStr = Mancala.class.getResource("/mancala/menu.png").toExternalForm();
+    private String controlsStr = Mancala.class.getResource("/mancala/controls.png").toExternalForm();
+
+    // variables for menu and controlls
+    Image menuImage = new Image(menuStr);
+    ImageView menuIV = new ImageView(menuImage);
+    Image controlsImage = new Image(controlsStr);
+    ImageView controlsIV = new ImageView(controlsImage);
 
     public Mancala() {
         GridPane gpane = new GridPane();
@@ -30,10 +40,22 @@ public class Mancala {
         hbox = new HBox();
         title = new HBox();
 
+        // creates title IV
         Image titleImage = new Image(titleStr);
         titleIV = new ImageView(titleImage);
-        prompt = new ImageView();
-        prompt.setFitHeight(100);
+
+        // creates gridpane of menu and controls
+        filler = new ImageView();
+        filler.setFitWidth(500);
+        filler.setFitHeight(100);
+        prompt = new GridPane();
+        prompt.setGridLinesVisible(true);
+        prompt.add(menuIV, 0, 0);
+        prompt. add(filler, 1, 0);
+        prompt.add(controlsIV, 2, 0);
+
+        // event handlers for menu and controls
+
 
         // make IVS for blanks
         ImageView blank1 = new ImageView();
