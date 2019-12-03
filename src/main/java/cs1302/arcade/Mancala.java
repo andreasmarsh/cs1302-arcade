@@ -7,6 +7,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.Cursor;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
 
 // TO DO:
 // set up grid pane/IVs for board
@@ -55,6 +64,28 @@ public class Mancala {
         prompt.add(controlsIV, 2, 0);
 
         // event handlers for menu and controls
+        menuIV.setOnMouseEntered(e -> {
+                root.setCursor(Cursor.HAND);
+            });
+        menuIV.setOnMouseExited(e -> {
+                root.setCursor(Cursor.DEFAULT);
+            });
+        menuIV.setOnMouseClicked(getExitMenu());
+
+        controlsIV.setOnMouseEntered(e -> {
+                root.setCursor(Cursor.HAND);
+            });
+        controlsIV.setOnMouseExited(e -> {
+                root.setCursor(Cursor.DEFAULT);
+            });
+        controlsIV.setOnMouseClicked(e -> {
+                //Tetris tGame = new Tetris();
+                //Scene tScene = new Scene(tGame.getRoot(), 700, 700);
+                //stage.setScene(tScene);
+                //stage.setResizable(false);
+            });
+
+
 
 
         // make IVS for blanks
@@ -117,4 +148,63 @@ public class Mancala {
         root.setStyle(styleBG);
         return root;
     }
+
+    /**
+     * Returns exit menu.
+     *
+     * @return exitMenu
+     */
+    public EventHandler<MouseEvent> getExitMenu() {
+        EventHandler<MouseEvent> exitMenu = event -> {
+            // creates new window stage
+            Stage newWindow = new Stage();
+
+            // sets exit text and creates buttons
+            Text exit = new Text("Are you sure you wish to quit Mancala?");
+            Button yes = new Button("Yes");
+            Button no = new Button("No");
+
+            // adds text buttons to hboxes
+            HBox exitBox = new HBox();
+            exitBox.getChildren().addAll(exit);
+            exitBox.setAlignment(Pos.CENTER);
+            exitBox.setPadding(new Insets(10, 0, 0, 0));
+            HBox yesNo = new HBox();
+            yesNo.setSpacing(263);
+            yesNo.setPadding(new Insets(20, 5, 5, 5));
+            yesNo.getChildren().addAll(yes, no);
+
+            // puts text and hbox into a vbox
+            VBox vBox = new VBox();
+            vBox.getChildren().addAll(exitBox, yesNo);
+            vBox.setAlignment(Pos.TOP_CENTER);
+            Scene exits = new Scene(vBox, 350, 80);
+
+            // event handlers for buttons
+            EventHandler<ActionEvent> noHandler = event2 -> {
+                newWindow.close();
+            };
+
+            // set hanlers to buttons
+            no.setOnAction(noHandler);
+
+            // New window of stage
+            newWindow.setMaxWidth(350);
+            newWindow.setMaxHeight(80);
+            newWindow.setMinWidth(350);
+            newWindow.setMinHeight(80);
+
+            newWindow.setTitle("Exit Mancala");
+            newWindow.sizeToScene();
+            newWindow.setScene(exits);
+            newWindow.setResizable(false);
+
+            // modality
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+
+            newWindow.show();
+        }; // exitMenu
+        return exitMenu;
+    } // getExitMenu()
+
 }
