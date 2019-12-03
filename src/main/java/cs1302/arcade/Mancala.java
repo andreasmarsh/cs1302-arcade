@@ -184,9 +184,13 @@ public class Mancala {
             EventHandler<ActionEvent> noHandler = event2 -> {
                 newWindow.close();
             };
+            EventHandler<ActionEvent> yesHandler = event3 -> {
+                //code to open new menu scene which replaces current
+            };
 
             // set hanlers to buttons
             no.setOnAction(noHandler);
+            yes.setOnAction(yesHandler);
 
             // New window of stage
             newWindow.setMaxWidth(350);
