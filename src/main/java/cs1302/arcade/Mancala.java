@@ -44,7 +44,7 @@ public class Mancala {
 
     public Mancala() {
         GridPane gpane = new GridPane();
-        gpane.setGridLinesVisible(true);
+        //gpane.setGridLinesVisible(true);
         root = new VBox();
         hbox = new HBox();
         title = new HBox();
@@ -104,18 +104,26 @@ public class Mancala {
 
         // add test marble1 to imageview
         String m1Str = Mancala.class.getResource("/mancala/m1.png").toExternalForm();
+        String m4Str = Mancala.class.getResource("/mancala/m4.png").toExternalForm();
+        String m8Str = Mancala.class.getResource("/mancala/m8.png").toExternalForm();
+        String m10Str = Mancala.class.getResource("/mancala/m10.png").toExternalForm();
         Image marble1 = new Image(m1Str);
+        Image marble4 = new Image(m4Str);
+        Image marble8 = new Image(m8Str);
+        Image marble10 = new Image(m10Str);
         ImageView t1 = new ImageView(marble1);
-        ImageView t2 = new ImageView();
-        ImageView t3 = new ImageView();
+        ImageView t2 = new ImageView(marble4);
+        ImageView t3 = new ImageView(marble8);
         ImageView t4 = new ImageView();
         ImageView t5 = new ImageView();
-        ImageView b1 = new ImageView();
+        ImageView b1 = new ImageView(marble10);
         ImageView b2 = new ImageView();
         ImageView b3 = new ImageView();
         setSizeIV(t1);
         setSizeIV(t2);
         setSizeIV(t3);
+        setSizeIV(t4);
+        setSizeIV(t5);
         setSizeIV(b1);
 
 
@@ -132,7 +140,7 @@ public class Mancala {
       }*/
     private void setSizeIV(ImageView iv) {
         iv.setFitHeight(110);
-        iv.setFitWidth(80);
+        iv.setFitWidth(77);
     } // setSizeIV
 /*    private ImageView[] createIV() {
         ImageView[] out;
