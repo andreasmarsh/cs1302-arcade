@@ -102,7 +102,10 @@ public class Mancala {
         // method put in IV in gpane dynamically
         //instIV();
 
-        ImageView t1 = new ImageView();
+        // add test marble1 to imageview
+        String m1Str = Mancala.class.getResource("/mancala/m1.png").toExternalForm();
+        Image marble1 = new Image(m1Str);
+        ImageView t1 = new ImageView(marble1);
         ImageView t2 = new ImageView();
         ImageView t3 = new ImageView();
         ImageView t4 = new ImageView();
