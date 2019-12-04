@@ -1,5 +1,9 @@
 package cs1302.arcade;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -102,38 +106,24 @@ public class Mancala {
         // method put in IV in gpane dynamically
         //instIV();
 
-        // add test marble1 to imageview
-        String m0Str = Mancala.class.getResource("/mancala/m0.png").toExternalForm();
-        String m1Str = Mancala.class.getResource("/mancala/m1.png").toExternalForm();
-        String m4Str = Mancala.class.getResource("/mancala/m4.png").toExternalForm();
-        String m8Str = Mancala.class.getResource("/mancala/m8.png").toExternalForm();
-        String m10Str = Mancala.class.getResource("/mancala/m10.png").toExternalForm();
-        Image marble0 = new Image(m0Str);
-        Image marble1 = new Image(m1Str);
-        Image marble4 = new Image(m4Str);
-        Image marble8 = new Image(m8Str);
-        Image marble10 = new Image(m10Str);
-        ImageView t1 = new ImageView(marble1);
-        ImageView t2 = new ImageView(marble4);
-        ImageView t3 = new ImageView(marble8);
-        ImageView t4 = new ImageView();
-        ImageView t5 = new ImageView();
-        ImageView b1 = new ImageView(marble10);
-        ImageView b2 = new ImageView(marble0);
-        ImageView b3 = new ImageView();
-        setSizeIV(t1);
-        setSizeIV(t2);
-        setSizeIV(t3);
-        setSizeIV(t4);
-        setSizeIV(t5);
-        setSizeIV(b1);
-        setSizeIV(b2);
+        List<Image> ims = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            ims.add(new Image(Mancala.class.getResource("/mancala/m" + i + ".png").toExternalForm()));
+        } // for
 
-        gpane.add(t1, 0, 0);
-        gpane.add(t2, 1, 0);
-        gpane.add(t3, 2, 0);
-        gpane.add(b1, 0, 1);
-        gpane.add(b2, 1, 1);
+        // set size of all IVs in imViews
+        //imViews.forEach(x -> setSizeIV(x));
+
+        //gpane.add(imViews.get(3), 0, 0);
+        //gpane.add(imViews.get(2), 1, 0);
+        //gpane.add(imViews.get(5), 0, 1);
+        //gpane.add(imViews.get(10), 1, 1);
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 5; j++) {
+                gpane.add(setSizeIV(new ImageView(ims.get(3))), j, i);
+            } // for
+        } // for
         hbox.getChildren().addAll(blank1, gpane, blank2);
     }
 
@@ -141,9 +131,10 @@ public class Mancala {
     /*private void instIV() {
 
       }*/
-    private void setSizeIV(ImageView iv) {
+    private ImageView setSizeIV(ImageView iv) {
         iv.setFitHeight(110);
         iv.setFitWidth(77);
+        return iv;
     } // setSizeIV
 /*    private ImageView[] createIV() {
         ImageView[] out;
