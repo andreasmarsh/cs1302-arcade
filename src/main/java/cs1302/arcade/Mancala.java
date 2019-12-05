@@ -1,5 +1,7 @@
 package cs1302.arcade;
 
+// import java.lang.Object.ListNode;
+import java.util.LinkedList;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -70,6 +72,78 @@ public class Mancala {
         prompt. add(filler, 1, 0);
         prompt.add(controlsIV, 2, 0);
 
+        // =-=-=-=-=- linked list reprsenting board =-=-=-=-=
+        LinkedList<Integer> gameBoard = new LinkedList<>();
+
+        gameBoard.add(0); // position 0 is left big pocket
+        gameBoard.add(3); // positions 1 - 5 are bottom row
+        gameBoard.add(6);
+        gameBoard.add(3);
+        gameBoard.add(3);
+        gameBoard.add(3);
+        gameBoard.add(4); // position 6 is right big pocket
+        gameBoard.add(3); // positions 7 - 11 are top row
+        gameBoard.add(7);
+        gameBoard.add(3);
+        gameBoard.add(3);
+        gameBoard.add(3);
+
+        // =-=-=-=-=- IV list that relates to gameBoard -=-=-=-=
+        LinkedList<ImageView> gameIVs = new LinkedList<>();
+
+        gameIVs.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm())));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()))));
+        gameIVs.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm())));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()))));
+
+        // left and right spaces of board
+        lBoard = new HBox();
+        rBoard = new HBox();
+        lBoard.setMinWidth(150);
+        lBoard.setMaxWidth(150);
+        lBoard.setMinHeight(220);
+        rBoard.setMinWidth(150);
+        rBoard.setMaxWidth(150);
+        rBoard.setMinHeight(220);
+        lBoard.getChildren().addAll(gameIVs.get(0));
+        rBoard.getChildren().addAll(gameIVs.get(6));
+        lBoard.setPadding(new Insets(0, 0, 0, 25));
+        rBoard.setPadding(new Insets(0, 0, 0, -25));
+
+        // crates list containing images for each amount of beads in game
+        //List<Image> ims = new ArrayList<>();
+        //for (int i = 0; i < 11; i++) {
+        //    ims.add(new Image(Mancala.class.getResource();
+        //} // for
+
+        // fills 2x5 gridpane with all 3 values from gameBoard
+        int increaser = 1;
+        for (int i = 1; i > 0; i--) {
+            for (int j = 0; j < 5; j++) {
+                gpane.add(gameIVs.get(increaser), j, i);
+                increaser++;
+                if (increaser == 6) {
+                    increaser++;
+                } // if
+            } // for
+        } // for
+        for (int i = 0; i > -1; i--) {
+            for (int j = 4; j > -1; j--) {
+                gpane.add(gameIVs.get(increaser), j, i);
+                increaser++;
+            } // for
+        } // for
+        hbox.getChildren().addAll(lBoard, gpane, rBoard);
+
+
         // event handlers for menu and controls
         menuIV.setOnMouseEntered(e -> {
                 root.setCursor(Cursor.HAND);
@@ -86,62 +160,54 @@ public class Mancala {
                 root.setCursor(Cursor.DEFAULT);
             });
         controlsIV.setOnMouseClicked(e -> {
+                gameBoard.set(0, gameBoard.get(0) + 1);
+                gameBoard.set(1, gameBoard.get(1) + 1);
+
+                LinkedList<ImageView> gameIVsTemp = new LinkedList<>();
+
+                gameIVsTemp.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm())));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()))));
+                gameIVsTemp.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm())));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()))));
+                gameIVsTemp.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()))));
+
+                gameIVs.clear();
+                gameIVs.addAll(gameIVsTemp);
+
+                lBoard.getChildren().clear();
+                lBoard.getChildren().addAll(gameIVs.get(0));
+                gpane.getChildren().clear();
+                // fills 2x5 gridpane with all 3 values from gameBoard
+                int increaser2 = 1;
+                for (int i = 1; i > 0; i--) {
+                    for (int j = 0; j < 5; j++) {
+                        gpane.add(gameIVs.get(increaser2), j, i);
+                        increaser2++;
+                        if (increaser2 == 6) {
+                            increaser2++;
+                } // if
+                    } // for
+                } // for
+                for (int i = 0; i > -1; i--) {
+                    for (int j = 4; j > -1; j--) {
+                        gpane.add(gameIVs.get(increaser2), j, i);
+                        increaser2++;
+                    } // for
+                } // for
+
                 //Tetris tGame = new Tetris();
                 //Scene tScene = new Scene(tGame.getRoot(), 700, 700);
                 //stage.setScene(tScene);
                 //stage.setResizable(false);
             });
 
-
-
-
-        // make IVS for blanks
-        ImageView blank1 = new ImageView();
-        ImageView blank2 = new ImageView();
-        blank1.setFitWidth(150);
-        blank1.setFitHeight(220);
-
-        // =-=-=-=-=- gridpane IV's =-=-=-=-
-
-        //method to put imageviews into array
-        //
-        //makeBoardGrid(// put imageviews in array, then have the method to do above
-        // method put in IV in gpane dynamically
-        //instIV();
-
-        // left and right spaces of board
-        lBoard = new HBox();
-        rBoard = new HBox();
-        lBoard.setMinWidth(150);
-        lBoard.setMaxWidth(150);
-        lBoard.setMinHeight(220);
-        rBoard.setMinWidth(150);
-        rBoard.setMaxWidth(150);
-        rBoard.setMinHeight(220);
-        lBoard.getChildren().addAll(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + 7 + ".png").toExternalForm())));
-        rBoard.getChildren().addAll(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + 1 + ".png").toExternalForm())));
-        lBoard.setPadding(new Insets(0, 0, 0, 25));
-        rBoard.setPadding(new Insets(0, 0, 0, -25));
-
-        List<Image> ims = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
-            ims.add(new Image(Mancala.class.getResource("/mancala/m" + i + ".png").toExternalForm()));
-        } // for
-
-        // set size of all IVs in imViews
-        //imViews.forEach(x -> setSizeIV(x));
-
-        //gpane.add(imViews.get(3), 0, 0);
-        //gpane.add(imViews.get(2), 1, 0);
-        //gpane.add(imViews.get(5), 0, 1);
-        //gpane.add(imViews.get(10), 1, 1);
-
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 5; j++) {
-                gpane.add(setSizeIV(new ImageView(ims.get(3))), j, i);
-            } // for
-        } // for
-        hbox.getChildren().addAll(lBoard, gpane, rBoard);
     }
 
     //it'd probably be better if this took in an array of imageviews
