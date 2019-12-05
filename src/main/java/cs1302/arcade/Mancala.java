@@ -30,6 +30,8 @@ public class Mancala {
     private VBox root;
     private HBox hbox;
     private HBox title;
+    private HBox lBoard;
+    private HBox rBoard;
     private String BG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
     private String titleStr = Mancala.class.getResource("/mancala/mancalaTitle.png").toExternalForm();
     private ImageView filler;
@@ -47,6 +49,7 @@ public class Mancala {
     ImageView controlsIV = new ImageView(controlsImage);
 
     public Mancala() {
+
         GridPane gpane = new GridPane();
         gpane.setGridLinesVisible(true);
         root = new VBox();
@@ -106,6 +109,20 @@ public class Mancala {
         // method put in IV in gpane dynamically
         //instIV();
 
+        // left and right spaces of board
+        lBoard = new HBox();
+        rBoard = new HBox();
+        lBoard.setMinWidth(150);
+        lBoard.setMaxWidth(150);
+        lBoard.setMinHeight(220);
+        rBoard.setMinWidth(150);
+        rBoard.setMaxWidth(150);
+        rBoard.setMinHeight(220);
+        lBoard.getChildren().addAll(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + 7 + ".png").toExternalForm())));
+        rBoard.getChildren().addAll(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + 1 + ".png").toExternalForm())));
+        lBoard.setPadding(new Insets(0, 0, 0, 25));
+        rBoard.setPadding(new Insets(0, 0, 0, -25));
+
         List<Image> ims = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             ims.add(new Image(Mancala.class.getResource("/mancala/m" + i + ".png").toExternalForm()));
@@ -124,7 +141,7 @@ public class Mancala {
                 gpane.add(setSizeIV(new ImageView(ims.get(3))), j, i);
             } // for
         } // for
-        hbox.getChildren().addAll(blank1, gpane, blank2);
+        hbox.getChildren().addAll(lBoard, gpane, rBoard);
     }
 
     //it'd probably be better if this took in an array of imageviews
