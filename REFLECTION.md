@@ -19,4 +19,12 @@ that the Markdown is transformed into nice looking HTML.
 
     2. **TODO:** By our next reflection our goal is to have the logic of tetris planned out as well as a fully function mancala.
 
-    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out. Also difficulties with configuring hwo to iterate through the mancala board.
+    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out. Also difficulties with configuring how to iterate through the mancala board.
+
+## WED 2019-12-4 @ 11:55 PM EST
+
+    1. **DONE:** Created mancala visual board with displayed images and setup tetris scene and images to be displayed
+
+    2. **TODO:** By our final submission, functionality should be added to both games
+
+    3. **PROB:** We ran into problems with setting up tetris functionality as well as issues in mancala with the gridpane however we are near solutions and progress should exponentially increase as we progress
