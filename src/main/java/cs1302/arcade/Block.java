@@ -9,19 +9,19 @@ import javafx.scene.shape.Rectangle;
  * the shape that they take.
  */
 public class Block {
-    Rectangle r1;
-    Rectangle r2;
-    Rectangle r3;
-    Rectangle r4;
+    static Rectangle r1;
+    static Rectangle r2;
+    static Rectangle r3;
+    static Rectangle r4;
     String type; // the type of the block
-    int size; // the size of each square in the grid
+    private static int size = 50; // the size of each square in the grid
 
 /**
  * Takes in specified name and uses a switch case to determine
- * which Block to construct.
+ * which Block to construct. Each block is made up of 4 squares that are
+ * layed out in the shape of the desired block.
  */
     public Block(String name) {
-        size = 25; // 25
         r1 = new Rectangle(size - 1, size - 1); // the dimensions are 24x24
         r2 = new Rectangle(size - 1, size - 1); // this is so that there is
         r3 = new Rectangle(size - 1, size - 1); // an outline around each
@@ -55,18 +55,16 @@ public class Block {
          // {r1, r2}
          // {r3, r4}
             type = "O";
-            r1.setX(1);
-            r1.setY(2);
+            r1.setX(175);
+            r1.setY(50);
             r1.setFill(Color.GOLD);
-            r2.setX(2);
-            r2.setY(2);
+            r2.setX(225);
+            r2.setY(50);
             r2.setFill(Color.GOLD);
-            r3.setX(1);
-            r3.setY(1);
+            r3.setX(175);
             r3.setFill(Color.GOLD);
-            r4.setX(2);
-            r4.setY(1);
-            r3.setFill(Color.GOLD);
+            r4.setX(225);
+            r4.setFill(Color.GOLD);
             break;
         } // end of switch-case
     } //Block(string)
@@ -80,43 +78,42 @@ public class Block {
         if (type == "I") {
 // creates 4 squares in a configuration of
 // {r1, r2, r3, r4}
-            r1.setX(1);
+            r1.setX(125);
             r1.setFill(Color.MAGENTA);
-            r2.setX(2);
+            r2.setX(175);
             r2.setFill(Color.MAGENTA);
-            r3.setX(3);
+            r3.setX(225);
             r3.setFill(Color.MAGENTA);
-            r4.setX(4);
+            r4.setX(275);
             r4.setFill(Color.MAGENTA);
         } else if (type == "J") {
 // {r1, r2, r3}
 // {--, --, r4}
-            r1.setX(1);
-            r1.setY(2);
+            r1.setX(175);
+            r1.setY(50);
             r1.setFill(Color.LIME);
-            r2.setX(2);
-            r2.setY(2);
+            r2.setX(225);
+            r2.setY(50);
             r2.setFill(Color.LIME);
-            r3.setX(3);
-            r3.setY(2);
+            r3.setX(275);
+            r3.setY(50);
             r3.setFill(Color.LIME);
-            r4.setX(3);
-            r4.setY(1);
+            r4.setX(275);
             r4.setFill(Color.LIME);
         } else if (type == "L") {
-// {--, --, r4}
-// {r1, r2, r3}
-            r1.setX(1);
-            r1.setY(1);
+// {r2, r3, r4}
+// {r1, --, --}
+            r1.setX(175);
+            //r1.setY(1 * size);
             r1.setFill(Color.DEEPSKYBLUE);
-            r2.setX(2);
-            r2.setY(1);
+            r2.setX(175);
+            r2.setY(50);
             r2.setFill(Color.DEEPSKYBLUE);
-            r3.setX(3);
-            r3.setY(1);
+            r3.setX(225);
+            r3.setY(50);
             r3.setFill(Color.DEEPSKYBLUE);
-            r4.setX(3);
-            r4.setY(2);
+            r4.setX(275);
+            r4.setY(50);
             r4.setFill(Color.DEEPSKYBLUE);
         }
     } //makeTypeILJ
@@ -201,13 +198,22 @@ public class Block {
         throw new UnsupportedOperationException("not yet implemented");
     } // moveLeft(block)
 
+    private static void moveSquaresDown() {
+        if (r1.getY() + 50 < 700 && r2.getY() + 50 < 700 &&
+            r3.getY() + 50 < 700 && r4.getY() + 50 < 700) {
+            r1.setY(r1.getY() + 50);
+            r2.setY(r2.getY() + 50);
+            r3.setY(r3.getY() + 50);
+            r4.setY(r4.getY() + 50);
+        } // if
+    } // moveSquaresDown
+
 /**
  * Handles the repositioning of each individual square contained within the block.
  * Moves the block/squares to the down one block.
  */
-    public void moveDown(Block block) {
-        int move = size; // move is the size of one block in the gameBoard
-        throw new UnsupportedOperationException("not yet implemented");
+    public void moveDown() {
+        moveSquaresDown();
     } // moveDown(block)
 
 /**
