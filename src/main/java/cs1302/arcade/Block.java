@@ -128,47 +128,42 @@ public class Block {
 // creates 4 squares in a configuration of
 // {--, r3, r4}
 // {r1, r2, --}
-            r1.setX(1);
-            r1.setY(1);
+            r1.setX(175);
             r1.setFill(Color.DARKVIOLET);
-            r2.setX(2);
-            r2.setY(1);
+            r2.setX(225);
             r2.setFill(Color.DARKVIOLET);
-            r3.setX(2);
-            r3.setY(2);
+            r3.setX(225);
+            r3.setY(50);
             r3.setFill(Color.DARKVIOLET);
-            r4.setX(3);
-            r4.setY(2);
+            r4.setX(275);
+            r4.setY(50);
             r4.setFill(Color.DARKVIOLET);
         } else if (type == "Z") {
 // {r1, r2, --}
 // {--, r3, r4}
-            r1.setX(1);
-            r1.setY(2);
+            r1.setX(175);
+            r1.setY(50);
             r1.setFill(Color.ORANGE);
-            r2.setX(2);
-            r2.setY(2);
+            r2.setX(225);
+            r2.setY(50);
             r2.setFill(Color.ORANGE);
-            r3.setX(2);
-            r3.setY(1);
+            r3.setX(225);
             r3.setFill(Color.ORANGE);
-            r4.setX(3);
-            r4.setY(1);
+            r4.setX(275);
             r4.setFill(Color.ORANGE);
         } else if (type == "T") {
 // {r1, r2, r3}
 // {--, r4, --}
-            r1.setX(1);
-            r1.setY(2);
+            r1.setX(175);
+            r1.setY(50);
             r1.setFill(Color.RED);
-            r2.setX(2);
-            r2.setY(2);
+            r2.setX(225);
+            r2.setY(50);
             r2.setFill(Color.RED);
-            r3.setX(3);
-            r3.setY(2);
+            r3.setX(275);
+            r3.setY(50);
             r3.setFill(Color.RED);
-            r4.setX(2);
-            r4.setY(1);
+            r4.setX(225);
             r4.setFill(Color.RED);
         }
     } //makeTypeSZT
@@ -180,25 +175,51 @@ public class Block {
         return type;
     } // getType
 
+    private static void moveSquareRight(Rectangle r) {
+        // this if statement blocks the sqaures from going out of left-bounds
+        if (r.getX() + 50 < 450) {
+            r.setX(r.getX() + 50);
+        }
+    } // moveSquareRight(rect)
+
 /**
  * Handles the repositioning of each individual square contained within the block.
  * Moves the block/squares to the right one block.
  */
-    public void moveRight(Block block) {
-        int move = size; // move is the size of one block in the gameBoard
-        throw new UnsupportedOperationException("not yet implemented");
+    public void moveRight() {
+        if (r1.getX() + 50 < 450 && r2.getX() + 50 < 450 &&
+            r3.getX() + 50 < 450 && r4.getX() + 50 < 450) {
+            moveSquareRight(r1);
+            moveSquareRight(r2);
+            moveSquareRight(r3);
+            moveSquareRight(r4);
+        }
     } // moveRight(block)
 
 /**
  * Handles the repositioning of each individual square contained within the block.
  * Moves the block/squares to the left one block.
  */
-    public void moveLeft(Block block) {
-        int move = size; // move is the size of one block in the gameBoard
-        throw new UnsupportedOperationException("not yet implemented");
-    } // moveLeft(block)
+    private static void moveSquareLeft(Rectangle r) {
+        // this if statement blocks the sqaures from going out of left-bounds
+        if (r.getX() - 50 > 0) {
+            r.setX(r.getX() - 50);
+        }
+    } // moveSquareLeft(rect)
+
+    public void moveLeft() {
+        if (r1.getX() - 50 > 0 && r2.getX() - 50 > 0 &&
+            r3.getX() - 50 > 0 && r4.getX() - 50 > 0) {
+            moveSquareLeft(r1);
+            moveSquareLeft(r2);
+            moveSquareLeft(r3);
+            moveSquareLeft(r4);
+        }
+    } // moveLeft()
 
     private static void moveSquaresDown() {
+        // this if statement is to make sure that the block stops going down once
+        // it hits the bottom of the board
         if (r1.getY() + 50 < 700 && r2.getY() + 50 < 700 &&
             r3.getY() + 50 < 700 && r4.getY() + 50 < 700) {
             r1.setY(r1.getY() + 50);
@@ -214,7 +235,7 @@ public class Block {
  */
     public void moveDown() {
         moveSquaresDown();
-    } // moveDown(block)
+    } // moveDown()
 
 /**
  * Handles the rotation of the specified block. When called, rotates
