@@ -1,5 +1,6 @@
 package cs1302.arcade;
 
+import javafx.scene.input.KeyEvent;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
@@ -9,10 +10,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 
 // TODO:
 // fix the back ground grid
-// try to make shapes not overlap
+// try to make shapes not overlap NICE
 // work on key presses
 
 public class Tetris {
@@ -27,6 +31,9 @@ public class Tetris {
     private Block nextBlock;
     private VBox root;
     private Pane pane;
+    private Stage stage;
+    private Scene mainScene = ArcadeApp.getMainScene();
+    private Scene tetScene = ArcadeApp.getTScene();
 
     private Timer gravity;
     private String BG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
@@ -34,6 +41,11 @@ public class Tetris {
     public Tetris() {
         root = new VBox();
         pane = new Pane();
+        stage = ArcadeApp.getMainStage();
+        tetScene = new Scene(getRoot(), 700, 700);
+
+        stage.setScene(tetScene);
+
         // fills the grid with default false values
         for (int i = 0; i < grid.length; i++) {
             for ( int j = 0; j < grid[i].length; j++) {
@@ -49,11 +61,12 @@ public class Tetris {
         lineTxt.setX(550);
         pane.getChildren().addAll(scoreTxt, lineTxt);
 */
-        currentBlock = new Block("O"); // just a test
+        currentBlock = new Block(randomBlockType()); // just a test
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2, currentBlock.r3, currentBlock.r4);
 
         gravity = new Timer();
         startGravity(gravity, currentBlock, 300);
+
     } // Tetris()
 
     public VBox getRoot() {
@@ -95,18 +108,22 @@ public class Tetris {
     private void startGravity(Timer gravity, Block block, long timePeriod) {
         Runnable r = () -> {
             Block newBlock = block;
-
-            if (isBlockAtBottom(newBlock) == true) {
+            // if block is at the bottom, or the block has collided with another block, set
+            // the block into the grid and spawn a new block.
+            if (isBlockAtBottom(newBlock) == true || blockCollided(newBlock) == true) {
                 setBlockInGrid(newBlock);
 
-                nextBlock = new Block("L");
+                nextBlock = new Block(randomBlockType());
                 newBlock = nextBlock;
                 currentBlock = newBlock;
                 pane.getChildren().addAll(newBlock.r1, newBlock.r2, newBlock.r3, newBlock.r4);
 
             }
-
-            newBlock.moveDown();
+            // if the specified block does not collide with another one, it will keep moving down
+            if (blockCollided(newBlock) == false) {
+                    newBlock.moveDown();
+                    playerInput(newBlock);
+            }
         };
         gravity.schedule(new TimerTask() {
                 public void run() {
@@ -133,6 +150,7 @@ public class Tetris {
         grid[r3x.intValue() / 50][r3y.intValue() / 50] = true;
         grid[r4x.intValue() / 50][r4y.intValue() / 50] = true;
 
+        // test code to print out the grid
         for (boolean[] row : grid) {
             for (boolean b : row) {
                 System.out.print(b);
@@ -155,5 +173,49 @@ public class Tetris {
         } else {
             return false;
         } // if-else
-    } // isBlockAtBottom
+    } // isBlockAtBottom(block)
+
+    private boolean blockCollided(Block block) {
+        Double r1x = block.r1.getX();
+        Double r1y = block.r1.getY();
+        Double r2x = block.r2.getX();
+        Double r2y = block.r2.getY();
+        Double r3x = block.r3.getX();
+        Double r3y = block.r3.getY();
+        Double r4x = block.r4.getX();
+        Double r4y = block.r4.getY();
+        // if any of the squares under the specified block contain a square of another block,
+        // the specfied block will not overlap it
+        if (grid[r1x.intValue() / 50][(r1y.intValue() / 50) + 1] == true ||
+            grid[r2x.intValue() / 50][(r2y.intValue() / 50) + 1] == true ||
+            grid[r3x.intValue() / 50][(r3y.intValue() / 50) + 1] == true ||
+            grid[r4x.intValue() / 50][(r4y.intValue() / 50) + 1] == true) {
+            return true;
+        }
+        return false;
+    } // blockCollided(block)
+
+    /**
+     *
+     */
+    private void playerInput(Block block) {
+        this.tetScene.setOnKeyPressed(e -> {
+                switch(e.getCode()) {
+                case RIGHT:
+                case D:
+                    block.moveRight();
+                    break;
+                case LEFT:
+                case A:
+                    block.moveLeft();
+                    break;
+                case DOWN:
+                case S:
+                    if (!blockCollided(block)) {
+                        block.moveDown();
+                    }
+                    break;
+                } // switch case
+            });
+    } // playerInput(block)
 }
