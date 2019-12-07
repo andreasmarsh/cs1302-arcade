@@ -33,7 +33,9 @@ import javafx.scene.input.MouseEvent;
  */
 public class ArcadeApp extends Application {
 
-    Scene scene;
+    private static Scene tScene;
+    private static Scene mainScene;
+    private static Stage mainStage;
     ImageView gLabelIV;
     ImageView mLabelIV;
     ImageView sLabelIV;
@@ -47,11 +49,20 @@ public class ArcadeApp extends Application {
         .getResource("/menu/blankTItle.png").toExternalForm();
     private String blankSPath = ArcadeApp.class.getResource("/menu/bsTitle.png").toExternalForm();
 
+    private void setMainStage(Stage stage) {
+        ArcadeApp.mainStage = stage;
+    }
+
+    private void setMainScene(Scene scene) {
+        ArcadeApp.mainScene = scene;
+    }
+
 /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
         String titleStr = ArcadeApp.class.getResource("/menu/mainTitle.png").toExternalForm();
 
+        setMainStage(stage);
         GridPane gpane = new GridPane();
         VBox vbox = new VBox();
         HBox hbox = new HBox();
@@ -114,7 +125,7 @@ public class ArcadeApp extends Application {
             });
         gIV.setOnMouseClicked(e -> {
                 Tetris tGame = new Tetris();
-                Scene tScene = new Scene(tGame.getRoot(), 700, 700);
+                tScene = new Scene(tGame.getRoot(), 700, 700);
                 stage.setScene(tScene);
                 stage.setResizable(false);
             });
@@ -155,6 +166,7 @@ public class ArcadeApp extends Application {
         vbox.setStyle(style);
 
         Scene scene = new Scene(vbox, 700, 700);
+        setMainScene(scene);
 //scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
         stage.setTitle("cs1302-arcade");
         stage.setScene(scene);
@@ -163,5 +175,17 @@ public class ArcadeApp extends Application {
         stage.show();
 
     } // start
+
+    static public Stage getMainStage() {
+        return ArcadeApp.mainStage;
+    } // getStage()
+
+    static public Scene getMainScene() {
+        return ArcadeApp.mainScene;
+    }
+
+    static public Scene getTScene() {
+        return ArcadeApp.tScene;
+    }
 
 } // ArcadeApp
