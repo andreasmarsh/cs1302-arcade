@@ -16,8 +16,11 @@ import javafx.stage.Stage;
 
 // TODO:
 // fix the back ground grid
-// try to make shapes not overlap NICE
-// work on key presses
+// work on rotation for each shape
+// work on side ways collisions
+// fix game over
+// work on row deletion
+
 
 public class Tetris {
 
@@ -28,7 +31,7 @@ public class Tetris {
     private Text scoreTxt;
     private int lines;
     private Block currentBlock;
-    private Block nextBlock;
+    private static Block nextBlock;
     private VBox root;
     private Pane pane;
     private Stage stage;
@@ -65,7 +68,7 @@ public class Tetris {
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2, currentBlock.r3, currentBlock.r4);
 
         gravity = new Timer();
-        startGravity(gravity, currentBlock, 300);
+        startGravity(gravity, currentBlock, 500);
 
     } // Tetris()
 
@@ -113,9 +116,10 @@ public class Tetris {
             if (isBlockAtBottom(newBlock) == true || blockCollided(newBlock) == true) {
                 setBlockInGrid(newBlock);
 
-                nextBlock = new Block(randomBlockType());
+                //nextBlock = new Block(randomBlockType());
+                nextBlock = new Block("L");
                 newBlock = nextBlock;
-                currentBlock = newBlock;
+                //currentBlock = newBlock;
                 pane.getChildren().addAll(newBlock.r1, newBlock.r2, newBlock.r3, newBlock.r4);
 
             }
@@ -124,7 +128,7 @@ public class Tetris {
                     newBlock.moveDown();
                     playerInput(newBlock);
             }
-        };
+        }; // Runnable r
         gravity.schedule(new TimerTask() {
                 public void run() {
                     Platform.runLater(r);
@@ -158,7 +162,6 @@ public class Tetris {
             }
             System.out.println();
         }
-
     }
 
     /**
@@ -195,6 +198,22 @@ public class Tetris {
         return false;
     } // blockCollided(block)
 
+    private static void rotateBlock(Block block) {
+        String type = nextBlock.getType();
+        System.out.println("attempting to rotate block of type: " + type);
+        switch (type) {
+        case "I":
+            block.rotateI();
+            break;
+        case "J":
+            block.rotateJ();
+            break;
+        case "L":
+            block.rotateL();
+            break;
+        } // switch-case
+    }
+
     /**
      *
      */
@@ -215,6 +234,10 @@ public class Tetris {
                         block.moveDown();
                     }
                     break;
+                case UP:
+                case W:
+                    //System.out.println("you've pressed up"); code for debugging
+                    rotateBlock(block);
                 } // switch case
             });
     } // playerInput(block)
