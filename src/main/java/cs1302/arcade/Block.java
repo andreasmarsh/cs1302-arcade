@@ -108,16 +108,16 @@ public class Block {
 // {r4, --, --}
             r4.setX(175);
             r4.setY(50);
-            r4.setFill(Color.DEEPSKYBLUE);
+            r4.setFill(Color.AQUA);
             r1.setX(175);
             r1.setY(0);
-            r3.setFill(Color.DEEPSKYBLUE);
+            r3.setFill(Color.AQUA);
             r2.setX(225);
             r2.setY(0);
-            r2.setFill(Color.DEEPSKYBLUE);
+            r2.setFill(Color.AQUA);
             r3.setX(275);
             r3.setY(0);
-            r1.setFill(Color.DEEPSKYBLUE);
+            r1.setFill(Color.AQUA);
         }
     } //makeTypeILJ
 
@@ -322,7 +322,7 @@ public class Block {
             moveSquareLeft(r3);
             moveSquareUp(r4);
             moveSquareUp(r4);
-        } else if (position(r1, r2) == -1) { // if block is verticle with peg top left
+        } else if (position(r1, r2) == -1) { // if block is vertical with peg top left
             if (r1.getX() == 425) { // if block is in -1 position on the far right
                 moveSquareDown(r1); // 2b
                 moveSquareLeft(r2);
@@ -363,6 +363,60 @@ public class Block {
             }
         } // larger if-else
     } // rotateL
+
+    public void rotateS() {
+        if (position(r1, r2) == 1) { // if horizontal
+            moveSquareUp(r1); // 1
+            moveSquareUp(r1);
+            moveSquareUp(r2);
+            moveSquareLeft(r2);
+            moveSquareDown(r4);
+            moveSquareLeft(r4);
+        } else if (position(r1, r2) == -1) { // if vertical
+            if (r1.getX() == 25) { // if vertical and far left
+                moveSquareDown(r1); // 2a
+                moveSquareRight(r2);
+                moveSquareUp(r3);
+                moveSquareUp(r4);
+                moveSquareUp(r4);
+                moveSquareRight(r4);
+            } else { // if vertical and not on far left
+                moveSquareDown(r1); // 2b
+                moveSquareDown(r1);
+                moveSquareLeft(r1);
+                moveSquareDown(r2);
+                moveSquareLeft(r3);
+                moveSquareUp(r4);
+            }
+        }
+    }
+
+    public void rotateZ() {
+        if (position(r1, r2) == 1) { // if horizontal
+            moveSquareRight(r1); // 1
+            moveSquareRight(r1);
+            moveSquareUp(r1);
+            moveSquareRight(r2);
+            moveSquareUp(r3);
+            moveSquareLeft(r4);
+        } else if (position(r1, r2) == -1) {
+            if (r3.getX() == 25) { // if block is vertical and on far left
+                moveSquareDown(r1); // 2a
+                moveSquareLeft(r1);
+                moveSquareRight(r3);
+                moveSquareDown(r3);
+                moveSquareRight(r4);
+                moveSquareRight(r4);
+            } else { // if block is vertical and not on far left
+                moveSquareLeft(r1);
+                moveSquareLeft(r1);
+                moveSquareDown(r1);
+                moveSquareLeft(r2);
+                moveSquareDown(r3);
+                moveSquareRight(r4);
+            }
+        }
+    }
 
 /**
  * Handles the repositioning of each individual square contained within the block.

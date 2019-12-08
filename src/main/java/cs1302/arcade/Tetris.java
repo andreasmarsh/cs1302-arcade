@@ -30,7 +30,7 @@ public class Tetris {
     boolean[][] grid = new boolean[10][15];
     private Text scoreTxt;
     private int lines;
-    private Block currentBlock;
+    private static Block currentBlock;
     private static Block nextBlock;
     private VBox root;
     private Pane pane;
@@ -111,13 +111,14 @@ public class Tetris {
     private void startGravity(Timer gravity, Block block, long timePeriod) {
         Runnable r = () -> {
             Block newBlock = block;
+
             // if block is at the bottom, or the block has collided with another block, set
             // the block into the grid and spawn a new block.
             if (isBlockAtBottom(newBlock) == true || blockCollided(newBlock) == true) {
                 setBlockInGrid(newBlock);
 
                 //nextBlock = new Block(randomBlockType());
-                nextBlock = new Block("L");
+                nextBlock = new Block(randomBlockType());
                 newBlock = nextBlock;
                 //currentBlock = newBlock;
                 pane.getChildren().addAll(newBlock.r1, newBlock.r2, newBlock.r3, newBlock.r4);
@@ -178,6 +179,7 @@ public class Tetris {
         } // if-else
     } // isBlockAtBottom(block)
 
+
     private boolean blockCollided(Block block) {
         Double r1x = block.r1.getX();
         Double r1y = block.r1.getY();
@@ -199,7 +201,12 @@ public class Tetris {
     } // blockCollided(block)
 
     private static void rotateBlock(Block block) {
-        String type = nextBlock.getType();
+        String type;
+        if (nextBlock.getType() == null) {
+            type = currentBlock.getType();
+        } else {
+            type = nextBlock.getType();
+        }
         System.out.println("attempting to rotate block of type: " + type);
         switch (type) {
         case "I":
@@ -210,6 +217,12 @@ public class Tetris {
             break;
         case "L":
             block.rotateL();
+            break;
+        case "S":
+            block.rotateS();
+            break;
+        case "Z":
+            block.rotateZ();
             break;
         } // switch-case
     }
