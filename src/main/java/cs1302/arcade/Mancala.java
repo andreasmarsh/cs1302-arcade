@@ -22,10 +22,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 import java.lang.InterruptedException;
+import javafx.scene.text.Font;
+import java.awt.Color;
 
 // TO DO:
 // set up grid pane/IVs for board
@@ -41,12 +44,22 @@ public class Mancala {
     private String BG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
     private String titleStr = Mancala.class.getResource("/mancala/mancalaTitle.png").toExternalForm();
     private ImageView filler;
+    private ImageView filler1;
+    private ImageView filler2;
+    private ImageView filler3;
+    private ImageView filler4;
     private ImageView titleIV;
     private GridPane prompt;
+    private GridPane players;
     private ImageView[] marblesIV;
 
     private String menuStr = Mancala.class.getResource("/mancala/menu.png").toExternalForm();
     private String controlsStr = Mancala.class.getResource("/mancala/controls.png").toExternalForm();
+    private String player1Str = Mancala.class.getResource("/mancala/player1.png").toExternalForm();
+        private String player2Str = Mancala.class.getResource("/mancala/player2.png").toExternalForm();
+        private String rArrowStr = Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm();
+    private String lArrowStr = Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm();
+
 
     // variables for menu and controlls
     Image menuImage = new Image(menuStr);
@@ -54,10 +67,19 @@ public class Mancala {
     Image controlsImage = new Image(controlsStr);
     ImageView controlsIV = new ImageView(controlsImage);
 
+    // variables for player1/2 and left/right arrow
+    Image player1Image = new Image(player1Str);
+    ImageView player1IV = new ImageView(player1Image);
+    Image player2Image = new Image(player2Str);
+    ImageView player2IV = new ImageView(player2Image);
+    Image rArrowImage = new Image(rArrowStr);
+    ImageView rArrowIV = new ImageView(rArrowImage);
+    Image lArrowImage = new Image(lArrowStr);
+    ImageView lArrowIV = new ImageView(lArrowImage);
+
     public Mancala() {
 
         GridPane gpane = new GridPane();
-        //gpane.setGridLinesVisible(true);
         root = new VBox();
         hbox = new HBox();
         title = new HBox();
@@ -71,10 +93,32 @@ public class Mancala {
         filler.setFitWidth(500);
         filler.setFitHeight(100);
         prompt = new GridPane();
-        //prompt.setGridLinesVisible(true);
         prompt.add(menuIV, 0, 0);
         prompt. add(filler, 1, 0);
         prompt.add(controlsIV, 2, 0);
+
+        // creates gridpane for player turn
+        ImageView arrow = lArrowIV;
+        filler1 = new ImageView();
+        filler1.setFitWidth(50);
+        filler1.setFitHeight(200);
+        filler2 = new ImageView();
+        filler2.setFitWidth(50);
+        filler2.setFitHeight(200);
+        filler3 = new ImageView();
+        filler3.setFitWidth(50);
+        filler3.setFitHeight(200);
+        filler4 = new ImageView();
+        filler4.setFitWidth(50);
+        filler4.setFitHeight(200);
+        players = new GridPane();
+        players.add(filler1, 0, 0);
+        players.add(player1IV, 1, 0);
+        players.add(filler2, 2, 0);
+        players.add(arrow, 3, 0);
+        players.add(filler3, 4, 0);
+        players.add(player2IV, 5, 0);
+        players.add(filler4, 6, 0);
 
         // =-=-=-=-=- linked list reprsenting board =-=-=-=-=
         LinkedList<Integer> gameBoard = new LinkedList<>();
@@ -198,6 +242,7 @@ public class Mancala {
                 //
 
                 if (temp != 5) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(true);
                     } // for
@@ -237,6 +282,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 4) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(true);
                     } // for
@@ -261,6 +307,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 3) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(true);
                     } // for
@@ -285,6 +332,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 2) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(true);
                     } // for
@@ -309,6 +357,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 1) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(true);
                     } // for
@@ -338,6 +387,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 5) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
@@ -366,6 +416,7 @@ public class Mancala {
                     } // else
                 } // for
                 if (temp != 4) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
@@ -395,6 +446,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 3) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
@@ -424,6 +476,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 2) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
@@ -453,6 +506,7 @@ public class Mancala {
                 } // for
 
                 if (temp != 1) {
+                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
@@ -482,12 +536,7 @@ public class Mancala {
         controlsIV.setOnMouseExited(e -> {
                 root.setCursor(Cursor.DEFAULT);
             });
-        controlsIV.setOnMouseClicked(e -> {
-                gameBoard.set(0, gameBoard.get(0) + 1);
-                gameBoard.set(1, gameBoard.get(1) + 1);
-                gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-            });
+        controlsIV.setOnMouseClicked(getControlMenu());
 
     }
 
@@ -511,7 +560,7 @@ public class Mancala {
         Insets titlePad = new Insets(50.0, 0.0, 0.0, 00.0);
 
         title.getChildren().addAll(titleIV);
-        root.getChildren().addAll(title, prompt, hbox);
+        root.getChildren().addAll(title, prompt, hbox, players);
         root.setMargin(title, titlePad);
         title.setAlignment(Pos.CENTER);
         root.setStyle(styleBG);
@@ -582,5 +631,54 @@ public class Mancala {
         }; // exitMenu
         return exitMenu;
     } // getExitMenu()
+
+        /**
+     * Returns control menu.
+     *
+     * @return controlMenu
+     */
+    public EventHandler<MouseEvent> getControlMenu() {
+        EventHandler<MouseEvent> controlMenu = event -> {
+            // creates new window stage
+            Stage newWindow = new Stage();
+
+            // sets exit text and creates buttons
+            Text controls = new Text(
+                "Object: \n" +
+                "The object of the game is to collect the most \npieces by the end of the game. \n \n" +
+                "Controls: \n" +
+                "1. The game begins with player one (bottom) picking \nup all of the pieces in any one of the pockets on his/her side. \n" +
+                "2. Moving counter-clockwise, the player deposits one \nof the stones in each pocket until the stones run out. \n" +
+                "3. If you run into your own Mancala (store), deposit one \npiece in it. If you run into your opponent's Mancala, \nskip it and continue moving to the next pocket. \n" +
+                "4. If the last piece you drop is in your own Mancala, \nyou take another turn. \n" +
+                "5. If the last piece you drop is in an empty pocket on \nyour side, you capture that piece and any pieces in \nthe pocket directly opposite.");
+
+            controls.setTextAlignment(TextAlignment.LEFT);
+
+            // adds controls to controlBox
+            HBox controlBox = new HBox();
+            controlBox.getChildren().addAll(controls);
+
+            controlBox.setAlignment(Pos.TOP_CENTER);
+            Scene control = new Scene(controlBox, 420, 280);
+
+            // New window of stage
+            newWindow.setMaxWidth(420);
+            newWindow.setMaxHeight(280);
+            newWindow.setMinWidth(420);
+            newWindow.setMinHeight(280);
+
+            newWindow.setTitle("Mancala Rule/Controls");
+            newWindow.sizeToScene();
+            newWindow.setScene(control);
+            newWindow.setResizable(false);
+
+            // modality
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+
+            newWindow.show();
+        }; // controlMenu
+        return controlMenu;
+    } // getControlMenu()
 
 }
