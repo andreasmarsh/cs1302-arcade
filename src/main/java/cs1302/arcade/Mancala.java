@@ -632,7 +632,7 @@ public class Mancala {
         return exitMenu;
     } // getExitMenu()
 
-        /**
+    /**
      * Returns control menu.
      *
      * @return controlMenu

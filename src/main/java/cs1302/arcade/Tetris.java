@@ -254,6 +254,11 @@ public class Tetris {
         goVbox.setAlignment(Pos.TOP_CENTER);
         Scene gameOverScene = new Scene(goVbox, 350, 80);
 
+        gOverWindow.setMaxWidth(350);
+        gOverWindow.setMaxHeight(80);
+        gOverWindow.setMinWidth(350);
+        gOverWindow.setMinHeight(80);
+
         gOverWindow.setScene(gameOverScene);
         gOverWindow.initModality(Modality.APPLICATION_MODAL);
         gOverWindow.show();
