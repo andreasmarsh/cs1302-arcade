@@ -2,6 +2,8 @@ package cs1302.arcade;
 
 // import java.lang.Object.ListNode;
 import cs1302.arcade.ArcadeApp;
+import javafx.scene.control.TextField;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.LinkedList;
@@ -52,6 +54,9 @@ public class Mancala {
     private GridPane prompt;
     private GridPane players;
     private ImageView[] marblesIV;
+    private LinkedList<Integer> gameBoard;
+    private int topRow;
+    private int botRow;
 
     private String menuStr = Mancala.class.getResource("/mancala/menu.png").toExternalForm();
     private String controlsStr = Mancala.class.getResource("/mancala/controls.png").toExternalForm();
@@ -178,9 +183,7 @@ public class Mancala {
             for (int j = 0; j < 5; j++) {
                 gpane.add(gameIVs.get(increaser), j, i);
                 gameIVs.get(increaser).setOnMouseEntered(e -> {
-                        //if (gameBoard.get(increaser) != 0) {
                         root.setCursor(Cursor.HAND);
-                        //} // if
                     });
                 gameIVs.get(increaser).setOnMouseExited(e -> {
                         root.setCursor(Cursor.DEFAULT);
@@ -207,16 +210,9 @@ public class Mancala {
         } // for
         hbox.getChildren().addAll(lBoard, gpane, rBoard);
 
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         // event handler for IVs in all of gpane
-        /**
-           } // for
-           try {
-           Thread.sleep(1000);
-           } catch(InterruptedException ex) {
-           // nothing
-           }
-        */
-
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         gameIVs.get(1).setOnMouseClicked(e -> {
                 int temp = gameBoard.get(1);
                 gameBoard.set(1, 0);
@@ -241,6 +237,9 @@ public class Mancala {
                 // update that locations image
                 //
 
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 5) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -249,23 +248,9 @@ public class Mancala {
                     for (int i = 7; i < 12; i++) {
                         gameIVs.get(i).setDisable(false);
                     } // for
-                    // update turn arrow
-                    // =-=-=-=-=-=-=-=-=-=-=-
-                    // HERE
-                    // =-=-=-=-=-=-=-=-=-=-=-
                 } // if
 
                 gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-
-                //check if (all on clickside are empty), then  move remaining
-                //from other side to other main pocket
-                //also create runnable which does getWinnerHandler
-                //which sees if gameBoard 6 > 0 then displays player 1 wins
-                //otherwise says player 2 wins
-                //sets highscore to whichever player wons score
-                //and has insert player name with text field
-                //and save your highscore Y/N buttons
-                //which writes it ti text if score isn't empty
             });
 
         gameIVs.get(2).setOnMouseClicked(e -> {
@@ -280,6 +265,9 @@ public class Mancala {
                         gameIVs.get(i + 3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 3) + ".png").toExternalForm()));
                     } // else
                 } // for
+
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
 
                 if (temp != 4) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
@@ -306,6 +294,9 @@ public class Mancala {
                     } // else
                 } // for
 
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 3) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -331,6 +322,9 @@ public class Mancala {
                     } // else
                 } // for
 
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 2) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -355,6 +349,9 @@ public class Mancala {
                         gameIVs.get(i + 6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 6) + ".png").toExternalForm()));
                     } // else
                 } // for
+
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
 
                 if (temp != 1) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
@@ -386,6 +383,9 @@ public class Mancala {
                     } // else
                 } // for
 
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 5) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -415,6 +415,10 @@ public class Mancala {
                         gameIVs.get(i + 9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 9) + ".png").toExternalForm()));
                     } // else
                 } // for
+
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 4) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -444,6 +448,9 @@ public class Mancala {
                         gameIVs.get(i + 10).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 10) + ".png").toExternalForm()));
                     } // else
                 } // for
+
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
 
                 if (temp != 3) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
@@ -475,6 +482,9 @@ public class Mancala {
                     } // else
                 } // for
 
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
+
                 if (temp != 2) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
                     for (int i = 1; i < 6; i++) {
@@ -504,6 +514,9 @@ public class Mancala {
                         gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
                     } // else
                 } // for
+
+                // checks if a row is empty and ends game
+                checkWinner(gameBoard, gameIVs);
 
                 if (temp != 1) {
                     arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
@@ -681,4 +694,119 @@ public class Mancala {
         return controlMenu;
     } // getControlMenu()
 
-}
+    /**
+     * Returns Winner menu.
+     *
+     * @return winnerMenu
+     */
+    public void getWinnerMenu(LinkedList<Integer> x) {
+        // creates new window stage
+        Stage newWindow = new Stage();
+
+        String winner = "";
+        int score = 0;
+        if (x.get(0) > x.get(6)) {
+            winner = "Player 2";
+            score = x.get(0);
+        } else if (x.get(0) < x.get(6)) { // if
+            winner = "Player 1";
+            score = x.get(6);
+        } else { // else if
+            winner = "TIE";
+            score = x.get(0);
+        } // else
+
+        // sets winner text and creates buttons
+        Text winText = new Text("The Winner is\n" + winner + "\n with "
+                                + score + " points!!!");
+        winText.setTextAlignment(TextAlignment.CENTER);
+        Button save = new Button("Save");
+        Button menu = new Button("Return to Main Menu");
+        TextField winnerName = new TextField("Enter Winner's Name");
+
+        // adds text buttons to hboxes
+        HBox winBox = new HBox();
+        winBox.getChildren().addAll(winText);
+        winBox.setAlignment(Pos.CENTER);
+        winBox.setPadding(new Insets(10, 0, 0, 0));
+        HBox saveName = new HBox();
+        saveName.setSpacing(10);
+        saveName.setPadding(new Insets(20, 5, 5, 5));
+        saveName.getChildren().addAll(winnerName, save, menu);
+        saveName.setAlignment(Pos.CENTER);
+
+        // puts text and hbox into a vbox
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(winBox, saveName);
+        vBox.setAlignment(Pos.TOP_CENTER);
+        Scene exits = new Scene(vBox, 450, 120);
+
+        // event handlers for buttons
+        EventHandler<ActionEvent> saveHandler = event2 -> {
+            //newWindow.close();
+        };
+        EventHandler<ActionEvent> menuHandler = event3 -> {
+            Stage s = ArcadeApp.getMainStage();
+            Scene sc = ArcadeApp.getMainScene();
+            s.setScene(sc);
+            newWindow.close();
+        };
+
+        // set hanlers to buttons
+        save.setOnAction(saveHandler);
+        menu.setOnAction(menuHandler);
+
+        // New window of stage
+        newWindow.setMaxWidth(450);
+        newWindow.setMaxHeight(120);
+        newWindow.setMinWidth(450);
+        newWindow.setMinHeight(120);
+
+        newWindow.setTitle("Winner");
+        newWindow.sizeToScene();
+        newWindow.setScene(exits);
+        newWindow.setResizable(false);
+
+        // modality
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+
+        newWindow.show();
+
+    } // getWinnerMenu()
+
+    /**
+     * Returns Winner menu.
+     *
+     * @return winnerMenu
+     */
+    public void checkWinner(LinkedList<Integer> x, LinkedList<ImageView> y) {
+        // top and bot row sums
+        botRow = x.get(1) + x.get(2) + x.get(3) +
+            x.get(4) + x.get(5);
+        topRow = x.get(7) + x.get(8) + x.get(9) +
+            x.get(10) + x.get(11);
+
+        // if botRow is empty move all of top row to left mancala
+        // and display winner
+        if (botRow == 0) {
+            for (int i = 7; i < 12; i++) {
+                x.set(0, x.get(0) + x.get(i));
+                x.set(i, 0);
+                y.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+            } // for
+            y.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(0) + ".png").toExternalForm()));
+            getWinnerMenu(x);
+        }
+        // if topRow is empty move all of top row to right mancala
+        // and display winner
+        if (topRow == 0) {
+            for (int i = 1; i < 6; i++) {
+                x.set(6, x.get(6) + x.get(i));
+                x.set(i, 0);
+                y.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+            } // for
+            y.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(6) + ".png").toExternalForm()));
+            getWinnerMenu(x);
+        }
+    } // checkWinner
+} // Mancala
