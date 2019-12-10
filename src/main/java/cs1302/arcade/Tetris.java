@@ -1,5 +1,8 @@
 package cs1302.arcade;
 
+import java.util.ArrayList;
+import javafx.scene.Node;
+import javafx.scene.shape.Rectangle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -8,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.scene.input.KeyEvent;
 import java.util.Arrays;
+import java.util.stream.Stream;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,11 +25,14 @@ import javafx.stage.Stage;
 
 
 // TODO:
-// fix the back ground grid
-// work on rotation for each shape
-// work on side ways collisions
-// fix game over
-// work on row deletion
+// rotate T DONE
+// sideways collisions
+// IV for next block
+// set up menu button
+// set up control button
+// row deletion DONE
+// score track
+// speed level adjustment
 
 /**
  * Class which initiates the JavaFx game, Tetris.
@@ -35,12 +42,16 @@ import javafx.stage.Stage;
  */
 public class Tetris {
 
-    int size = 50;
+    int size = 50; // size of each rectangle of the blocks
     int gridsizeX = size * 9;
     int gridsizeY = size * 14;
     boolean[][] grid = new boolean[9][15];
     private Text scoreTxt;
     private int lines;
+    private Integer[] checkRows; // follow ints are used for row deletion
+    private int deletedRows;
+    private int highestRow = 0;
+    private static int turns;
     private static Block currentBlock;
     private static Block nextBlock;
     private VBox root;
@@ -48,7 +59,6 @@ public class Tetris {
     private Stage stage;
     private Scene mainScene = ArcadeApp.getMainScene();
     private Scene tetScene = ArcadeApp.getTScene();
-
     private Timer gravity;
     private String BG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
 
@@ -80,9 +90,11 @@ public class Tetris {
         lineTxt.setX(550);
         pane.getChildren().addAll(scoreTxt, lineTxt);
 */
-        currentBlock = new Block(randomBlockType()); // just a test
+        currentBlock = new Block(randomBlockType());
+        //currentBlock = new Block("Z");
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2, currentBlock.r3, currentBlock.r4);
 
+        turns = 0;
         gravity = new Timer();
         startGravity(gravity, currentBlock, 500);
 
@@ -134,21 +146,27 @@ public class Tetris {
      */
     private void startGravity(Timer gravity, Block block, long timePeriod) {
         Runnable r = () -> {
-            Block newBlock = block;
+            Block newBlock = block;;
 
             // if block is at the bottom, or the block has collided with another block, set
             // the block into the grid and spawn a new block.
             if (isBlockAtBottom(newBlock) == true || blockCollided(newBlock) == true) {
                 setBlockInGrid(newBlock);
+
                 if (isGameOver() == true) {
                     System.out.println("Game Over!");
                     getGameOver();
                     gravity.cancel();
                 } else { // if not game over, keep spawning blocks
-                    nextBlock = new Block(randomBlockType());
+                    //nextBlock = new Block(randomBlockType());
+                    nextBlock = new Block("I");
                     newBlock = nextBlock;
-
+                    // method to display next block here
                     pane.getChildren().addAll(newBlock.r1, newBlock.r2, newBlock.r3, newBlock.r4);
+                    // figure out what row to delete
+                    // if rowdeletion is true
+                    // drop row+1
+                    turns = 1;
                 }
             }
             // if the specified block does not collide with another one, it will keep moving down
@@ -156,6 +174,7 @@ public class Tetris {
                     newBlock.moveDown();
                     playerInput(newBlock);
             }
+
         }; // Runnable r
         gravity.schedule(new TimerTask() {
                 public void run() {
@@ -163,6 +182,69 @@ public class Tetris {
                 } // run()
             }, 0, timePeriod); // end of timer.schedule(timertask, 0, 300);
     } // startGravity
+
+    // return true if a row has been deleted, used to check if
+    // the method to lower the above row should be called
+    private boolean rowDeletion(int row) {
+        boolean isFull = true;
+        ArrayList<Node> squaresToDelete = new ArrayList<Node>();
+        // loop through row to check if it is full
+        for (int i = 0; i < 9; i++) {
+            if (grid[i][row] == false) { // if there is a blank in the row
+                isFull = false;
+            }
+        } // loop through row
+
+        if (isFull == true) {
+            Rectangle r = new Rectangle();
+            for (Node n : pane.getChildren()) {
+                if (n.getClass().equals(Rectangle.class)) {
+                    squaresToDelete.add(n);
+                }
+            } // put nodes in arraylist
+
+            for (Node n : squaresToDelete) {
+                r = (Rectangle) n; // could not find alternative to casting
+                // if the Y coord of the rect matches Y coord of the full row
+                if (r.getY() == row * 50) {
+                    // set grid to false i.e empty
+                    // and remove the rect from the pane
+                    Double rx = r.getX();
+                    Double ry = r.getY();
+                    grid[rx.intValue() / 50][ry.intValue() / 50] = false;
+                    pane.getChildren().remove(r);
+                }
+            } // for each node in list
+        } // if row is full
+        return isFull;
+    } // rowDeletion
+
+
+    /**
+     * Method to be used to bring down the row above the deleted row(s).
+     */
+    private void dropRow(int row) {
+        Rectangle r = new Rectangle();
+        for (Node n : pane.getChildren()) {
+            if (n.getClass().equals(Rectangle.class)) {
+                r = (Rectangle) n; // could not find alt to casting
+            } // if the node is a rectangle
+
+            // if rect is in specified row
+            if (r.getY() == row * 50) {
+                Double rx = r.getX();
+                Double ry = r.getY();
+                Double ryUpdated = r.getY() + (50 * deletedRows);
+                System.out.println(ry);
+                grid[rx.intValue() / 50][ry.intValue() / 50] = false;
+                // after clearing the grid on the specified row,
+                // set the rectangle in the new row
+                r.setY(ryUpdated);
+                // update the grid
+                grid[rx.intValue() / 50][ryUpdated.intValue() / 50] = true;
+            }
+        } // for each node in pane
+    } // dropRow(int)
 
     /**
      * This method places the block's position within the boolean grid.
@@ -178,10 +260,13 @@ public class Tetris {
         Double r3y = block.r3.getY();
         Double r4x = block.r4.getX();
         Double r4y = block.r4.getY();
-        grid[r1x.intValue() / 50][r1y.intValue() / 50] = true;
-        grid[r2x.intValue() / 50][r2y.intValue() / 50] = true;
-        grid[r3x.intValue() / 50][r3y.intValue() / 50] = true;
-        grid[r4x.intValue() / 50][r4y.intValue() / 50] = true;
+        checkRows = new Integer[] {r1y.intValue() / 50, r2y.intValue() / 50,
+                                   r3y.intValue() / 50, r4y.intValue() / 50};
+
+        grid[r1x.intValue() / 50][checkRows[0]] = true;
+        grid[r2x.intValue() / 50][checkRows[1]] = true;
+        grid[r3x.intValue() / 50][checkRows[2]] = true;
+        grid[r4x.intValue() / 50][checkRows[3]] = true;
 
         // test code to print out the grid
         for (boolean[] row : grid) {
@@ -190,6 +275,31 @@ public class Tetris {
                 System.out.print("\t");
             }
             System.out.println();
+        }
+
+        Integer[] checkRowsDistinct = Stream.of(checkRows)
+            .distinct().toArray(Integer[]::new);
+        System.out.println("distinct array: " + Arrays.deepToString(checkRowsDistinct) + checkRowsDistinct.length);
+        int rowsToDrop = 0;
+        deletedRows = 0;
+
+        // loop through checkRows to see if rows need to be deleted, delete the rows
+        for (int i = 0; i < checkRowsDistinct.length; i++) {
+            if (highestRow > checkRowsDistinct[i]) {
+                highestRow = checkRowsDistinct[i];
+            } // set highestRow to use with dropRows
+            if (rowDeletion(checkRowsDistinct[i]) == true) {
+                deletedRows++;
+                rowsToDrop = checkRowsDistinct[i];
+            }
+        }
+
+        if (deletedRows > 0) {
+            for (int i = rowsToDrop - 1; i > highestRow; i--) {
+                System.out.println("attempted to drop row: " + i);
+                dropRow(i);
+
+            }
         }
 
         //System.out.println(r1y.intValue() / 50); // debug code
@@ -254,15 +364,10 @@ public class Tetris {
         goVbox.setAlignment(Pos.TOP_CENTER);
         Scene gameOverScene = new Scene(goVbox, 350, 80);
 
-        gOverWindow.setMaxWidth(350);
-        gOverWindow.setMaxHeight(80);
-        gOverWindow.setMinWidth(350);
-        gOverWindow.setMinHeight(80);
-
         gOverWindow.setScene(gameOverScene);
         gOverWindow.initModality(Modality.APPLICATION_MODAL);
         gOverWindow.show();
-    }
+    } // getGameOver()
 
     /**
      * Checks to see if the squares under the specified block are occupied.
@@ -295,8 +400,8 @@ public class Tetris {
      */
     private static void rotateBlock(Block block) {
         String type;
-        if (nextBlock.getType() == null) {
-            type = currentBlock.getType();
+        if (turns == 0) {
+            type = block.getType();
         } else {
             type = nextBlock.getType();
         }
@@ -316,6 +421,9 @@ public class Tetris {
             break;
         case "Z":
             block.rotateZ();
+            break;
+        case "T":
+            block.rotateT();
             break;
         } // switch-case
     }
