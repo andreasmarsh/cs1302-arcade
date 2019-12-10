@@ -1,5 +1,7 @@
 package cs1302.arcade;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
@@ -60,7 +62,11 @@ public class Tetris {
     private Scene mainScene = ArcadeApp.getMainScene();
     private Scene tetScene = ArcadeApp.getTScene();
     private Timer gravity;
+
+    // strings with image locations
     private String BG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
+    private String menuStr = Tetris.class.getResource("/tetris/tetMenu.png").toExternalForm();
+    private String controlsStr = Tetris.class.getResource("/tetris/tetControls.png").toExternalForm();
 
     /**
      * Constructor of Tetris. Creates the roots and sets the stage and scene.
@@ -81,15 +87,26 @@ public class Tetris {
                 grid[i][j] = false;
             } // for j
         } // for i
-/*        Text scoreTxt = new Text("score goes here");
-        scoreTxt.setStyle("-fx-font: 25 arial;");
-        scoreTxt.setY(286);
-        scoreTxt.setX(550);
+
+        // variables for menu and controls
+        Image menuImage = new Image(menuStr);
+        ImageView menuIV = new ImageView(menuImage);
+        Image controlsImage = new Image(controlsStr);
+        ImageView controlsIV = new ImageView(controlsImage);
+        menuIV.setX(490);
+        menuIV.setY(280);
+        controlsIV.setX(490);
+        controlsIV.setY(350);
+
+        Text scoreTxt = new Text("score goes here");
+        scoreTxt.setStyle("-fx-font: 22 arial;");
+        scoreTxt.setY(500);
+        scoreTxt.setX(500);
         Text lineTxt = new Text("lines go here");
-        lineTxt.setY(330);
-        lineTxt.setX(550);
-        pane.getChildren().addAll(scoreTxt, lineTxt);
-*/
+        lineTxt.setY(550);
+        lineTxt.setX(500);
+        pane.getChildren().addAll(menuIV, controlsIV, scoreTxt, lineTxt);
+
         currentBlock = new Block(randomBlockType());
         //currentBlock = new Block("Z");
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2, currentBlock.r3, currentBlock.r4);
@@ -158,8 +175,8 @@ public class Tetris {
                     getGameOver();
                     gravity.cancel();
                 } else { // if not game over, keep spawning blocks
-                    //nextBlock = new Block(randomBlockType());
-                    nextBlock = new Block("I");
+                    nextBlock = new Block(randomBlockType());
+                    //nextBlock = new Block("I");
                     newBlock = nextBlock;
                     // method to display next block here
                     pane.getChildren().addAll(newBlock.r1, newBlock.r2, newBlock.r3, newBlock.r4);
@@ -394,6 +411,40 @@ public class Tetris {
         return false;
     } // blockCollided(block)
 
+    private boolean sideCollision(Block block) {
+        Double r1x = block.r1.getX();
+        Double r1y = block.r1.getY();
+        Double r2x = block.r2.getX();
+        Double r2y = block.r2.getY();
+        Double r3x = block.r3.getX();
+        Double r3y = block.r3.getY();
+        Double r4x = block.r4.getX();
+        Double r4y = block.r4.getY();
+        // if any of the squares to the right or left of  the specified block
+        // contain a square of another block, the specfied block will not overlap it
+
+        System.out.println("r1x: " + r1x  +"r2x: " + r2x + "r3x: " + r3x + "r4x: " + r4x);
+
+        //if (r1x != 25.0 || r2x != 25.0 || r3x != 25.0 || r4x != 25.0) { // if not on left
+            if (grid[(r1x.intValue() / 50) + 1][(r1y.intValue() / 50)] == true ||
+                grid[(r2x.intValue() / 50) + 1][(r2y.intValue() / 50)] == true ||
+                grid[(r3x.intValue() / 50) + 1][(r3y.intValue() / 50)] == true ||
+                grid[(r4x.intValue() / 50) + 1][(r4y.intValue() / 50)] == true) {
+                return true;
+            }
+            //}
+            //if (r1x != 425.0 || r2x != 425.0 || r3x != 425.0 || r4x != 425.0) { // if not on right
+            if (grid[(r1x.intValue() / 50) - 1][(r1y.intValue() / 50)] == true ||
+                grid[(r2x.intValue() / 50) - 1][(r2y.intValue() / 50)] == true ||
+                grid[(r3x.intValue() / 50) - 1][(r3y.intValue() / 50)] == true ||
+                grid[(r4x.intValue() / 50) - 1][(r4y.intValue() / 50)] == true) {
+                return true;
+            }
+            //} // if not on left
+        return false;
+
+    }
+
     /**
      * Determines how to rotate the block by the block type. Handled by switch-case.
      * @param block the specified block
@@ -439,12 +490,20 @@ public class Tetris {
                 switch(e.getCode()) {
                 case RIGHT:
                 case D:
-                    block.moveRight();
-                    break;
+                    if (sideCollision(block)) {
+                        break;
+                    } else {
+                        block.moveRight();
+                        break;
+                    }
                 case LEFT:
                 case A:
-                    block.moveLeft();
-                    break;
+                    if (sideCollision(block)) {
+                        break;
+                    } else {
+                        block.moveLeft();
+                        break;
+                    }
                 case DOWN:
                 case S:
                     if (!blockCollided(block)) {
