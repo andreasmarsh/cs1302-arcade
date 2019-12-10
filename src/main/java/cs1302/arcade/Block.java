@@ -21,6 +21,7 @@ public class Block {
  * Takes in specified name and uses a switch case to determine
  * which Block to construct. Each block is made up of 4 squares that are
  * layed out in the shape of the desired block.
+ * @param name specified type of the block that will be constructor
  */
     public Block(String name) {
         r1 = new Rectangle(size - 1, size - 1); // the dimensions are 24x24
@@ -58,14 +59,16 @@ public class Block {
          // {r3, r4}
             type = "O";
             r1.setX(175);
-            r1.setY(50);
+            r1.setY(0);
             r1.setFill(Color.GOLD);
             r2.setX(225);
-            r2.setY(50);
+            r2.setY(0);
             r2.setFill(Color.GOLD);
             r3.setX(175);
+            r3.setY(-50);
             r3.setFill(Color.GOLD);
             r4.setX(225);
+            r4.setY(-50);
             r4.setFill(Color.GOLD);
             break;
         } // end of switch-case
@@ -74,6 +77,10 @@ public class Block {
 /**
  * Helper method to shorten the constructor. Sets the squares for blocks
  * of type I or type L or type J;
+ * @param r1 the first square of the block
+ * @param r2 the second square of the block
+ * @param r3 the third square of the block
+ * @param r4 the fourth square of the block
  */
     private static void makeTypeILJ(Rectangle r1, Rectangle r2, Rectangle r3,
                                     Rectangle r4, String type) {
@@ -81,49 +88,57 @@ public class Block {
 // creates 4 squares in a configuration of
 // {r1, r2, r3, r4}
             r1.setX(125);
+            r1.setY(-50);
             r1.setFill(Color.MAGENTA);
             r2.setX(175);
+            r2.setY(-50);
             r2.setFill(Color.MAGENTA);
             r3.setX(225);
+            r3.setY(-50);
             r3.setFill(Color.MAGENTA);
             r4.setX(275);
+            r4.setY(-50);
             r4.setFill(Color.MAGENTA);
         } else if (type == "J") {
 // {r1, r2, r3}
 // {--, --, r4}
             r1.setX(175);
-            r1.setY(0);
+            r1.setY(-50);
             r1.setFill(Color.LIME);
             r2.setX(225);
-            r2.setY(0);
+            r2.setY(-50);
             r2.setFill(Color.LIME);
             r3.setX(275);
-            r3.setY(0);
+            r3.setY(-50);
             r3.setFill(Color.LIME);
             r4.setX(275);
-            r4.setY(50);
+            r4.setY(0);
             r4.setFill(Color.LIME);
         } else if (type == "L") {
 // {r1, r2, r3}
 // {r4, --, --}
             r4.setX(175);
-            r4.setY(50);
+            r4.setY(0);
             r4.setFill(Color.AQUA);
             r1.setX(175);
-            r1.setY(0);
+            r1.setY(-50);
             r3.setFill(Color.AQUA);
             r2.setX(225);
-            r2.setY(0);
+            r2.setY(-50);
             r2.setFill(Color.AQUA);
             r3.setX(275);
-            r3.setY(0);
+            r3.setY(-50);
             r1.setFill(Color.AQUA);
         }
     } //makeTypeILJ
 
 /**
  * Helper method to shorten the constructor. Sets the squares for blocks
- * of type I or type L or type J;
+ * of type S or type Z or type T;
+ * @param r1 the first square of the block
+ * @param r2 the second square of the block
+ * @param r3 the third square of the block
+ * @param r4 the fourth square of the block
  */
     private static void makeTypeSZT(Rectangle r1, Rectangle r2, Rectangle r3,
                                     Rectangle r4, String type) {
@@ -132,56 +147,62 @@ public class Block {
 // {--, r3, r4}
 // {r1, r2, --}
             r1.setX(175);
-            r1.setY(50);
+            r1.setY(0);
             r1.setFill(Color.DARKVIOLET);
             r2.setX(225);
-            r2.setY(50);
+            r2.setY(0);
             r2.setFill(Color.DARKVIOLET);
             r3.setX(225);
-            r3.setY(0);
+            r3.setY(-50);
             r3.setFill(Color.DARKVIOLET);
             r4.setX(275);
-            r4.setY(0);
+            r4.setY(-50);
             r4.setFill(Color.DARKVIOLET);
         } else if (type == "Z") {
 // {r1, r2, --}
 // {--, r3, r4}
             r1.setX(175);
-            r1.setY(0);
+            r1.setY(-50);
             r1.setFill(Color.DARKORANGE);
             r2.setX(225);
-            r2.setY(0);
+            r2.setY(-50);
             r2.setFill(Color.DARKORANGE);
             r3.setX(225);
-            r3.setY(50);
+            r3.setY(0);
             r3.setFill(Color.DARKORANGE);
             r4.setX(275);
-            r4.setY(50);
+            r4.setY(0);
             r4.setFill(Color.DARKORANGE);
         } else if (type == "T") {
 // {--, r4, --}
 // {r1, r2, r3}
             r1.setX(175);
-            r1.setY(50);
+            r1.setY(0);
             r1.setFill(Color.RED);
             r2.setX(225);
-            r2.setY(50);
+            r2.setY(0);
             r2.setFill(Color.RED);
             r3.setX(275);
-            r3.setY(50);
+            r3.setY(0);
             r3.setFill(Color.RED);
             r4.setX(225);
+            r4.setY(-50);
             r4.setFill(Color.RED);
         }
     } //makeTypeSZT
 
 /**
  * Returns the String which references what the type of block is.
+ * @return String of block type
  */
     public String getType() {
         return type;
     } // getType
 
+    /**
+     * Moves the specified square to the right one.
+     * @param specified square
+     */
     private static void moveSquareRight(Rectangle r) {
         // this if statement blocks the sqaures from going out of left-bounds
         if (r.getX() + 50 < 450) {
@@ -189,6 +210,13 @@ public class Block {
         }
     } // moveSquareRight(rect)
 
+    /**
+     * Method which takes two specified squares and compares them to each other
+     * by their location.
+     * @return if negative, block is vertical, if position block is horizontal
+     * @param r1 the first specified square
+     * @param r2 the second specified square
+     */
     private static int position(Rectangle r1, Rectangle r2) {
         if (r1.getX() + 50 == r2.getX()) { // if r1 and r2 are horizontally respectively
             return 1;
@@ -202,6 +230,11 @@ public class Block {
         return 0;
     } // isHorizontal
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateI() {
         //System.out.println("r1.getX: " + r1.getX()); code for debugging
         if (position(r1, r2) == 1) { // if I is horizontal
@@ -260,6 +293,11 @@ public class Block {
         } // large if-else
     } // rotateI()
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateJ() {
         if (position(r1, r2) == 1) { // horizontal with right peg down
             moveSquareUp(r1); // 1
@@ -314,6 +352,11 @@ public class Block {
         } // larger else-if
     } // rotateJ
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateL() {
         if (position(r1, r2) == 1) { // if block is in default position
             moveSquareUp(r1); // 1
@@ -364,6 +407,11 @@ public class Block {
         } // larger if-else
     } // rotateL
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateS() {
         if (position(r1, r2) == 1) { // if horizontal
             moveSquareUp(r1); // 1
@@ -391,6 +439,11 @@ public class Block {
         }
     } // rotateS()
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateZ() {
         if (position(r1, r2) == 1) { // if horizontal
             moveSquareRight(r1); // 1
@@ -418,6 +471,11 @@ public class Block {
         }
     } // rotateZ()
 
+    /**
+     * Handles the rotation of the specified block. When called, rotates
+     * the block once. Moves each square of the blocks
+     * individually. Each block type is handled differently.
+     */
     public void rotateT() {
         if (position(r1, r2) == 1) { // if in position 1
             moveSquareUp(r1); // 1
@@ -485,6 +543,7 @@ public class Block {
 /**
  * Handles the repositioning of each individual square contained within the block.
  * Moves the block/squares to the left one block.
+ * @param r specified square
  */
     private static void moveSquareLeft(Rectangle r) {
         // this if statement blocks the sqaures from going out of left-bounds
@@ -493,6 +552,9 @@ public class Block {
         }
     } // moveSquareLeft(rect)
 
+    /**
+     * Moves block to the left once.
+     */
     public void moveLeft() {
         if (r1.getX() - 50 > 0 && r2.getX() - 50 > 0 &&
             r3.getX() - 50 > 0 && r4.getX() - 50 > 0) {
@@ -503,6 +565,10 @@ public class Block {
         }
     } // moveLeft()
 
+    /**
+     * Moves specified square down one.
+     * @param r the specified square
+     */
     private static void moveSquareDown(Rectangle r) {
         // this if statement is to make sure that the block stops going down once
         // it hits the bottom of the board
@@ -525,19 +591,14 @@ public class Block {
         }
     } // moveDown()
 
+    /**
+     * Moves specified square up once.
+     * @param r specified square
+     */
     private static void moveSquareUp(Rectangle r) {
         if (r.getY() - 50 > 0) {
             r.setY(r.getY() -50);
         }
-    }
-/**
- * Handles the rotation of the specified block. When called, rotates
- * the block in a clockwise rotation once. Moves each square of the blocks
- * individually.
- */
-    public void rotateBlock(Block block) {
-        int move = size; // move is the size of one block in the gameBoard
-        throw new UnsupportedOperationException("not yet implemented");
-    } // rotateBlock(block)
+    } // moveSquareUp
 
-}
+} // END OF CLASS
