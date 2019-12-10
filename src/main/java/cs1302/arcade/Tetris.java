@@ -1,5 +1,17 @@
 package cs1302.arcade;
 
+import javafx.scene.control.TextField;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.Cursor;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import java.lang.IllegalArgumentException;
 import java.lang.ArrayIndexOutOfBoundsException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,17 +37,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
-// TODO:
-// rotate T DONE
-// sideways collisions DONE
-// IV for next block
-// set up menu button
-// set up control button
-// row deletion DONE
-// score track DONE
-// speed level adjustment DONE
 
 /**
  * Class which initiates the JavaFx game, Tetris.
@@ -66,12 +67,22 @@ public class Tetris {
     private Scene mainScene = ArcadeApp.getMainScene();
     private Scene tetScene = ArcadeApp.getTScene();
     private Timer gravity;
+    //private static Block[] blockArr;
+    //private static Image nextImage;
+    //private static ImageView nextIV;
 
     // strings with image locations
     private String BG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
     private String menuStr = Tetris.class.getResource("/tetris/tetMenu.png").toExternalForm();
     private String controlsStr = Tetris.class
         .getResource("/tetris/tetControls.png").toExternalForm();
+    private String IStr = Tetris.class.getResource("/tetris/blockI.png").toExternalForm();
+    private String JStr = Tetris.class.getResource("/tetris/blockJ.png").toExternalForm();
+    private String LStr = Tetris.class.getResource("/tetris/blockL.png").toExternalForm();
+    private String OStr = Tetris.class.getResource("/tetris/blockO.png").toExternalForm();
+    private String SStr = Tetris.class.getResource("/tetris/blockS.png").toExternalForm();
+    private String TStr = Tetris.class.getResource("/tetris/blockT.png").toExternalForm();
+    private String ZStr = Tetris.class.getResource("/tetris/blockZ.png").toExternalForm();
 
     /**
      * Constructor of Tetris. Creates the roots and sets the stage and scene.
@@ -100,21 +111,37 @@ public class Tetris {
         ImageView menuIV = new ImageView(menuImage);
         Image controlsImage = new Image(controlsStr);
         ImageView controlsIV = new ImageView(controlsImage);
+        currentBlock = new Block(randomBlockType());
+
         menuIV.setX(490);
         menuIV.setY(280);
+        menuIV.setOnMouseEntered(e -> {
+                tetScene.setCursor(Cursor.HAND);
+            });
+        menuIV.setOnMouseExited(e -> {
+                tetScene.setCursor(Cursor.DEFAULT);
+            });
+        menuIV.setOnMouseClicked(getExitMenu());
         controlsIV.setX(490);
         controlsIV.setY(350);
+        controlsIV.setOnMouseEntered(e -> {
+                tetScene.setCursor(Cursor.HAND);
+            });
+        controlsIV.setOnMouseExited(e -> {
+                tetScene.setCursor(Cursor.DEFAULT);
+            });
+        controlsIV.setOnMouseClicked(getControlMenu());
 
         scoreTxt = new Text("Score: 0");
-        scoreTxt.setStyle("-fx-font: 22 arial;");
-        scoreTxt.setY(500);
+        scoreTxt.setStyle("-fx-font-size: 22px; -fx-fill: white;");
+        scoreTxt.setY(150);
         scoreTxt.setX(500);
         levelTxt = new Text("Level: 0");
-        levelTxt.setY(550);
+        levelTxt.setStyle("-fx-fill: white;");
+        levelTxt.setY(200);
         levelTxt.setX(500);
         pane.getChildren().addAll(menuIV, controlsIV, scoreTxt, levelTxt);
 
-        currentBlock = new Block(randomBlockType());
         //currentBlock = new Block("Z"); // test code for specific block
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2,
                                   currentBlock.r3, currentBlock.r4);
@@ -125,13 +152,148 @@ public class Tetris {
 
     } // Tetris()
 
+    public void tetrisSaveScore(String name) {
+        try {
+            File file = new File("tetScores.txt");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
+            output.newLine();
+            output.append(score + " : " + name);
+            output.close();
+        } catch (IOException e) {
+        }
+    } // tetrisSaveScore
+
+/**
+     * Returns control menu.
+     *
+     * @return controlMenu
+     */
+    public EventHandler<MouseEvent> getControlMenu() {
+        EventHandler<MouseEvent> controlMenu = event -> {
+            // creates new window stage
+            gravity.cancel();
+            Stage newWindow = new Stage();
+
+            // sets exit text and creates buttons
+            Text controls = new Text(
+                "Object: \n" +
+                "The object of the game is to fill all empty space" +
+                " \nwithin a row. Your score will increment up" +
+                " \nas you fill a row. Once a row is filled"+
+                " \nthe row will clear and the blocks above it will fall." +
+                " \nEvery 3 rows you fill you will move on to the next level."+
+                " \nEach level will increase the speed of the following blocks. \n \n" +
+                "Controls: \n" +
+                "1. You may use WASD or Arrow Keys to move the falling block. \n" +
+                "- W/Up : Rotates the block \n" +
+                "- A/Left : Moves block to the left \n" +
+                "- S/Down : Moves the block down \n" +
+                "- D/Right : Moves the block to the right");
+
+            controls.setTextAlignment(TextAlignment.LEFT);
+
+            // adds controls to controlBox
+            HBox controlBox = new HBox();
+            controlBox.getChildren().addAll(controls);
+
+            controlBox.setAlignment(Pos.TOP_CENTER);
+            Scene control = new Scene(controlBox, 420, 280);
+
+            // New window of stage
+            newWindow.setMaxWidth(420);
+            newWindow.setMaxHeight(280);
+            newWindow.setMinWidth(420);
+            newWindow.setMinHeight(280);
+
+            newWindow.setTitle("Tetris Rule/Controls");
+            newWindow.sizeToScene();
+            newWindow.setScene(control);
+            newWindow.setResizable(false);
+
+            // modality
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+
+            newWindow.show();
+            newWindow.setOnCloseRequest(close -> {
+                    Tetris tet = new Tetris();
+                    newWindow.close();
+                });
+        }; // controlMenu
+        return controlMenu;
+    } // getControlMenu()
+
+
+    /**
+     * Returns exit menu.
+     *
+     * @return exitMenu
+     */
+    public EventHandler<MouseEvent> getExitMenu() {
+        EventHandler<MouseEvent> exitMenu = event -> {
+            // creates new window stage
+            Stage newWindow = new Stage();
+            // sets exit text and creates buttons
+            Text exit = new Text("Are you sure you wish to quit Tetris?");
+            Button yes = new Button("Yes");
+            Button no = new Button("No");
+            // adds text buttons to hboxes
+            HBox exitBox = new HBox();
+            exitBox.getChildren().addAll(exit);
+            exitBox.setAlignment(Pos.CENTER);
+            exitBox.setPadding(new Insets(10, 0, 0, 0));
+            HBox yesNo = new HBox();
+            yesNo.setSpacing(263);
+            yesNo.setPadding(new Insets(20, 5, 5, 5));
+            yesNo.getChildren().addAll(yes, no);
+
+            // puts text and hbox into a vbox
+            VBox vBox = new VBox();
+            vBox.getChildren().addAll(exitBox, yesNo);
+            vBox.setAlignment(Pos.TOP_CENTER);
+            Scene exits = new Scene(vBox, 350, 80);
+
+            // event handlers for buttons
+            EventHandler<ActionEvent> noHandler = event2 -> {
+                newWindow.close();
+            };
+            EventHandler<ActionEvent> yesHandler = event3 -> {
+                gravity.cancel();
+                Stage s = ArcadeApp.getMainStage();
+                Scene sc = ArcadeApp.getMainScene();
+                s.setScene(sc);
+                newWindow.close();
+            };
+
+            // set hanlers to buttons
+            no.setOnAction(noHandler);
+            yes.setOnAction(yesHandler);
+            // New window of stage
+            newWindow.setMaxWidth(350);
+            newWindow.setMaxHeight(80);
+            newWindow.setMinWidth(350);
+            newWindow.setMinHeight(80);
+            newWindow.setTitle("Exit Mancala");
+            newWindow.sizeToScene();
+            newWindow.setScene(exits);
+            newWindow.setResizable(false);
+            // modality
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+            newWindow.show();
+        }; // exitMenu
+        return exitMenu;
+    } // getExitMenu()
+
+
     /**
      * Method which gets Tetris root. Used by main menu screen in scene controlling.
      * @return VBox the root of the tetris scene.
      */
     public VBox getRoot() {
         String styleBG = "-fx-background-image: url(\'" + BG + "\')";
-        root.getChildren().addAll(pane);
+
+            root.getChildren().addAll(pane);
+
+            root.getChildren();
         root.setStyle(styleBG);
         return root;
     } // getRoot()
@@ -176,13 +338,24 @@ public class Tetris {
                 gravity.cancel();
                 getGameOver();
             } else {
+                /*if (turns == 0) {
+                    blockArr = new Block[2];
+                    blockArr[0] = block;
+                    blockArr[1] = new Block(randomBlockType());
+                } else { // if odd
+                    blockArr[0] = blockArr[1];
+                    blockArr[1] = new Block(randomBlockType());
+                    }*/
 
                 Block newBlock = block;
+                //Block newBlock = new Block(blockArr[0].getType());
+                //nextIV.setImage(displayNext(blockArr[1]));
 
                 // if block is at the bottom, or the block has collided with another block, set
                 // the block into the grid and spawn a new block.
                 if (isBlockAtBottom(newBlock) == true || blockCollided(newBlock) == true) {
                     setBlockInGrid(newBlock);
+
                     if (score != 0) {
                         scoreTxt.setText("Score: " + score);
                         level = score / 150;
@@ -194,6 +367,7 @@ public class Tetris {
                     } // if score is not 0
 
                     nextBlock = new Block(randomBlockType());
+                    //nextBlock = new Block(blockArr[1].getType());
                     //nextBlock = new Block("S"); // test code for specific blocks
                     newBlock = nextBlock;
                     // method to display next block IV here
@@ -207,6 +381,7 @@ public class Tetris {
                     newBlock.moveDown();
                     playerInput(newBlock);
                 }
+
             } // if not gameover
 
         }; // Runnable r
@@ -217,14 +392,54 @@ public class Tetris {
             }, 0, timePeriod); // end of timer.schedule(timertask, 0, 300);
     } // startGravity
 
+    private Image displayNext(Block block) {
+        System.out.println("in displayN");
+        String imageType = block.getType();
+        Image output = new Image(IStr);
+        switch(imageType) {
+        case "I":
+            output = new Image(IStr);
+            break;
+        case "J":
+            output = new Image(JStr);
+            break;
+        case "L":
+            output = new Image(LStr);
+            break;
+        case "S":
+            output = new Image(SStr);
+            break;
+        case "Z":
+            output = new Image(ZStr);
+            break;
+        case "T":
+            output = new Image(TStr);
+            break;
+        case "O":
+            output = new Image(OStr);
+            break;
+        } // switch-case
+        return output;
+    }
+
+    /**
+     * Stops the current Timer and creates a new one with an adjusted speed.
+     * The speed decreases in increments of 75 depending on the level.
+     */
     private void increaseSpeed() {
         gravity.cancel();
         gravity = new Timer();
-        startGravity(gravity, currentBlock, scoreTxt, levelTxt, 500 - (150 * level));
+        startGravity(gravity, currentBlock, scoreTxt, levelTxt, 500 - (75 * level));
     }
 
-    // return true if a row has been deleted, used to check if
-    // the method to lower the above row should be called
+    /**
+     * Checks the specified row if it needs to be deleted. If true, the score is
+     * incremented along with a level update. For every rectangle node in the pane
+     * at the specified coordinate of the row, the initial grid value is set
+     * to false and the rectangle nodes are deleted.
+     * @return true if the row was deleted, false if row did not need to be deleted
+     * @param row the specified row to be deleted
+     */
     private boolean rowDeletion(int row) {
         boolean isFull = true;
         long tPeriod = 500;
@@ -272,6 +487,7 @@ public class Tetris {
 
     /**
      * Method to be used to bring down the row above the deleted row(s).
+     * @param row the specified row that was just deleted.
      */
     private void dropRow(int row) {
         Rectangle r = new Rectangle();
@@ -310,14 +526,17 @@ public class Tetris {
         Double r3y = block.r3.getY();
         Double r4x = block.r4.getX();
         Double r4y = block.r4.getY();
-        checkRows = new Integer[] {r1y.intValue() / 50, r2y.intValue() / 50,
-                                   r3y.intValue() / 50, r4y.intValue() / 50};
+        try {
+            checkRows = new Integer[] {r1y.intValue() / 50, r2y.intValue() / 50,
+                                       r3y.intValue() / 50, r4y.intValue() / 50};
 
-        grid[r1x.intValue() / 50][checkRows[0]] = true;
-        grid[r2x.intValue() / 50][checkRows[1]] = true;
-        grid[r3x.intValue() / 50][checkRows[2]] = true;
-        grid[r4x.intValue() / 50][checkRows[3]] = true;
-
+            grid[r1x.intValue() / 50][checkRows[0]] = true;
+            grid[r2x.intValue() / 50][checkRows[1]] = true;
+            grid[r3x.intValue() / 50][checkRows[2]] = true;
+            grid[r4x.intValue() / 50][checkRows[3]] = true;
+        } catch (ArrayIndexOutOfBoundsException a) {
+            checkRows = new Integer[0];
+        }
         // test code to print out the grid
         /*for (boolean[] row : grid) {
             for (boolean b : row) {
@@ -390,23 +609,63 @@ public class Tetris {
      */
     private void getGameOver() {
         Stage gOverWindow = new Stage();
-        Text gameOverTxt = new Text("Game Over!");
-        Button yes = new Button ("Yes");
-        Button no = new Button("No");
+        Text gameOverTxt = new Text("Game Over! Your score was: " + score);
+        gameOverTxt.setTextAlignment(TextAlignment.CENTER);
+        //Button yes = new Button ("Yes");
+        //Button no = new Button("No");
+
+        Button save = new Button("Save");
+        Button menu = new Button("Return to Main Menu");
+        TextField winnerName = new TextField("Enter Winner's Name");
 
         HBox goHbox = new HBox();
         goHbox.getChildren().addAll(gameOverTxt);
         goHbox.setAlignment(Pos.CENTER);
         goHbox.setPadding(new Insets(10, 0, 0, 0));
-        HBox yesNo = new HBox();
-        yesNo.setSpacing(263);
-        yesNo.setPadding(new Insets(20, 5, 5, 5));
-        yesNo.getChildren().addAll(yes, no);
+        HBox saveName = new HBox();
+        saveName.setSpacing(10);
+        saveName.setPadding(new Insets(20, 5, 5, 5));
+        saveName.getChildren().addAll(winnerName, save, menu);
+        saveName.setAlignment(Pos.CENTER);
 
         VBox goVbox = new VBox();
-        goVbox.getChildren().addAll(goHbox, yesNo);
+        goVbox.getChildren().addAll(goHbox, saveName);
         goVbox.setAlignment(Pos.TOP_CENTER);
-        Scene gameOverScene = new Scene(goVbox, 350, 80);
+        Scene gameOverScene = new Scene(goVbox, 450, 120);
+
+        // event handlers for buttons
+        EventHandler<ActionEvent> saveHandler = event2 -> {
+            if (winnerName.getText().equals("Enter Winner's Name") ||
+                winnerName.getText().equals("PLEASE ENTER NAME")) {
+                winnerName.setText("PLEASE ENTER NAME");
+            } else {
+                tetrisSaveScore(winnerName.getText());
+                Stage s = ArcadeApp.getMainStage();
+                Scene sc = ArcadeApp.getMainScene();
+                s.setScene(sc);
+                gOverWindow.close();
+            }
+        };
+        EventHandler<ActionEvent> menuHandler = event3 -> {
+            Stage s = ArcadeApp.getMainStage();
+            Scene sc = ArcadeApp.getMainScene();
+            s.setScene(sc);
+            gOverWindow.close();
+        };
+
+        // set hanlers to buttons
+        save.setOnAction(saveHandler);
+        menu.setOnAction(menuHandler);
+
+        // New window of stage
+        gOverWindow.setMaxWidth(450);
+        gOverWindow.setMaxHeight(120);
+        gOverWindow.setMinWidth(450);
+        gOverWindow.setMinHeight(120);
+
+        gOverWindow.setTitle("Game Over");
+        gOverWindow.sizeToScene();
+        gOverWindow.setResizable(false);
 
         gOverWindow.setScene(gameOverScene);
         gOverWindow.initModality(Modality.APPLICATION_MODAL);
@@ -438,6 +697,12 @@ public class Tetris {
         return false;
     } // blockCollided(block)
 
+    /**
+     * Ensures that blocks can not overlap with other blocks when
+     * attempting to enter their space from the left or right.
+     * @return true if the block will collide with another
+     * @param specified block that is being moved
+     */
     private boolean sideCollision(Block block) {
         Double r1x = block.r1.getX();
         Double r1y = block.r1.getY();
@@ -449,10 +714,7 @@ public class Tetris {
         Double r4y = block.r4.getY();
         // if any of the squares to the right or left of  the specified block
         // contain a square of another block, the specfied block will not overlap it
-
-        System.out.println("r1x: " + r1x  +"r2x: " + r2x + "r3x: " + r3x + "r4x: " + r4x);
-
-        //if (r1x != 25.0 || r2x != 25.0 || r3x != 25.0 || r4x != 25.0) { // if not on left
+        // try catch is implemented to handle when the blocks are on the edge of the board
         try {
             if (grid[(r1x.intValue() / 50) + 1][(r1y.intValue() / 50)] == true ||
                 grid[(r2x.intValue() / 50) + 1][(r2y.intValue() / 50)] == true ||
@@ -468,8 +730,7 @@ public class Tetris {
                 return true;
             }// if
         }
-            //}
-            //if (r1x != 425.0 || r2x != 425.0 || r3x != 425.0 || r4x != 425.0) { // if not on right
+
         try {
             if (grid[(r1x.intValue() / 50) - 1][(r1y.intValue() / 50)] == true ||
                 grid[(r2x.intValue() / 50) - 1][(r2y.intValue() / 50)] == true ||
@@ -485,10 +746,8 @@ public class Tetris {
                 return true;
             }// if
         }
-
         return false;
-
-    }
+    } // sideCollision
 
     /**
      * Determines how to rotate the block by the block type. Handled by switch-case.
