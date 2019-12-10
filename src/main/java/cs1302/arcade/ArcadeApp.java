@@ -1,4 +1,15 @@
 package cs1302.arcade;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import javafx.stage.Modality;
+import javafx.scene.text.Text;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import javafx.scene.Cursor;
 import java.lang.Runnable;
 import javafx.scene.layout.HBox;
@@ -39,6 +50,9 @@ public class ArcadeApp extends Application {
     ImageView gLabelIV;
     ImageView mLabelIV;
     ImageView sLabelIV;
+    private static String tLine;
+    private static ArrayList<String> tList;
+    private static File tFile;
     private String mPath = ArcadeApp.class.getResource("/menu/m.png").toExternalForm();//mancala
     private String mLabelPath = ArcadeApp.class.getResource("/menu/mTitle.png").toExternalForm();
     private String gPath = ArcadeApp.class.getResource("/menu/g.png").toExternalForm(); //group1
@@ -125,9 +139,9 @@ public class ArcadeApp extends Application {
             });
         gIV.setOnMouseClicked(e -> {
                 Tetris tGame = new Tetris();
-                tScene = new Scene(tGame.getRoot(), 700, 700);
-                stage.setScene(tScene);
-                stage.setResizable(false);
+                //tScene = new Scene(tGame.getRoot(), 700, 700);
+                //stage.setScene(tScene);
+                //stage.setResizable(false);
             });
 // scores
         sIV.setOnMouseEntered(e -> {
@@ -137,6 +151,9 @@ public class ArcadeApp extends Application {
         sIV.setOnMouseExited(e -> {
                 stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
                 sTitle.setImage(blankSImg);
+            });
+        sIV.setOnMouseClicked(e -> {
+                getScores();
             });
 // mancala
         mIV.setOnMouseEntered(e -> {
@@ -175,6 +192,68 @@ public class ArcadeApp extends Application {
         stage.show();
 
     } // start
+
+    // see tetris lines 155
+    private void getScores() {
+        try {
+        File tFile = new File("tetScores.txt");
+
+        BufferedReader tReader = new BufferedReader(new FileReader(tFile));
+
+        ArrayList<String> tList = new ArrayList<String>();
+
+
+
+        String tLine = tReader.readLine();
+
+
+        while (tLine != null) {
+            tList.add(tLine);
+        }
+        tReader.close();
+        tList.sort((a, b) -> {
+                int num1 = Integer.parseInt(a.split(" : ")[0]);
+                int num2 = Integer.parseInt(b.split(" : ")[0]);
+                return Integer.compare(num1, num2);
+            });
+
+        String tScores = Arrays.deepToString(tList.toArray());
+
+        Stage newWindow = new Stage();
+
+        // sets exit text and creates buttons
+        Text controls = new Text("TETRIS HIGHSCORES:\n" + tScores);
+
+        // adds controls to controlBox
+        HBox controlBox = new HBox();
+        controlBox.getChildren().addAll(controls);
+
+        controlBox.setAlignment(Pos.TOP_CENTER);
+        Scene control = new Scene(controlBox, 420, 280);
+
+        // New window of stage
+        newWindow.setMaxWidth(420);
+        newWindow.setMaxHeight(280);
+        newWindow.setMinWidth(420);
+        newWindow.setMinHeight(280);
+
+        newWindow.setTitle("High Scores");
+        newWindow.sizeToScene();
+        newWindow.setScene(control);
+        newWindow.setResizable(false);
+
+        // modality
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+
+        newWindow.show();
+        /*newWindow.setOnCloseRequest(close -> {
+
+                newWindow.close();
+            });
+        */
+        } catch (IOException e) {
+        }
+        }
 
     static public Stage getMainStage() {
         return ArcadeApp.mainStage;
