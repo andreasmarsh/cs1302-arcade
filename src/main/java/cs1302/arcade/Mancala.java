@@ -214,7 +214,8 @@ public class Mancala {
                 for (int i = 0; i < temp; i++) {
                     if (i > 9) {
                         gameBoard.set(i - 9, gameBoard.get(i - 9) + 1);
-                        gameIVs.get(i - 9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 9) + ".png").toExternalForm()));
+                        gameIVs.get(i - 9).setImage(new Image(Mancala.class.getResource("/mancala/m" +
+                                                                                        gameBoard.get(i - 9) + ".png").toExternalForm()));
                     } else { // if
                         gameBoard.set(i + 2, gameBoard.get(i + 2) + 1);
                         gameIVs.get(i + 2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 2) + ".png").toExternalForm()));
