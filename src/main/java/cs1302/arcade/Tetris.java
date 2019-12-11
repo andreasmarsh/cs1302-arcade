@@ -161,7 +161,7 @@ public class Tetris {
             File file = new File("tetScores.txt");
             BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
             output.newLine();
-            output.append(score + " : " + name);
+            output.append(score + ":" + name);
             output.close();
         } catch (IOException e) {
             System.out.print("");
@@ -366,7 +366,6 @@ public class Tetris {
                     if (score != 0) {
                         scoreTxt.setText("Score: " + score);
                         level = score / 150;
-                        System.out.println("level" + level);
                         if (level > 0) {
                             levelTxt.setText("Level: " + level);
                             increaseSpeed();

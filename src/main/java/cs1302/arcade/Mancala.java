@@ -1,6 +1,11 @@
 package cs1302.arcade;
 
 // import java.lang.Object.ListNode;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
 import cs1302.arcade.ArcadeApp;
 import javafx.scene.control.TextField;
 import javafx.application.Platform;
@@ -31,10 +36,6 @@ import javafx.stage.Modality;
 import java.lang.InterruptedException;
 import javafx.scene.text.Font;
 import java.awt.Color;
-
-// TO DO:
-// set up grid pane/IVs for board
-// set child under titleIV, holding IVs with menu and control
 
 /**
  * Runs mancala game.
@@ -1117,6 +1118,25 @@ public class Mancala {
     }
 
     /**
+     * writes player's input name to tetScores.txt.
+     *
+     * @param name the player inputed name
+     * @param score the winner score
+     */
+    public void manSaveScore(String name, int score) {
+        try {
+            File file = new File("manScores.txt");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
+            output.newLine();
+            output.append(score + ":" + name);
+            output.close();
+        } catch (IOException e) {
+            System.out.print("");
+        }
+    } // tetrisSaveScore
+
+
+    /**
      * Sets IVs in gameIVs to a standard size for display and returns
      * newly formated IV.
      *
@@ -1290,6 +1310,7 @@ public class Mancala {
             winner = "TIE";
             score = x.get(0);
         } // else
+        final int endScore = score;
 
         // sets winner text and creates buttons
         Text winText = new Text("The Winner is\n" + winner + "\n with "
@@ -1318,7 +1339,16 @@ public class Mancala {
 
         // event handlers for buttons
         EventHandler<ActionEvent> saveHandler = event2 -> {
-            //newWindow.close();
+            if (winnerName.getText().equals("Enter Winner's Name") ||
+                winnerName.getText().equals("PLEASE ENTER NAME")) {
+                winnerName.setText("PLEASE ENTER NAME");
+            } else {
+                manSaveScore(winnerName.getText(), endScore);
+                Stage s = ArcadeApp.getMainStage();
+                Scene sc = ArcadeApp.getMainScene();
+                s.setScene(sc);
+                newWindow.close();
+            }
         };
         EventHandler<ActionEvent> menuHandler = event3 -> {
             Stage s = ArcadeApp.getMainStage();

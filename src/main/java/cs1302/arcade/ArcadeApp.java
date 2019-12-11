@@ -194,68 +194,92 @@ public class ArcadeApp extends Application {
 
     } // start
 
-    // see tetris lines 155
     /**
      * creates a .txt file to manage highscores.
      */
     private void getScores() {
+        File tFile = new File("tetScores.txt");
+        File mFile = new File("manScores.txt");
+
+        // hi!! it's me! please delete this comment after you read it,
+        // line 163 handles what happens when you click on the scores
+        // but it should be function if you just call this one method
+
         try {
-            File tFile = new File("tetScores.txt");
+            Scanner sc = new Scanner(tFile);
 
-            BufferedReader tReader = new BufferedReader(new FileReader(tFile));
-
+            // tList contains the scores from the tetScores.txt AKA the tetris highscores
             ArrayList<String> tList = new ArrayList<String>();
 
-            String tLine = tReader.readLine();
-
-            while (tLine != null) {
+            // this while adds all the scores from the file to the list
+            while (sc.hasNextLine()) {
+                String tLine = sc.nextLine();
                 tList.add(tLine);
             }
-            tReader.close();
-            tList.sort((a, b) -> {
-                int num1 = Integer.parseInt(a.split(" : ")[0]);
-                int num2 = Integer.parseInt(b.split(" : ")[0]);
-                return Integer.compare(num1, num2);
-            });
 
-            String tScores = Arrays.deepToString(tList.toArray());
+            //make new scanner to scan mancala file
+            sc = new Scanner(mFile);
+            // mList has mancala scores
+            ArrayList<String> mList = new ArrayList<String>();
 
-            Stage newWindow = new Stage();
+            while (sc.hasNextLine()) {
+                String mLine = sc.nextLine();
+                mList.add(mLine);
+            }
 
-            // sets exit text and creates buttons
-            Text controls = new Text("TETRIS HIGHSCORES:\n" + tScores);
+            // this method can be found right after this one
+            // aka lines 237
+            showScores(tList, mList);
 
-            // adds controls to controlBox
-            HBox controlBox = new HBox();
-            controlBox.getChildren().addAll(controls);
-
-            controlBox.setAlignment(Pos.TOP_CENTER);
-            Scene control = new Scene(controlBox, 420, 280);
-
-            // New window of stage
-            newWindow.setMaxWidth(420);
-            newWindow.setMaxHeight(280);
-            newWindow.setMinWidth(420);
-            newWindow.setMinHeight(280);
-
-            newWindow.setTitle("High Scores");
-            newWindow.sizeToScene();
-            newWindow.setScene(control);
-            newWindow.setResizable(false);
-
-            // modality
-            newWindow.initModality(Modality.APPLICATION_MODAL);
-
-            newWindow.show();
-            /*newWindow.setOnCloseRequest(close -> {
-
-              newWindow.close();
-              });
-            */
-        } catch (IOException e) {
-            System.out.print("");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+    } //getScores()
+
+/**
+ * handles highscore window.
+ * @param tList list containing tetris scores
+ * @param mList list containing mancala scores
+ */
+    public void showScores(ArrayList<String> tList, ArrayList<String> mList) {
+        Stage newWindow = new Stage();
+
+        // hi!!! me again, this method is almost an exact copy of
+        //  mancala control's window
+        // PS I know the list are not ordered/sorted
+        // but according to the requirements they dont mention that they have to be
+
+        Text controls = new Text("TETRIS HIGHSCORES:\n"); // something with tList here
+
+        // adds controls to controlBox
+        HBox controlBox = new HBox();
+        controlBox.getChildren().addAll(controls);
+
+        controlBox.setAlignment(Pos.TOP_CENTER);
+        Scene control = new Scene(controlBox, 420, 280);
+
+        // New window of stage
+        newWindow.setMaxWidth(420);
+        newWindow.setMaxHeight(280);
+        newWindow.setMinWidth(420);
+        newWindow.setMinHeight(280);
+
+        newWindow.setTitle("High Scores");
+        newWindow.sizeToScene();
+        newWindow.setScene(control);
+        newWindow.setResizable(false);
+
+        // modality
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+
+        newWindow.show();
+        /*newWindow.setOnCloseRequest(close -> {
+
+                newWindow.close();
+            });
+        */
     }
+
 
     /**
      * returns main stage of ArcadeApp.
