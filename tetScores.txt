@@ -1,6 +1,4 @@
-
 50:Loser McLoser
-0:noob
-500:John Smith
-
-350:Dr.Dreas
+0:Dr.Dreas
+50:Dr.Dreas
+0:has $wag money

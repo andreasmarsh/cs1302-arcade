@@ -236,27 +236,40 @@ public class ArcadeApp extends Application {
         }
     } //getScores()
 
-/**
- * handles highscore window.
- * @param tList list containing tetris scores
- * @param mList list containing mancala scores
- */
+    /**
+     * handles highscore window.
+     * @param tList list containing tetris scores
+     * @param mList list containing mancala scores
+     */
     public void showScores(ArrayList<String> tList, ArrayList<String> mList) {
         Stage newWindow = new Stage();
 
         // hi!!! me again, this method is almost an exact copy of
-        //  mancala control's window
+        // mancala control's window
         // PS I know the list are not ordered/sorted
         // but according to the requirements they dont mention that they have to be
 
-        Text controls = new Text("TETRIS HIGHSCORES:\n"); // something with tList here
+        Text tHeader = new Text("TETRIS HIGHSCORES:\n");
+        String tScores = "";
+        Text mHeader = new Text("\nMANCALA HIGHSCORES:\n");
+        String mScores = "";
 
-        // adds controls to controlBox
-        HBox controlBox = new HBox();
-        controlBox.getChildren().addAll(controls);
+        for (int i = 0; i < tList.size(); i++) {
+            tScores += tList.get(i) + "\n";
+        } // for
+        Text tScoresText = new Text(tScores);
 
-        controlBox.setAlignment(Pos.TOP_CENTER);
-        Scene control = new Scene(controlBox, 420, 280);
+        for (int i = 0; i < mList.size(); i++) {
+            mScores += mList.get(i) + "\n";
+        } // for
+        Text mScoresText = new Text(mScores);
+
+        // adds all texts to controlBox
+        VBox scoresBox = new VBox();
+        scoresBox.getChildren().addAll(tHeader, tScoresText, mHeader, mScoresText);
+
+        scoresBox.setAlignment(Pos.TOP_CENTER);
+        Scene score = new Scene(scoresBox, 420, 280);
 
         // New window of stage
         newWindow.setMaxWidth(420);
@@ -266,7 +279,7 @@ public class ArcadeApp extends Application {
 
         newWindow.setTitle("High Scores");
         newWindow.sizeToScene();
-        newWindow.setScene(control);
+        newWindow.setScene(score);
         newWindow.setResizable(false);
 
         // modality

@@ -159,7 +159,6 @@ public class Tetris {
         try {
             File file = new File("tetScores.txt");
             BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
-            output.newLine();
             output.append(score + ":" + name);
             output.close();
         } catch (IOException e) {
