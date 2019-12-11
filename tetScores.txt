@@ -1,4 +1,4 @@
 50:Loser McLoser
-0:Dr.Dreas
 50:Dr.Dreas
-0:has $wag money
+600:Bob Belcher
+500:Burger Boss
