@@ -15,16 +15,24 @@ that the Markdown is transformed into nice looking HTML.
 
 ## TUES 2019-11-26 @ 11:55 PM EST
 
-    1. **DONE:** Created a function menu screen, and decided on a group 1 game. Set up the mancala scene.
+1. **DONE:** Created a function menu screen, and decided on a group 1 game. Set up the mancala scene.
 
-    2. **TODO:** By our next reflection our goal is to have the logic of tetris planned out as well as a fully function mancala.
+2. **TODO:** By our next reflection our goal is to have the logic of tetris planned out as well as a fully function mancala.
 
-    3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out. Also difficulties with configuring how to iterate through the mancala board.
+3. **PROB:** We have still been avoiding the logic for tetris/group 1 in general, however with this break I believe we will be able to sort this out. Also difficulties with configuring how to iterate through the mancala board.
 
 ## WED 2019-12-4 @ 11:55 PM EST
 
-    1. **DONE:** Created mancala visual board with displayed images and setup tetris scene and images to be displayed
+1. **DONE:** Created mancala visual board with displayed images and setup tetris scene and images to be displayed.
 
-    2. **TODO:** By our final submission, functionality should be added to both games
+2. **TODO:** By our final submission, functionality should be added to both games.
 
-    3. **PROB:** We ran into problems with setting up tetris functionality as well as issues in mancala with the gridpane however we are near solutions and progress should exponentially increase as we progress
+3. **PROB:** We ran into problems with setting up tetris functionality as well as issues in mancala with the gridpane however we are near solutions and progress should exponentially increase as we progress.
+
+## WED 2019-12-11 @ 3:30 PM EST
+
+1. **DONE:** Created fully functional mancala and tetris as well as a score/highscore recorder.
+
+2. **TODO** N/A.
+
+3. **PROB** We realized our resources folder had the wrong classpath and had to move it/ update all of our code which took a while. We had trouble figuring out how to implement a highscore function but figured it out, though it's not pretty.
