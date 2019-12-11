@@ -1,3 +1,4 @@
 
-50 : Loser McLoser
-0 : noob
+50:Loser McLoser
+0:noob
+500:John Smith
