@@ -36,6 +36,9 @@ import java.awt.Color;
 // set up grid pane/IVs for board
 // set child under titleIV, holding IVs with menu and control
 
+/**
+ * Runs mancala game.
+ */
 public class Mancala {
 
     private VBox root;
@@ -43,8 +46,9 @@ public class Mancala {
     private HBox title;
     private HBox lBoard;
     private HBox rBoard;
-    private String BG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
-    private String titleStr = Mancala.class.getResource("/mancala/mancalaTitle.png").toExternalForm();
+    private String bG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
+    private String titleStr = Mancala.class.getResource("/mancala"
+                                                        + "/mancalaTitle.png").toExternalForm();
     private ImageView filler;
     private ImageView filler1;
     private ImageView filler2;
@@ -59,11 +63,16 @@ public class Mancala {
     private int botRow;
 
     private String menuStr = Mancala.class.getResource("/mancala/menu.png").toExternalForm();
-    private String controlsStr = Mancala.class.getResource("/mancala/controls.png").toExternalForm();
-    private String player1Str = Mancala.class.getResource("/mancala/player1.png").toExternalForm();
-        private String player2Str = Mancala.class.getResource("/mancala/player2.png").toExternalForm();
-        private String rArrowStr = Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm();
-    private String lArrowStr = Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm();
+    private String controlsStr = Mancala.class.getResource("/mancala" +
+                                                           "/controls.png").toExternalForm();
+    private String player1Str = Mancala.class.getResource("/mancala" +
+                                                          "/player1.png").toExternalForm();
+    private String player2Str = Mancala.class.getResource("/mancala" +
+                                                          "/player2.png").toExternalForm();
+    private String rArrowStr = Mancala.class.getResource("/mancala" +
+                                                         "/rightArrow.png").toExternalForm();
+    private String lArrowStr = Mancala.class.getResource("/mancala" +
+                                                         "/leftArrow.png").toExternalForm();
 
 
     // variables for menu and controlls
@@ -82,6 +91,9 @@ public class Mancala {
     Image lArrowImage = new Image(lArrowStr);
     ImageView lArrowIV = new ImageView(lArrowImage);
 
+    /**
+     * Creates board and game of mancala.
+     */
     public Mancala() {
 
         GridPane gpane = new GridPane();
@@ -141,21 +153,45 @@ public class Mancala {
         gameBoard.add(3);
         gameBoard.add(3);
 
-        // =-=-=-=-=- IV list that relates to gameBoard -=-=-=-=
+        // =-= IV list that relates to each position in gameBoard =-=
         LinkedList<ImageView> gameIVs = new LinkedList<>();
 
-        gameIVs.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm())));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()))));
-        gameIVs.add(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm())));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()))));
+        gameIVs.add(new ImageView(new Image(Mancala.class
+                                            .getResource("/mancala/m" + gameBoard.get(0) +
+                                                         ".png").toExternalForm())));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(1)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(2)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(3)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(4)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(5)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(new ImageView(new Image(Mancala.class
+                                            .getResource("/mancala/m" + gameBoard.get(6)
+                                                         + ".png").toExternalForm())));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(7)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(8)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(9)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(10)
+                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(11)
+                                                                   + ".png").toExternalForm()))));
 
         // left and right spaces of board
         lBoard = new HBox();
@@ -178,12 +214,11 @@ public class Mancala {
             for (int j = 0; j < 5; j++) {
                 gpane.add(gameIVs.get(increaser), j, i);
                 gameIVs.get(increaser).setOnMouseEntered(e -> {
-                        root.setCursor(Cursor.HAND);
-                    });
+                    root.setCursor(Cursor.HAND);
+                });
                 gameIVs.get(increaser).setOnMouseExited(e -> {
-                        root.setCursor(Cursor.DEFAULT);
-                    });
-
+                    root.setCursor(Cursor.DEFAULT);
+                });
                 increaser++;
                 if (increaser == 6) {
                     increaser++;
@@ -194,12 +229,11 @@ public class Mancala {
             for (int j = 4; j > -1; j--) {
                 gpane.add(gameIVs.get(increaser), j, i);
                 gameIVs.get(increaser).setOnMouseEntered(e -> {
-                        root.setCursor(Cursor.HAND);
-                    });
+                    root.setCursor(Cursor.HAND);
+                });
                 gameIVs.get(increaser).setOnMouseExited(e -> {
-                        root.setCursor(Cursor.DEFAULT);
-                    });
-
+                    root.setCursor(Cursor.DEFAULT);
+                });
                 increaser++;
             } // for
         } // for
@@ -209,625 +243,855 @@ public class Mancala {
         // event handler for IVs in all of gpane
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         gameIVs.get(1).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(1);
+            int temp = gameBoard.get(1);
+            gameBoard.set(1, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 9) {
+                    gameBoard.set(i - 9, gameBoard.get(i - 9) + 1);
+                    gameIVs.get(i - 9).setImage(new Image(Mancala.class
+                                                          .getResource("/mancala/m" + gameBoard
+                        .get(i - 9) + ".png").toExternalForm()));
+                } else { // if
+                    gameBoard.set(i + 2, gameBoard.get(i + 2) + 1);
+                    gameIVs.get(i + 2).setImage(new Image(Mancala.class
+                                                          .getResource("/mancala/m" + gameBoard
+                        .get(i + 2) + ".png").toExternalForm()));
+                } // else
+            } // for
+
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                //add 1, for gameBoard(1), and gameBoard(11) to
+                // gameBoard(6) and empties those pockets
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
+                gameBoard.set(11, 0);
                 gameBoard.set(1, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 9) {
-                        gameBoard.set(i - 9, gameBoard.get(i - 9) + 1);
-                        gameIVs.get(i - 9).setImage(new Image(Mancala.class.getResource("/mancala/m" +
-                                                                                        gameBoard.get(i - 9) + ".png").toExternalForm()));
-                    } else { // if
-                        gameBoard.set(i + 2, gameBoard.get(i + 2) + 1);
-                        gameIVs.get(i + 2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 2) + ".png").toExternalForm()));
-                    } // else
-                } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(1), and gameBoard(11) to gameBoard(6) and empties those pockets
-                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
-                    gameBoard.set(11, 0);
-                    gameBoard.set(1, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-                    gameIVs.get(11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
-                }
-                // checks remaining 4 pockets of row to see if bead landed into an empty pocket
-                // and if so empties said pocket and pocket across board into right main pocket
-                for (int i = 1; i < 5; i++) {
-                    if (temp == i && gameBoard.get(i + 1) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11 - i) + 1);
-                        gameBoard.set(11 - i, 0);
-                        gameBoard.set(i + 1, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(11 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11 - i) + ".png").toExternalForm()));
-                        gameIVs.get(i + 1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 1) + ".png").toExternalForm()));
-                    } // if
-                }
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 5) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                                                  .getResource("/mancala/m" + gameBoard.get(6)
+                                                               + ".png").toExternalForm()));
+                gameIVs.get(1).setImage(new Image(Mancala.class
+                                                  .getResource("/mancala/m" + gameBoard.get(1)
+                                                               + ".png").toExternalForm()));
+                gameIVs.get(11).setImage(new Image(Mancala.class
+                                                   .getResource("/mancala/m" + gameBoard.get(11)
+                                                                + ".png").toExternalForm()));
+            }
+            // checks remaining 4 pockets of row to see if bead landed into an empty pocket
+            // and if so empties said pocket and pocket across board into right main pocket
+            for (int i = 1; i < 5; i++) {
+                if (temp == i && gameBoard.get(i + 1) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11 - i) + 1);
+                    gameBoard.set(11 - i, 0);
+                    gameBoard.set(i + 1, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                                                      .getResource("/mancala/m" + gameBoard.get(6)
+                                                                   + ".png").toExternalForm()));
+                    gameIVs.get(11 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(11 - i)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 1).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 1)
+                                     + ".png").toExternalForm()));
                 } // if
+            }
 
-                gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-            });
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 5) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
+                    } // if
+                } // for
+            } // if
+
+            gameIVs.get(1).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(1) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(2).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(2);
+            int temp = gameBoard.get(2);
+            gameBoard.set(2, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 8) {
+                    gameBoard.set(i - 8, gameBoard.get(i - 8) + 1);
+                    gameIVs.get(i - 8).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i - 8)
+                                     + ".png").toExternalForm()));
+                } else { // if
+                    gameBoard.set(i + 3, gameBoard.get(i + 3) + 1);
+                    gameIVs.get(i + 3).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 3)
+                                     + ".png").toExternalForm()));
+                } // else
+            } // for
+
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(2), and gameBoard(10)
+                // to gameBoard(6) and empties those pockets
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10) + 1);
+                gameBoard.set(10, 0);
                 gameBoard.set(2, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 8) {
-                        gameBoard.set(i - 8, gameBoard.get(i - 8) + 1);
-                        gameIVs.get(i - 8).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 8) + ".png").toExternalForm()));
-                    } else { // if
-                        gameBoard.set(i + 3, gameBoard.get(i + 3) + 1);
-                        gameIVs.get(i + 3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 3) + ".png").toExternalForm()));
-                    } // else
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
+                gameIVs.get(2).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()));
+                gameIVs.get(10).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
+            }
+            // checks 3 right  pockets of row to see if bead landed into an empty pocket
+            // and if so empties said pocket and pocket across board into right main pocket
+            for (int i = 1; i < 4; i++) {
+                if (temp == i && gameBoard.get(i + 2) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10 - i) + 1);
+                    gameBoard.set(10 - i, 0);
+                    gameBoard.set(i + 2, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(10 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(10 - i)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 2).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 2)
+                                     + ".png").toExternalForm()));
+                } // if
+            }
+            // performs check on pocket 1
+            if (temp == 10 && gameBoard.get(1) == 1) {
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
+                gameBoard.set(11, 0);
+                gameBoard.set(1, 0);
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
+                gameIVs.get(1).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
+                gameIVs.get(11).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
+            } // if
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 4) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(true);
                 } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(2), and gameBoard(10) to gameBoard(6) and empties those pockets
-                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10) + 1);
-                    gameBoard.set(10, 0);
-                    gameBoard.set(2, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()));
-                    gameIVs.get(10).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
-                }
-                // checks 3 right  pockets of row to see if bead landed into an empty pocket
-                // and if so empties said pocket and pocket across board into right main pocket
-                for (int i = 1; i < 4; i++) {
-                    if (temp == i && gameBoard.get(i + 2) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10 - i) + 1);
-                        gameBoard.set(10 - i, 0);
-                        gameBoard.set(i + 2, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(10 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10 - i) + ".png").toExternalForm()));
-                        gameIVs.get(i + 2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 2) + ".png").toExternalForm()));
-                    } // if
-                }
-                // performs check on pocket 1
-                if (temp == 10 && gameBoard.get(1) == 1) {
-                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
-                    gameBoard.set(11, 0);
-                    gameBoard.set(1, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-                    gameIVs.get(11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
-                } // if
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 4) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
                         gameIVs.get(i).setDisable(true);
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                } // if
-                gameIVs.get(2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()));
-            });
+                    } // if
+                } // for
+            } // if
+            gameIVs.get(2).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(2) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(3).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(3);
+            int temp = gameBoard.get(3);
+            gameBoard.set(3, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 7) {
+                    gameBoard.set(i - 7, gameBoard.get(i - 7) + 1);
+                    gameIVs.get(i - 7).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i - 7)
+                                     + ".png").toExternalForm()));
+                } else { // if
+                    gameBoard.set(i + 4, gameBoard.get(i + 4) + 1);
+                    gameIVs.get(i + 4).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 4)
+                                     + ".png").toExternalForm()));
+                } // else
+            } // for
+
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(3), and gameBoard(9)
+                // to gameBoard(6) and empties those pockets
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9) + 1);
+                gameBoard.set(9, 0);
                 gameBoard.set(3, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 7) {
-                        gameBoard.set(i - 7, gameBoard.get(i - 7) + 1);
-                        gameIVs.get(i - 7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 7) + ".png").toExternalForm()));
-                    } else { // if
-                        gameBoard.set(i + 4, gameBoard.get(i + 4) + 1);
-                        gameIVs.get(i + 4).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 4) + ".png").toExternalForm()));
-                    } // else
-                } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(3), and gameBoard(9) to gameBoard(6) and empties those pockets
-                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9) + 1);
-                    gameBoard.set(9, 0);
-                    gameBoard.set(3, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()));
-                    gameIVs.get(9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()));
-                }
-                // checks 2 right  pockets of row to see if bead landed into an empty pocket
-                // and if so empties said pocket and pocket across board into right main pocket
-                for (int i = 1; i < 3; i++) {
-                    if (temp == i && gameBoard.get(i + 3) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9 - i) + 1);
-                        gameBoard.set(9 - i, 0);
-                        gameBoard.set(i + 3, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(9 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9 - i) + ".png").toExternalForm()));
-                        gameIVs.get(i + 3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 3) + ".png").toExternalForm()));
-                    } // if
-                }
-                // performs check on pockets  1 and 2
-                for (int i = 1; i < 3; i++) {
-                    if (temp == 8 + i && gameBoard.get(i) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
-                        gameBoard.set(12 - i, 0);
-                        gameBoard.set(i, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
-                        gameIVs.get(12 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(12 - i) + ".png").toExternalForm()));
-                    } // if
-                } // for
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 3) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
+                gameIVs.get(3).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()));
+                gameIVs.get(9).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()));
+            }
+            // checks 2 right  pockets of row to see if bead landed into an empty pocket
+            // and if so empties said pocket and pocket across board into right main pocket
+            for (int i = 1; i < 3; i++) {
+                if (temp == i && gameBoard.get(i + 3) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9 - i) + 1);
+                    gameBoard.set(9 - i, 0);
+                    gameBoard.set(i + 3, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(9 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(9 - i)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 3).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 3)
+                                     + ".png").toExternalForm()));
                 } // if
-                gameIVs.get(3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()));
-            });
+            }
+            // performs check on pockets  1 and 2
+            for (int i = 1; i < 3; i++) {
+                if (temp == 8 + i && gameBoard.get(i) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
+                    gameBoard.set(12 - i, 0);
+                    gameBoard.set(i, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
+                    gameIVs.get(i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
+                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(12 - i)
+                                     + ".png").toExternalForm()));
+                } // if
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 3) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
+                    } // if
+                } // for
+            } // if
+            gameIVs.get(3).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(3) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(4).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(4);
+            int temp = gameBoard.get(4);
+            gameBoard.set(4, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 6) {
+                    gameBoard.set(i - 6, gameBoard.get(i - 6) + 1);
+                    gameIVs.get(i - 6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i - 6)
+                                     + ".png").toExternalForm()));
+                } else { // if
+                    gameBoard.set(i + 5, gameBoard.get(i + 5) + 1);
+                    gameIVs.get(i + 5).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 5)
+                                     + ".png").toExternalForm()));
+                } // else
+            } // for
+
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(4), and gameBoard(8)
+                // to gameBoard(6) and empties those pockets
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(8) + 1);
+                gameBoard.set(8, 0);
                 gameBoard.set(4, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 6) {
-                        gameBoard.set(i - 6, gameBoard.get(i - 6) + 1);
-                        gameIVs.get(i - 6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 6) + ".png").toExternalForm()));
-                    } else { // if
-                        gameBoard.set(i + 5, gameBoard.get(i + 5) + 1);
-                        gameIVs.get(i + 5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 5) + ".png").toExternalForm()));
-                    } // else
-                } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(4), and gameBoard(8) to gameBoard(6) and empties those pockets
-                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(8) + 1);
-                    gameBoard.set(8, 0);
-                    gameBoard.set(4, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(4).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
-                    gameIVs.get(8).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()));
-                }
-                // checks 1 right pockets of row to see if bead landed into an empty pocket
-                // and if so empties said pocket and pocket across board into right main pocket
-                for (int i = 1; i < 2; i++) {
-                    if (temp == i && gameBoard.get(i + 4) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(7) + 1);
-                        gameBoard.set(7, 0);
-                        gameBoard.set(5, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()));
-                        gameIVs.get(5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()));
-                    } // if
-                }
-                // performs check on pockets  1 - 3
-                for (int i = 1; i < 4; i++) {
-                    if (temp == 7 + i && gameBoard.get(i) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
-                        gameBoard.set(12 - i, 0);
-                        gameBoard.set(i, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
-                        gameIVs.get(12 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(12 - i) + ".png").toExternalForm()));
-                    } // if
-                } // for
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 2) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                } // if
-                gameIVs.get(4).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
-            });
-
-        gameIVs.get(5).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(5);
-                gameBoard.set(5, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 5) {
-                        gameBoard.set(i - 5, gameBoard.get(i - 5) + 1);
-                        gameIVs.get(i - 5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 5) + ".png").toExternalForm()));
-                    } else { // if
-                        gameBoard.set(i + 6, gameBoard.get(i + 6) + 1);
-                        gameIVs.get(i + 6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 6) + ".png").toExternalForm()));
-                    } // else
-                } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(6), and gameBoard(7) to gameBoard(6) and empties those pockets
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
+                gameIVs.get(4).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
+                gameIVs.get(8).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()));
+            }
+            // checks 1 right pockets of row to see if bead landed into an empty pocket
+            // and if so empties said pocket and pocket across board into right main pocket
+            for (int i = 1; i < 2; i++) {
+                if (temp == i && gameBoard.get(i + 4) == 1) {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(7) + 1);
                     gameBoard.set(7, 0);
                     gameBoard.set(5, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()));
-                    gameIVs.get(7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()));
-                }
-                // performs check on pockets  1 - 4
-                for (int i = 1; i < 5; i++) {
-                    if (temp == 6 + i && gameBoard.get(i) == 1) {
-                        gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
-                        gameBoard.set(12 - i, 0);
-                        gameBoard.set(i, 0);
-                        gameIVs.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                        gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
-                        gameIVs.get(12 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(12 - i) + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(7).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(7)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(5).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(5)
+                                     + ".png").toExternalForm()));
+                } // if
+            }
+            // performs check on pockets  1 - 3
+            for (int i = 1; i < 4; i++) {
+                if (temp == 7 + i && gameBoard.get(i) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
+                    gameBoard.set(12 - i, 0);
+                    gameBoard.set(i, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i)
+                                     + ".png").toExternalForm()));
+                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(12 - i)
+                                     + ".png").toExternalForm()));
+                } // if
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 2) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
                     } // if
                 } // for
+            } // if
+            gameIVs.get(4).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
+        });
 
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
+        gameIVs.get(5).setOnMouseClicked(e -> {
+            int temp = gameBoard.get(5);
+            gameBoard.set(5, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 5) {
+                    gameBoard.set(i - 5, gameBoard.get(i - 5) + 1);
+                    gameIVs.get(i - 5).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i - 5)
+                                     + ".png").toExternalForm()));
+                } else { // if
+                    gameBoard.set(i + 6, gameBoard.get(i + 6) + 1);
+                    gameIVs.get(i + 6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 6)
+                                     + ".png").toExternalForm()));
+                } // else
+            } // for
 
-                if (temp != 1) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/rightArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(6), and gameBoard(7)
+                // to gameBoard(6) and empties those pockets
+                gameBoard.set(6, gameBoard.get(6) + gameBoard.get(7) + 1);
+                gameBoard.set(7, 0);
+                gameBoard.set(5, 0);
+                gameIVs.get(6).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(6) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(5).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(7).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
+                                                  .toExternalForm()));
+            }
+            // performs check on pockets  1 - 4
+            for (int i = 1; i < 5; i++) {
+                if (temp == 6 + i && gameBoard.get(i) == 1) {
+                    gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
+                    gameBoard.set(12 - i, 0);
+                    gameBoard.set(i, 0);
+                    gameIVs.get(6).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(12 - i) + ".png")
+                                                           .toExternalForm()));
                 } // if
-                gameIVs.get(5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()));
-            });
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 1) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
+                    } // if
+                } // for
+            } // if
+            gameIVs.get(5).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(5) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(7).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(7);
-                gameBoard.set(7, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 3) {
-                        if (i > 9) {
-                            gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
-                            gameIVs.get(i - 3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 3) + ".png").toExternalForm()));
-                        } else { // if
-                            gameBoard.set(i - 4, gameBoard.get(i - 4) + 1);
-                            gameIVs.get(i - 4).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 4) + ".png").toExternalForm()));
-                        } // else
+            int temp = gameBoard.get(7);
+            gameBoard.set(7, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 3) {
+                    if (i > 9) {
+                        gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
+                        gameIVs.get(i - 3).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 3)
+                                         + ".png").toExternalForm()));
                     } else { // if
-                        gameBoard.set(i + 8, gameBoard.get(i + 8) + 1);
-                        gameIVs.get(i + 8).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 8) + ".png").toExternalForm()));
+                        gameBoard.set(i - 4, gameBoard.get(i - 4) + 1);
+                        gameIVs.get(i - 4).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 4)
+                                         + ".png").toExternalForm()));
                     } // else
-                } // for
+                } else { // if
+                    gameBoard.set(i + 8, gameBoard.get(i + 8) + 1);
+                    gameIVs.get(i + 8).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 8)
+                                     + ".png").toExternalForm()));
+                } // else
+            } // for
 
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(7), and gameBoard(5) to gameBoard(0) and empties those pockets
-                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
-                    gameBoard.set(7, 0);
-                    gameBoard.set(5, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                    gameIVs.get(5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()));
-                    gameIVs.get(7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()));
-                }
-                // performs check on pockets  8 - 11
-                for (int i = 1; i < 5; i++) {
-                    if (temp == i && gameBoard.get(i + 7) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5 - i) + 1);
-                        gameBoard.set(5 - i, 0);
-                        gameBoard.set(7 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(5 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5 - i) + ".png").toExternalForm()));
-                        gameIVs.get(7 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7 + i) + ".png").toExternalForm()));
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(7), and gameBoard(5)
+                // to gameBoard(0) and empties those pockets
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
+                gameBoard.set(7, 0);
+                gameBoard.set(5, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(5).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(7).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
+                                                  .toExternalForm()));
+            }
+            // performs check on pockets  8 - 11
+            for (int i = 1; i < 5; i++) {
+                if (temp == i && gameBoard.get(i + 7) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5 - i) + 1);
+                    gameBoard.set(5 - i, 0);
+                    gameBoard.set(7 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(5 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(5 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(7 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(7 + i) + ".png")
+                                                          .toExternalForm()));
+                } // if
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 5) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
                     } // if
                 } // for
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 5) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                } // if
-                gameIVs.get(7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()));
-            });
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+            } // if
+            gameIVs.get(7).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(7) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(8).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(8);
-                gameBoard.set(8, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 2) {
-                        if (i > 8) {
-                            gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
-                            gameIVs.get(i - 2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 2) + ".png").toExternalForm()));
-                        } else { // if
-                            gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
-                            gameIVs.get(i - 3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 3) + ".png").toExternalForm()));
-                        } // else
+            int temp = gameBoard.get(8);
+            gameBoard.set(8, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 2) {
+                    if (i > 8) {
+                        gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
+                        gameIVs.get(i - 2).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 2) + ".png")
+                                                              .toExternalForm()));
                     } else { // if
-                        gameBoard.set(i + 9, gameBoard.get(i + 9) + 1);
-                        gameIVs.get(i + 9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 9) + ".png").toExternalForm()));
+                        gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
+                        gameIVs.get(i - 3).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 3) + ".png")
+                                                              .toExternalForm()));
                     } // else
-                } // for
+                } else { // if
+                    gameBoard.set(i + 9, gameBoard.get(i + 9) + 1);
+                    gameIVs.get(i + 9).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 9) + ".png")
+                                                          .toExternalForm()));
+                } // else
+            } // for
 
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(8), and gameBoard(4) to gameBoard(0) and empties those pockets
-                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4) + 1);
-                    gameBoard.set(8, 0);
-                    gameBoard.set(4, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                    gameIVs.get(4).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
-                    gameIVs.get(8).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()));
-                }
-                // performs check on pockets  9 - 11
-                for (int i = 1; i < 4; i++) {
-                    if (temp == i && gameBoard.get(i + 8) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4 - i) + 1);
-                        gameBoard.set(4 - i, 0);
-                        gameBoard.set(8 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(4 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(4 - i) + ".png").toExternalForm()));
-                        gameIVs.get(8 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8 + i) + ".png").toExternalForm()));
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(8), and gameBoard(4)
+                // to gameBoard(0) and empties those pockets
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4) + 1);
+                gameBoard.set(8, 0);
+                gameBoard.set(4, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(4).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(4) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(8).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(8) + ".png")
+                                                  .toExternalForm()));
+            }
+            // performs check on pockets  9 - 11
+            for (int i = 1; i < 4; i++) {
+                if (temp == i && gameBoard.get(i + 8) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4 - i) + 1);
+                    gameBoard.set(4 - i, 0);
+                    gameBoard.set(8 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(4 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(4 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(8 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(8 + i) + ".png")
+                                                          .toExternalForm()));
+                } // if
+            } // for
+            // checks pocket 7
+            if (temp == 10 && gameBoard.get(7) == 1) {
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
+                gameBoard.set(5, 0);
+                gameBoard.set(7, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(5).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(7).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
+                                                  .toExternalForm()));
+            } // if
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 4) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
                     } // if
                 } // for
-                // checks pocket 7
-                if (temp == 10 && gameBoard.get(7) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
-                        gameBoard.set(5, 0);
-                        gameBoard.set(7, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(5).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(5) + ".png").toExternalForm()));
-                        gameIVs.get(7).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(7) + ".png").toExternalForm()));
-                } // if
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 4) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                } // if
-                gameIVs.get(8).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()));
-            });
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+            } // if
+            gameIVs.get(8).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(8) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(9).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(9);
-                gameBoard.set(9, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 1) {
-                        if (i > 7) {
-                            gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
-                            gameIVs.get(i - 1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 1) + ".png").toExternalForm()));
-                        } else { // if
-                            gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
-                            gameIVs.get(i - 2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 2) + ".png").toExternalForm()));
-                        } // if
+            int temp = gameBoard.get(9);
+            gameBoard.set(9, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 1) {
+                    if (i > 7) {
+                        gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
+                        gameIVs.get(i - 1).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 1) + ".png")
+                                                              .toExternalForm()));
                     } else { // if
-                        gameBoard.set(i + 10, gameBoard.get(i + 10) + 1);
-                        gameIVs.get(i + 10).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 10) + ".png").toExternalForm()));
-                    } // else
-                } // for
-
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(9),  and gameBoard(3) to gameBoard(0) and empties those pockets
-                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3) + 1);
-                    gameBoard.set(9, 0);
-                    gameBoard.set(3, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                    gameIVs.get(3).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()));
-                    gameIVs.get(9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()));
-                }
-                // performs check on pockets  10 - 11
-                for (int i = 1; i < 3; i++) {
-                    if (temp == i && gameBoard.get(i + 9) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3 - i) + 1);
-                        gameBoard.set(3 - i, 0);
-                        gameBoard.set(9 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(3 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(3 - i) + ".png").toExternalForm()));
-                        gameIVs.get(9 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9 + i) + ".png").toExternalForm()));
+                        gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
+                        gameIVs.get(i - 2).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 2) + ".png")
+                                                              .toExternalForm()));
                     } // if
-                } // for
-                // checks pocket 7 - 8
-                for (int i = 1; i < 3; i++) {
-                    if (temp == 8 + i && gameBoard.get(6 + i) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
-                        gameBoard.set(6 - i, 0);
-                        gameBoard.set(6 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(6 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 - i) + ".png").toExternalForm()));
-                        gameIVs.get(6 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 + i) + ".png").toExternalForm()));
-                    } // if
-                } // for
+                } else { // if
+                    gameBoard.set(i + 10, gameBoard.get(i + 10) + 1);
+                    gameIVs.get(i + 10).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 10) + ".png")
+                                                           .toExternalForm()));
+                } // else
+            } // for
 
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 3) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(9),  and gameBoard(3)
+                // to gameBoard(0) and empties those pockets
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3) + 1);
+                gameBoard.set(9, 0);
+                gameBoard.set(3, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(3).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(3) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(9).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(9) + ".png")
+                                                  .toExternalForm()));
+            }
+            // performs check on pockets  10 - 11
+            for (int i = 1; i < 3; i++) {
+                if (temp == i && gameBoard.get(i + 9) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3 - i) + 1);
+                    gameBoard.set(3 - i, 0);
+                    gameBoard.set(9 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(3 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(3 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(9 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(9 + i) + ".png")
+                                                          .toExternalForm()));
                 } // if
-                gameIVs.get(9).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()));
-            });
+            } // for
+            // checks pocket 7 - 8
+            for (int i = 1; i < 3; i++) {
+                if (temp == 8 + i && gameBoard.get(6 + i) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
+                    gameBoard.set(6 - i, 0);
+                    gameBoard.set(6 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
+                                                          .toExternalForm()));
+                } // if
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 3) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/leftArrow.png")
+                                         .toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
+                    } // if
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+            } // if
+            gameIVs.get(9).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(9) + ".png")
+                                              .toExternalForm()));
+        });
 
         gameIVs.get(10).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(10);
-                gameBoard.set(10, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 0) {
-                        if (i > 6) {
-                            gameBoard.set(i, gameBoard.get(i) + 1);
-                            gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
-                        } else { // if
-                            gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
-                            gameIVs.get(i - 1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 1) + ".png").toExternalForm()));
-                        } // else
+            int temp = gameBoard.get(10);
+            gameBoard.set(10, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 0) {
+                    if (i > 6) {
+                        gameBoard.set(i, gameBoard.get(i) + 1);
+                        gameIVs.get(i).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i) + ".png")
+                                                          .toExternalForm()));
                     } else { // if
-                        gameBoard.set(i + 11, gameBoard.get(i + 11) + 1);
-                        gameIVs.get(i + 11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 11) + ".png").toExternalForm()));
+                        gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
+                        gameIVs.get(i - 1).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 1) + ".png")
+                                                              .toExternalForm()));
                     } // else
-                } // for
+                } else { // if
+                    gameBoard.set(i + 11, gameBoard.get(i + 11) + 1);
+                    gameIVs.get(i + 11).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i + 11) + ".png")
+                                                           .toExternalForm()));
+                } // else
+            } // for
 
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(10),  and gameBoard(2) to gameBoard(0) and empties those pockets
-                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(2) + 1);
-                    gameBoard.set(10, 0);
-                    gameBoard.set(2, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                    gameIVs.get(2).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()));
-                    gameIVs.get(10).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
-                }
-                // performs check on pocket 11
-                    if (temp == 1 && gameBoard.get(11) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
-                        gameBoard.set(1, 0);
-                        gameBoard.set(11, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-                        gameIVs.get(11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
-                    } // if
-                // checks pocket 7 - 9
-                for (int i = 1; i < 4; i++) {
-                    if (temp == 7 + i && gameBoard.get(6 + i) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
-                        gameBoard.set(6 - i, 0);
-                        gameBoard.set(6 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(6 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 - i) + ".png").toExternalForm()));
-                        gameIVs.get(6 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 + i) + ".png").toExternalForm()));
-                    } // if
-                } // for
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 2) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(10),  and gameBoard(2)
+                // to gameBoard(0) and empties those pockets
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(2) + 1);
+                gameBoard.set(10, 0);
+                gameBoard.set(2, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(2).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(2) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(10).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(10) + ".png")
+                                                   .toExternalForm()));
+            }
+            // performs check on pocket 11
+            if (temp == 1 && gameBoard.get(11) == 1) {
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
+                gameBoard.set(1, 0);
+                gameBoard.set(11, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(1).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(1) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(11).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(11) + ".png")
+                                                   .toExternalForm()));
+            } // if
+            // checks pocket 7 - 9
+            for (int i = 1; i < 4; i++) {
+                if (temp == 7 + i && gameBoard.get(6 + i) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
+                    gameBoard.set(6 - i, 0);
+                    gameBoard.set(6 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
+                                                          .toExternalForm()));
                 } // if
-                gameIVs.get(10).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
-            });
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 2) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
+                    } // if
+                } // for
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+            } // if
+            gameIVs.get(10).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
+        });
 
         gameIVs.get(11).setOnMouseClicked(e -> {
-                int temp = gameBoard.get(11);
-                gameBoard.set(11, 0);
-                for (int i = 0; i < temp; i++) {
-                    if (i > 5) {
-                        if (i > 10) {
-                            gameBoard.set(i - 11, gameBoard.get(i - 11) + 1);
-                            gameIVs.get(i - 11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i - 11) + ".png").toExternalForm()));
-                        } else { //if
-                            gameBoard.set(i + 1, gameBoard.get(i + 1) + 1);
-                            gameIVs.get(i + 1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i + 1) + ".png").toExternalForm()));
-                        } // else
-                    } else { // if
-                        gameBoard.set(i, gameBoard.get(i) + 1);
-                        gameIVs.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
+            int temp = gameBoard.get(11);
+            gameBoard.set(11, 0);
+            for (int i = 0; i < temp; i++) {
+                if (i > 5) {
+                    if (i > 10) {
+                        gameBoard.set(i - 11, gameBoard.get(i - 11) + 1);
+                        gameIVs.get(i - 11).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i - 11) + ".png")
+                                                               .toExternalForm()));
+                    } else { //if
+                        gameBoard.set(i + 1, gameBoard.get(i + 1) + 1);
+                        gameIVs.get(i + 1).setImage(new Image(Mancala.class
+                            .getResource("/mancala/m" + gameBoard.get(i + 1) + ".png")
+                                                              .toExternalForm()));
                     } // else
-                } // for
+                } else { // if
+                    gameBoard.set(i, gameBoard.get(i) + 1);
+                    gameIVs.get(i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(i) + ".png")
+                                                      .toExternalForm()));
+                } // else
+            } // for
 
-                // check if temp = 11, thus a full circle into same empty pocket
-                if (temp == 11) {
-                    //add 1, for gameBoard(11),  and gameBoard(1) to gameBoard(0) and empties those pockets
-                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
-                    gameBoard.set(11, 0);
-                    gameBoard.set(1, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                    gameIVs.get(1).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-                    gameIVs.get(11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
-                }
-                // checks pocket 7 - 10
-                for (int i = 1; i < 5; i++) {
-                    if (temp == 6 + i && gameBoard.get(6 + i) == 1) {
-                        gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
-                        gameBoard.set(6 - i, 0);
-                        gameBoard.set(6 + i, 0);
-                        gameIVs.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(0) + ".png").toExternalForm()));
-                        gameIVs.get(6 - i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 - i) + ".png").toExternalForm()));
-                        gameIVs.get(6 + i).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(6 + i) + ".png").toExternalForm()));
+            // check if temp = 11, thus a full circle into same empty pocket
+            if (temp == 11) {
+                // add 1, for gameBoard(11),  and gameBoard(1)
+                // to gameBoard(0) and empties those pockets
+                gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
+                gameBoard.set(11, 0);
+                gameBoard.set(1, 0);
+                gameIVs.get(0).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(1).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(1) + ".png")
+                                                  .toExternalForm()));
+                gameIVs.get(11).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + gameBoard.get(11) + ".png")
+                                                   .toExternalForm()));
+            }
+            // checks pocket 7 - 10
+            for (int i = 1; i < 5; i++) {
+                if (temp == 6 + i && gameBoard.get(6 + i) == 1) {
+                    gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
+                    gameBoard.set(6 - i, 0);
+                    gameBoard.set(6 + i, 0);
+                    gameIVs.get(0).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
+                                                      .toExternalForm()));
+                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
+                                                          .toExternalForm()));
+                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
+                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
+                                                          .toExternalForm()));
+                } // if
+            } // for
+
+            // checks if a row is empty and ends game
+            checkWinner(gameBoard, gameIVs);
+
+            if (temp != 1) {
+                arrow.setImage(new Image(Mancala.class
+                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                for (int i = 1; i < 6; i++) {
+                    gameIVs.get(i).setDisable(false);
+                    if (gameBoard.get(i) == 0) {
+                        gameIVs.get(i).setDisable(true);
                     } // if
                 } // for
-
-                // checks if a row is empty and ends game
-                checkWinner(gameBoard, gameIVs);
-
-                if (temp != 1) {
-                    arrow.setImage(new Image(Mancala.class.getResource("/mancala/leftArrow.png").toExternalForm()));
-                    for (int i = 1; i < 6; i++) {
-                        gameIVs.get(i).setDisable(false);
-                        if (gameBoard.get(i) == 0) {
-                            gameIVs.get(i).setDisable(true);
-                        } // if
-                    } // for
-                    for (int i = 7; i < 12; i++) {
-                        gameIVs.get(i).setDisable(true);
-                    } // for
-                } // if
-                gameIVs.get(11).setImage(new Image(Mancala.class.getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
-            });
+                for (int i = 7; i < 12; i++) {
+                    gameIVs.get(i).setDisable(true);
+                } // for
+            } // if
+            gameIVs.get(11).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + gameBoard.get(11) + ".png")
+                                               .toExternalForm()));
+        });
 
         for (int i = 7; i < 12; i++) {
             gameIVs.get(i).setDisable(true);
@@ -835,40 +1099,43 @@ public class Mancala {
 
         // event handlers for menu and controls
         menuIV.setOnMouseEntered(e -> {
-                root.setCursor(Cursor.HAND);
-            });
+            root.setCursor(Cursor.HAND);
+        });
         menuIV.setOnMouseExited(e -> {
-                root.setCursor(Cursor.DEFAULT);
-            });
+            root.setCursor(Cursor.DEFAULT);
+        });
         menuIV.setOnMouseClicked(getExitMenu());
 
         controlsIV.setOnMouseEntered(e -> {
-                root.setCursor(Cursor.HAND);
-            });
+            root.setCursor(Cursor.HAND);
+        });
         controlsIV.setOnMouseExited(e -> {
-                root.setCursor(Cursor.DEFAULT);
-            });
+            root.setCursor(Cursor.DEFAULT);
+        });
         controlsIV.setOnMouseClicked(getControlMenu());
 
     }
 
-    //it'd probably be better if this took in an array of imageviews
-    /*private void instIV() {
-
-      }*/
+    /**
+     * Sets IVs in gameIVs to a standard size for display and returns
+     * newly formated IV.
+     *
+     * @return reformated IV
+     * @param iv IV to be reformated
+     */
     private ImageView setSizeIV(ImageView iv) {
         iv.setFitHeight(110);
         iv.setFitWidth(77);
         return iv;
     } // setSizeIV
-    /*    private ImageView[] createIV() {
-          ImageView[] out;
 
-          return out;
-          }*/
-
+    /**
+     * Returns root of mancala game.
+     *
+     * @return root
+     */
     public VBox getRoot() {
-        String styleBG = "-fx-background-image: url(\'" + BG + "\')";
+        String styleBG = "-fx-background-image: url(\'" + bG + "\')";
         Insets titlePad = new Insets(50.0, 0.0, 0.0, 00.0);
 
         title.getChildren().addAll(titleIV);
@@ -915,6 +1182,7 @@ public class Mancala {
                 newWindow.close();
             };
             EventHandler<ActionEvent> yesHandler = event3 -> {
+                // returns you to main menu
                 Stage s = ArcadeApp.getMainStage();
                 Scene sc = ArcadeApp.getMainScene();
                 s.setScene(sc);
@@ -957,13 +1225,21 @@ public class Mancala {
             // sets exit text and creates buttons
             Text controls = new Text(
                 "Object: \n" +
-                "The object of the game is to collect the most \npieces by the end of the game. \n \n" +
+                "The object of the game is to collect the most \npieces by" +
+                " the end of the game. \n \n" +
                 "Controls: \n" +
-                "1. The game begins with player one (bottom) picking \nup all of the pieces in any one of the pockets on his/her side. \n" +
-                "2. Moving counter-clockwise, the player deposits one \nof the stones in each pocket until the stones run out. \n" +
-                "3. If you run into your own Mancala (store), deposit one \npiece in it. If you run into your opponent's Mancala, \nskip it and continue moving to the next pocket. \n" +
-                "4. If the last piece you drop is in your own Mancala, \nyou take another turn. \n" +
-                "5. If the last piece you drop is in an empty pocket on \nyour side, you capture that piece and any pieces in \nthe pocket directly opposite.");
+                "1. The game begins with player one (bottom) picking \nup all" +
+                " of the pieces in any one of the pockets on his/her side. \n" +
+                "2. Moving counter-clockwise, the player deposits one \nof the" +
+                " stones in each pocket until the stones run out. \n" +
+                "3. If you run into your own Mancala (store), deposit one " +
+                "\npiece in it. If you run into your opponent's Mancala, " +
+                "\nskip it and continue moving to the next pocket. \n" +
+                "4. If the last piece you drop is in your own Mancala, " +
+                "\nyou take another turn. \n" +
+                "5. If the last piece you drop is in an empty pocket on " +
+                "\nyour side, you capture that piece and any pieces in " +
+                "\nthe pocket directly opposite.");
 
             controls.setTextAlignment(TextAlignment.LEFT);
 
@@ -994,9 +1270,9 @@ public class Mancala {
     } // getControlMenu()
 
     /**
-     * Returns Winner menu.
+     * code to make  Winner menu using passed LinkedList Integer.
      *
-     * @return winnerMenu
+     * @param x passed in LinkedList Integer to be inspected and modified
      */
     public void getWinnerMenu(LinkedList<Integer> x) {
         // creates new window stage
@@ -1074,9 +1350,10 @@ public class Mancala {
     } // getWinnerMenu()
 
     /**
-     * Returns Winner menu.
+     * goes into getWinnerMenu(x) if conditions are met.
      *
-     * @return winnerMenu
+     * @param x passed in LinkList Integer used to end game if conditions met
+     * @param y LinkedList IV which is updated as x is updated
      */
     public void checkWinner(LinkedList<Integer> x, LinkedList<ImageView> y) {
         // top and bot row sums
@@ -1091,9 +1368,11 @@ public class Mancala {
             for (int i = 7; i < 12; i++) {
                 x.set(0, x.get(0) + x.get(i));
                 x.set(i, 0);
-                y.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+                y.get(i).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
             } // for
-            y.get(0).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(0) + ".png").toExternalForm()));
+            y.get(0).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + x.get(0) + ".png").toExternalForm()));
             getWinnerMenu(x);
         }
         // if topRow is empty move all of top row to right mancala
@@ -1102,9 +1381,11 @@ public class Mancala {
             for (int i = 1; i < 6; i++) {
                 x.set(6, x.get(6) + x.get(i));
                 x.set(i, 0);
-                y.get(i).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+                y.get(i).setImage(new Image(Mancala.class
+                    .getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
             } // for
-            y.get(6).setImage(new Image(Mancala.class.getResource("/mancala/m" + x.get(6) + ".png").toExternalForm()));
+            y.get(6).setImage(new Image(Mancala.class
+                .getResource("/mancala/m" + x.get(6) + ".png").toExternalForm()));
             getWinnerMenu(x);
         }
     } // checkWinner
