@@ -1,0 +1,201 @@
+cs1302-arcade:
+total 1272
+-rw-r--r-- 1 ugrad     189 Dec 11 09:37 ATTRIBUTION.md
+-rw-r--r-- 1 ugrad   19121 Dec 11 09:37 LICENSE
+-rw-r--r-- 1 ugrad     216 Dec 11 09:37 Makefile
+-rw-r--r-- 1 ugrad      48 Dec 11 09:37 manScores.txt
+-rw-r--r-- 1 ugrad    2091 Dec 11 09:37 pom.xml
+-rw-r--r-- 1 ugrad   36547 Dec 11 09:37 README.md
+-rw-r--r-- 1 ugrad       0 Dec 11 09:38 rec7113
+-rw-r--r-- 1 ugrad    2257 Dec 11 09:37 REFLECTION.md
+drwxr-xr-x 5 ugrad    4096 Dec 11 09:37 resources
+-rwxr-xr-x 1 ugrad     189 Dec 11 09:37 run.sh
+drwxr-xr-x 3 ugrad    4096 Dec 11 09:37 src
+-rw-r--r-- 1 ugrad 1205087 Dec 11 09:37 starter-code.png
+-rw-r--r-- 1 ugrad      61 Dec 11 09:37 tetScores.txt
+
+cs1302-arcade/resources:
+total 12
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 mancala
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 menu
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 tetris
+
+cs1302-arcade/resources/mancala:
+total 172
+-rw-r--r-- 1 ugrad 1081 Dec 11 09:37 controls.png
+-rw-r--r-- 1 ugrad  359 Dec 11 09:37 leftArrow.png
+-rw-r--r-- 1 ugrad  511 Dec 11 09:37 m0.png
+-rw-r--r-- 1 ugrad 1491 Dec 11 09:37 m10.png
+-rw-r--r-- 1 ugrad 1395 Dec 11 09:37 m11.png
+-rw-r--r-- 1 ugrad 1561 Dec 11 09:37 m12.png
+-rw-r--r-- 1 ugrad 1523 Dec 11 09:37 m13.png
+-rw-r--r-- 1 ugrad 1447 Dec 11 09:37 m14.png
+-rw-r--r-- 1 ugrad 1541 Dec 11 09:37 m15.png
+-rw-r--r-- 1 ugrad 1539 Dec 11 09:37 m16.png
+-rw-r--r-- 1 ugrad 1445 Dec 11 09:37 m17.png
+-rw-r--r-- 1 ugrad 1497 Dec 11 09:37 m18.png
+-rw-r--r-- 1 ugrad 1521 Dec 11 09:37 m19.png
+-rw-r--r-- 1 ugrad  611 Dec 11 09:37 m1.png
+-rw-r--r-- 1 ugrad 1540 Dec 11 09:37 m20.png
+-rw-r--r-- 1 ugrad 1575 Dec 11 09:37 m21.png
+-rw-r--r-- 1 ugrad 1529 Dec 11 09:37 m22.png
+-rw-r--r-- 1 ugrad 1520 Dec 11 09:37 m23.png
+-rw-r--r-- 1 ugrad 1507 Dec 11 09:37 m24.png
+-rw-r--r-- 1 ugrad 1506 Dec 11 09:37 m25.png
+-rw-r--r-- 1 ugrad 1544 Dec 11 09:37 m26.png
+-rw-r--r-- 1 ugrad 1604 Dec 11 09:37 m27.png
+-rw-r--r-- 1 ugrad 1523 Dec 11 09:37 m28.png
+-rw-r--r-- 1 ugrad 1536 Dec 11 09:37 m29.png
+-rw-r--r-- 1 ugrad  651 Dec 11 09:37 m2.png
+-rw-r--r-- 1 ugrad 1528 Dec 11 09:37 m30.png
+-rw-r--r-- 1 ugrad 1538 Dec 11 09:37 m31.png
+-rw-r--r-- 1 ugrad 1538 Dec 11 09:37 m32.png
+-rw-r--r-- 1 ugrad 1491 Dec 11 09:37 m33.png
+-rw-r--r-- 1 ugrad  779 Dec 11 09:37 m3.png
+-rw-r--r-- 1 ugrad  837 Dec 11 09:37 m4.png
+-rw-r--r-- 1 ugrad  967 Dec 11 09:37 m5.png
+-rw-r--r-- 1 ugrad 1065 Dec 11 09:37 m6.png
+-rw-r--r-- 1 ugrad 1088 Dec 11 09:37 m7.png
+-rw-r--r-- 1 ugrad 1194 Dec 11 09:37 m8.png
+-rw-r--r-- 1 ugrad 1298 Dec 11 09:37 m9.png
+-rw-r--r-- 1 ugrad 6409 Dec 11 09:37 mancalaBG.png
+-rw-r--r-- 1 ugrad 2253 Dec 11 09:37 mancalaTitle.png
+-rw-r--r-- 1 ugrad  422 Dec 11 09:37 menu.png
+-rw-r--r-- 1 ugrad 1527 Dec 11 09:37 player1.png
+-rw-r--r-- 1 ugrad 1718 Dec 11 09:37 player2.png
+-rw-r--r-- 1 ugrad  331 Dec 11 09:37 rightArrow.png
+
+cs1302-arcade/resources/menu:
+total 68
+-rw-r--r-- 1 ugrad  208 Dec 11 09:37 blankTItle.png
+-rw-r--r-- 1 ugrad  150 Dec 11 09:37 bsTitle.png
+-rw-r--r-- 1 ugrad 4396 Dec 11 09:37 gHigh.png
+-rw-r--r-- 1 ugrad 3502 Dec 11 09:37 g.png
+-rw-r--r-- 1 ugrad  877 Dec 11 09:37 gTitle.png
+-rw-r--r-- 1 ugrad 7509 Dec 11 09:37 mainMenuBG.png
+-rw-r--r-- 1 ugrad 3510 Dec 11 09:37 mainTitle.png
+-rw-r--r-- 1 ugrad 4895 Dec 11 09:37 mHigh.png
+-rw-r--r-- 1 ugrad 4496 Dec 11 09:37 m.png
+-rw-r--r-- 1 ugrad  909 Dec 11 09:37 mTitle.png
+-rw-r--r-- 1 ugrad 1823 Dec 11 09:37 scoreHigh.png
+-rw-r--r-- 1 ugrad 1205 Dec 11 09:37 score.png
+-rw-r--r-- 1 ugrad  722 Dec 11 09:37 sTitle.png
+
+cs1302-arcade/resources/tetris:
+total 44
+-rw-r--r-- 1 ugrad  423 Dec 11 09:37 blockI.png
+-rw-r--r-- 1 ugrad  439 Dec 11 09:37 blockJ.png
+-rw-r--r-- 1 ugrad  433 Dec 11 09:37 blockL.png
+-rw-r--r-- 1 ugrad  437 Dec 11 09:37 blockO.png
+-rw-r--r-- 1 ugrad  474 Dec 11 09:37 blockS.png
+-rw-r--r-- 1 ugrad  440 Dec 11 09:37 blockT.png
+-rw-r--r-- 1 ugrad  490 Dec 11 09:37 blockZ.png
+-rw-r--r-- 1 ugrad  809 Dec 11 09:37 tetControls.png
+-rw-r--r-- 1 ugrad  632 Dec 11 09:37 tetMenu.png
+-rw-r--r-- 1 ugrad 4940 Dec 11 09:37 tetrisBG.png
+
+cs1302-arcade/src:
+total 4
+drwxr-xr-x 4 ugrad 4096 Dec 11 09:37 main
+
+cs1302-arcade/src/main:
+total 8
+drwxr-xr-x 3 ugrad 4096 Dec 11 09:37 java
+drwxr-xr-x 5 ugrad 4096 Dec 11 09:37 resources
+
+cs1302-arcade/src/main/java:
+total 4
+drwxr-xr-x 3 ugrad 4096 Dec 11 09:37 cs1302
+
+cs1302-arcade/src/main/java/cs1302:
+total 4
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 arcade
+
+cs1302-arcade/src/main/java/cs1302/arcade:
+total 132
+-rw-r--r-- 1 ugrad 10730 Dec 11 09:37 ArcadeApp.java
+-rw-r--r-- 1 ugrad   784 Dec 11 09:37 ArcadeDriver.java
+-rw-r--r-- 1 ugrad 20804 Dec 11 09:37 Block.java
+-rw-r--r-- 1 ugrad 58010 Dec 11 09:37 Mancala.java
+-rw-r--r-- 1 ugrad 31048 Dec 11 09:37 Tetris.java
+
+cs1302-arcade/src/main/resources:
+total 12
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 mancala
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 menu
+drwxr-xr-x 2 ugrad 4096 Dec 11 09:37 tetris
+
+cs1302-arcade/src/main/resources/mancala:
+total 172
+-rw-r--r-- 1 ugrad 1081 Dec 11 09:37 controls.png
+-rw-r--r-- 1 ugrad  359 Dec 11 09:37 leftArrow.png
+-rw-r--r-- 1 ugrad  511 Dec 11 09:37 m0.png
+-rw-r--r-- 1 ugrad 1491 Dec 11 09:37 m10.png
+-rw-r--r-- 1 ugrad 1395 Dec 11 09:37 m11.png
+-rw-r--r-- 1 ugrad 1561 Dec 11 09:37 m12.png
+-rw-r--r-- 1 ugrad 1523 Dec 11 09:37 m13.png
+-rw-r--r-- 1 ugrad 1447 Dec 11 09:37 m14.png
+-rw-r--r-- 1 ugrad 1541 Dec 11 09:37 m15.png
+-rw-r--r-- 1 ugrad 1539 Dec 11 09:37 m16.png
+-rw-r--r-- 1 ugrad 1445 Dec 11 09:37 m17.png
+-rw-r--r-- 1 ugrad 1497 Dec 11 09:37 m18.png
+-rw-r--r-- 1 ugrad 1521 Dec 11 09:37 m19.png
+-rw-r--r-- 1 ugrad  611 Dec 11 09:37 m1.png
+-rw-r--r-- 1 ugrad 1540 Dec 11 09:37 m20.png
+-rw-r--r-- 1 ugrad 1575 Dec 11 09:37 m21.png
+-rw-r--r-- 1 ugrad 1529 Dec 11 09:37 m22.png
+-rw-r--r-- 1 ugrad 1520 Dec 11 09:37 m23.png
+-rw-r--r-- 1 ugrad 1507 Dec 11 09:37 m24.png
+-rw-r--r-- 1 ugrad 1506 Dec 11 09:37 m25.png
+-rw-r--r-- 1 ugrad 1544 Dec 11 09:37 m26.png
+-rw-r--r-- 1 ugrad 1604 Dec 11 09:37 m27.png
+-rw-r--r-- 1 ugrad 1523 Dec 11 09:37 m28.png
+-rw-r--r-- 1 ugrad 1536 Dec 11 09:37 m29.png
+-rw-r--r-- 1 ugrad  651 Dec 11 09:37 m2.png
+-rw-r--r-- 1 ugrad 1528 Dec 11 09:37 m30.png
+-rw-r--r-- 1 ugrad 1538 Dec 11 09:37 m31.png
+-rw-r--r-- 1 ugrad 1538 Dec 11 09:37 m32.png
+-rw-r--r-- 1 ugrad 1491 Dec 11 09:37 m33.png
+-rw-r--r-- 1 ugrad  779 Dec 11 09:37 m3.png
+-rw-r--r-- 1 ugrad  837 Dec 11 09:37 m4.png
+-rw-r--r-- 1 ugrad  967 Dec 11 09:37 m5.png
+-rw-r--r-- 1 ugrad 1065 Dec 11 09:37 m6.png
+-rw-r--r-- 1 ugrad 1088 Dec 11 09:37 m7.png
+-rw-r--r-- 1 ugrad 1194 Dec 11 09:37 m8.png
+-rw-r--r-- 1 ugrad 1298 Dec 11 09:37 m9.png
+-rw-r--r-- 1 ugrad 6409 Dec 11 09:37 mancalaBG.png
+-rw-r--r-- 1 ugrad 2253 Dec 11 09:37 mancalaTitle.png
+-rw-r--r-- 1 ugrad  422 Dec 11 09:37 menu.png
+-rw-r--r-- 1 ugrad 1527 Dec 11 09:37 player1.png
+-rw-r--r-- 1 ugrad 1718 Dec 11 09:37 player2.png
+-rw-r--r-- 1 ugrad  331 Dec 11 09:37 rightArrow.png
+
+cs1302-arcade/src/main/resources/menu:
+total 68
+-rw-r--r-- 1 ugrad  208 Dec 11 09:37 blankTItle.png
+-rw-r--r-- 1 ugrad  150 Dec 11 09:37 bsTitle.png
+-rw-r--r-- 1 ugrad 4396 Dec 11 09:37 gHigh.png
+-rw-r--r-- 1 ugrad 3502 Dec 11 09:37 g.png
+-rw-r--r-- 1 ugrad  877 Dec 11 09:37 gTitle.png
+-rw-r--r-- 1 ugrad 7509 Dec 11 09:37 mainMenuBG.png
+-rw-r--r-- 1 ugrad 3510 Dec 11 09:37 mainTitle.png
+-rw-r--r-- 1 ugrad 4895 Dec 11 09:37 mHigh.png
+-rw-r--r-- 1 ugrad 4496 Dec 11 09:37 m.png
+-rw-r--r-- 1 ugrad  909 Dec 11 09:37 mTitle.png
+-rw-r--r-- 1 ugrad 1823 Dec 11 09:37 scoreHigh.png
+-rw-r--r-- 1 ugrad 1205 Dec 11 09:37 score.png
+-rw-r--r-- 1 ugrad  722 Dec 11 09:37 sTitle.png
+
+cs1302-arcade/src/main/resources/tetris:
+total 44
+-rw-r--r-- 1 ugrad  423 Dec 11 09:37 blockI.png
+-rw-r--r-- 1 ugrad  439 Dec 11 09:37 blockJ.png
+-rw-r--r-- 1 ugrad  433 Dec 11 09:37 blockL.png
+-rw-r--r-- 1 ugrad  437 Dec 11 09:37 blockO.png
+-rw-r--r-- 1 ugrad  474 Dec 11 09:37 blockS.png
+-rw-r--r-- 1 ugrad  440 Dec 11 09:37 blockT.png
+-rw-r--r-- 1 ugrad  490 Dec 11 09:37 blockZ.png
+-rw-r--r-- 1 ugrad  809 Dec 11 09:37 tetControls.png
+-rw-r--r-- 1 ugrad  632 Dec 11 09:37 tetMenu.png
+-rw-r--r-- 1 ugrad 4940 Dec 11 09:37 tetrisBG.png
+/home/ugrads/aviles/cs1302/projects/cs1302-arcade:/home/work/cs1302a
