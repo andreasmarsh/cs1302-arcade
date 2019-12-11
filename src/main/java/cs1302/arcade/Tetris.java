@@ -72,17 +72,16 @@ public class Tetris {
     //private static ImageView nextIV;
 
     // strings with image locations
-    private String bG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
-    private String menuStr = Tetris.class.getResource("/tetris/tetMenu.png").toExternalForm();
-    private String controlsStr = Tetris.class
-        .getResource("/tetris/tetControls.png").toExternalForm();
-    private String iStr = Tetris.class.getResource("/tetris/blockI.png").toExternalForm();
-    private String jStr = Tetris.class.getResource("/tetris/blockJ.png").toExternalForm();
-    private String lStr = Tetris.class.getResource("/tetris/blockL.png").toExternalForm();
-    private String oStr = Tetris.class.getResource("/tetris/blockO.png").toExternalForm();
-    private String sStr = Tetris.class.getResource("/tetris/blockS.png").toExternalForm();
-    private String tStr = Tetris.class.getResource("/tetris/blockT.png").toExternalForm();
-    private String zStr = Tetris.class.getResource("/tetris/blockZ.png").toExternalForm();
+    private String bG = "file:resources/tetris/tetrisBG.png";
+    private String menuStr = "file:resources/tetris/tetMenu.png";
+    private String controlsStr = "file:resources/tetris/tetControls.png";
+    private String iStr = "file:resources/tetris/blockI.png";
+    private String jStr = "file:resources/tetris/blockJ.png";
+    private String lStr = "file:resources/tetris/blockL.png";
+    private String oStr = "file:resources/tetris/blockO.png";
+    private String sStr = "file:resources/tetris/blockS.png";
+    private String tStr = "file:resources/tetris/blockT.png";
+    private String zStr = "file:resources/tetris/blockZ.png";
 
     /**
      * Constructor of Tetris. Creates the roots and sets the stage and scene.

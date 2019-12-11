@@ -47,9 +47,8 @@ public class Mancala {
     private HBox title;
     private HBox lBoard;
     private HBox rBoard;
-    private String bG = Mancala.class.getResource("/mancala/mancalaBG.png").toExternalForm();
-    private String titleStr = Mancala.class.getResource("/mancala"
-                                                        + "/mancalaTitle.png").toExternalForm();
+    private String bG = "file:resources/mancala/mancalaBG.png";
+    private String titleStr = "file:resources/mancala/mancalaTitle.png";
     private ImageView filler;
     private ImageView filler1;
     private ImageView filler2;
@@ -63,17 +62,12 @@ public class Mancala {
     private int topRow;
     private int botRow;
 
-    private String menuStr = Mancala.class.getResource("/mancala/menu.png").toExternalForm();
-    private String controlsStr = Mancala.class.getResource("/mancala" +
-                                                           "/controls.png").toExternalForm();
-    private String player1Str = Mancala.class.getResource("/mancala" +
-                                                          "/player1.png").toExternalForm();
-    private String player2Str = Mancala.class.getResource("/mancala" +
-                                                          "/player2.png").toExternalForm();
-    private String rArrowStr = Mancala.class.getResource("/mancala" +
-                                                         "/rightArrow.png").toExternalForm();
-    private String lArrowStr = Mancala.class.getResource("/mancala" +
-                                                         "/leftArrow.png").toExternalForm();
+    private String menuStr = "file:resources/mancala/menu.png";
+    private String controlsStr = "file:resources/mancala/controls.png";
+    private String player1Str = "file:resources/mancala/player1.png";
+    private String player2Str = "file:resources/mancala/player2.png";
+    private String rArrowStr = "file:resources/mancala/rightArrow.png";
+    private String lArrowStr = "file:resources/mancala/leftArrow.png";
 
 
     // variables for menu and controlls
@@ -157,42 +151,30 @@ public class Mancala {
         // =-= IV list that relates to each position in gameBoard =-=
         LinkedList<ImageView> gameIVs = new LinkedList<>();
 
-        gameIVs.add(new ImageView(new Image(Mancala.class
-                                            .getResource("/mancala/m" + gameBoard.get(0) +
-                                                         ".png").toExternalForm())));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(1)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(2)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(3)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(4)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(5)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(new ImageView(new Image(Mancala.class
-                                            .getResource("/mancala/m" + gameBoard.get(6)
-                                                         + ".png").toExternalForm())));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(7)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(8)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(9)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(10)
-                                                                   + ".png").toExternalForm()))));
-        gameIVs.add(setSizeIV(new ImageView(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(11)
-                                                                   + ".png").toExternalForm()))));
+        gameIVs.add(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(0) + ".png")));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(1) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(2) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(3) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(4) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(5) + ".png"))));
+        gameIVs.add(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(6) + ".png")));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(7) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(8) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(9) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(10) + ".png"))));
+        gameIVs.add(setSizeIV(new ImageView(new Image("file:resources/mancala/m" +
+            gameBoard.get(11) + ".png"))));
 
         // left and right spaces of board
         lBoard = new HBox();
@@ -249,14 +231,12 @@ public class Mancala {
             for (int i = 0; i < temp; i++) {
                 if (i > 9) {
                     gameBoard.set(i - 9, gameBoard.get(i - 9) + 1);
-                    gameIVs.get(i - 9).setImage(new Image(Mancala.class
-                                                          .getResource("/mancala/m" + gameBoard
-                        .get(i - 9) + ".png").toExternalForm()));
+                    gameIVs.get(i - 9).setImage(new Image("file:resources/mancala/m" + gameBoard
+                        .get(i - 9) + ".png"));
                 } else { // if
                     gameBoard.set(i + 2, gameBoard.get(i + 2) + 1);
-                    gameIVs.get(i + 2).setImage(new Image(Mancala.class
-                                                          .getResource("/mancala/m" + gameBoard
-                        .get(i + 2) + ".png").toExternalForm()));
+                    gameIVs.get(i + 2).setImage(new Image("file:resources/mancala/m" + gameBoard
+                        .get(i + 2) + ".png"));
                 } // else
             } // for
 
@@ -267,15 +247,12 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
                 gameBoard.set(11, 0);
                 gameBoard.set(1, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                                                  .getResource("/mancala/m" + gameBoard.get(6)
-                                                               + ".png").toExternalForm()));
-                gameIVs.get(1).setImage(new Image(Mancala.class
-                                                  .getResource("/mancala/m" + gameBoard.get(1)
-                                                               + ".png").toExternalForm()));
-                gameIVs.get(11).setImage(new Image(Mancala.class
-                                                   .getResource("/mancala/m" + gameBoard.get(11)
-                                                                + ".png").toExternalForm()));
+                gameIVs.get(6).setImage(new Image("file:resources/mancala/m" + gameBoard.get(6)
+                                                  + ".png"));
+                gameIVs.get(1).setImage(new Image("file:resources/mancala/m" + gameBoard.get(1)
+                                                  + ".png"));
+                gameIVs.get(11).setImage(new Image("file:resources/mancala/m" + gameBoard.get(11)
+                                                   + ".png"));
             }
             // checks remaining 4 pockets of row to see if bead landed into an empty pocket
             // and if so empties said pocket and pocket across board into right main pocket
@@ -284,15 +261,12 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11 - i) + 1);
                     gameBoard.set(11 - i, 0);
                     gameBoard.set(i + 1, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                                                      .getResource("/mancala/m" + gameBoard.get(6)
-                                                                   + ".png").toExternalForm()));
-                    gameIVs.get(11 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(11 - i)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(i + 1).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 1)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image("file:resources/mancala/m" + gameBoard.get(6)
+                                                      + ".png"));
+                    gameIVs.get(11 - i).setImage(new Image("file:resources/mancala/m" +
+                                                           gameBoard.get(11 - i) + ".png"));
+                    gameIVs.get(i + 1).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i + 1) + ".png"));
                 } // if
             }
 
@@ -300,8 +274,7 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 5) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                arrow.setImage(new Image("file:resources/mancala/rightArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(true);
                 } // for
@@ -313,9 +286,8 @@ public class Mancala {
                 } // for
             } // if
 
-            gameIVs.get(1).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(1) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(1).setImage(new Image("file:resources/mancala/m" +
+                                              gameBoard.get(1) + ".png"));
         });
 
         gameIVs.get(2).setOnMouseClicked(e -> {
@@ -324,14 +296,12 @@ public class Mancala {
             for (int i = 0; i < temp; i++) {
                 if (i > 8) {
                     gameBoard.set(i - 8, gameBoard.get(i - 8) + 1);
-                    gameIVs.get(i - 8).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i - 8)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i - 8).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i - 8) + ".png"));
                 } else { // if
                     gameBoard.set(i + 3, gameBoard.get(i + 3) + 1);
-                    gameIVs.get(i + 3).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 3)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 3).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i + 3) + ".png"));
                 } // else
             } // for
 
@@ -342,12 +312,12 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10) + 1);
                 gameBoard.set(10, 0);
                 gameBoard.set(2, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                gameIVs.get(2).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(2) + ".png").toExternalForm()));
-                gameIVs.get(10).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
+                gameIVs.get(6).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(6) + ".png"));
+                gameIVs.get(2).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(2) + ".png"));
+                gameIVs.get(10).setImage(new Image("file:resources/mancala/m" +
+                                                   gameBoard.get(10) + ".png"));
             }
             // checks 3 right  pockets of row to see if bead landed into an empty pocket
             // and if so empties said pocket and pocket across board into right main pocket
@@ -356,15 +326,12 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(10 - i) + 1);
                     gameBoard.set(10 - i, 0);
                     gameBoard.set(i + 2, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(10 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(10 - i)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(i + 2).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 2)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image("file:resources/mancala/m" +
+                                                      gameBoard.get(6) + ".png"));
+                    gameIVs.get(10 - i).setImage(new Image("file:resources/mancala/m" +
+                                                           gameBoard.get(10 - i) + ".png"));
+                    gameIVs.get(i + 2).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i + 2) + ".png"));
                 } // if
             }
             // performs check on pocket 1
@@ -372,20 +339,19 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(11) + 1);
                 gameBoard.set(11, 0);
                 gameBoard.set(1, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                gameIVs.get(1).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(1) + ".png").toExternalForm()));
-                gameIVs.get(11).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(11) + ".png").toExternalForm()));
+                gameIVs.get(6).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(6) + ".png"));
+                gameIVs.get(1).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(1) + ".png"));
+                gameIVs.get(11).setImage(new Image("file:resources/mancala/m" +
+                                                   gameBoard.get(11) + ".png"));
             } // if
 
             // checks if a row is empty and ends game
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 4) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                arrow.setImage(new Image("file:resources/mancala/rightArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(true);
                 } // for
@@ -396,9 +362,8 @@ public class Mancala {
                     } // if
                 } // for
             } // if
-            gameIVs.get(2).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(2) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(2).setImage(new Image("file:resources/mancala/m" +
+                                              gameBoard.get(2) + ".png"));
         });
 
         gameIVs.get(3).setOnMouseClicked(e -> {
@@ -407,14 +372,12 @@ public class Mancala {
             for (int i = 0; i < temp; i++) {
                 if (i > 7) {
                     gameBoard.set(i - 7, gameBoard.get(i - 7) + 1);
-                    gameIVs.get(i - 7).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i - 7)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i - 7).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i - 7) + ".png"));
                 } else { // if
                     gameBoard.set(i + 4, gameBoard.get(i + 4) + 1);
-                    gameIVs.get(i + 4).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 4)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 4).setImage(new Image("file:resources/mancala/m" +
+                                                          gameBoard.get(i + 4) + ".png"));
                 } // else
             } // for
 
@@ -425,12 +388,12 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9) + 1);
                 gameBoard.set(9, 0);
                 gameBoard.set(3, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                gameIVs.get(3).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(3) + ".png").toExternalForm()));
-                gameIVs.get(9).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(9) + ".png").toExternalForm()));
+                gameIVs.get(6).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(6) + ".png"));
+                gameIVs.get(3).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(3) + ".png"));
+                gameIVs.get(9).setImage(new Image("file:resources/mancala/m" +
+                                                  gameBoard.get(9) + ".png"));
             }
             // checks 2 right  pockets of row to see if bead landed into an empty pocket
             // and if so empties said pocket and pocket across board into right main pocket
@@ -439,15 +402,14 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(9 - i) + 1);
                     gameBoard.set(9 - i, 0);
                     gameBoard.set(i + 3, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(9 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(9 - i)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(i + 3).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 3)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6) + ".png"));
+                    gameIVs.get(9 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(9 - i)
+                                     + ".png"));
+                    gameIVs.get(i + 3).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 3)
+                                     + ".png"));
                 } // if
             }
             // performs check on pockets  1 and 2
@@ -456,13 +418,13 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
                     gameBoard.set(12 - i, 0);
                     gameBoard.set(i, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                    gameIVs.get(i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i) + ".png").toExternalForm()));
-                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(12 - i)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6) + ".png"));
+                    gameIVs.get(i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i) + ".png"));
+                    gameIVs.get(12 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(12 - i)
+                                     + ".png"));
                 } // if
             } // for
 
@@ -470,8 +432,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 3) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/rightArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(true);
                 } // for
@@ -482,9 +444,8 @@ public class Mancala {
                     } // if
                 } // for
             } // if
-            gameIVs.get(3).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(3) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(3).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(3) + ".png"));
         });
 
         gameIVs.get(4).setOnMouseClicked(e -> {
@@ -493,14 +454,14 @@ public class Mancala {
             for (int i = 0; i < temp; i++) {
                 if (i > 6) {
                     gameBoard.set(i - 6, gameBoard.get(i - 6) + 1);
-                    gameIVs.get(i - 6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i - 6)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i - 6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i - 6)
+                                     + ".png"));
                 } else { // if
                     gameBoard.set(i + 5, gameBoard.get(i + 5) + 1);
-                    gameIVs.get(i + 5).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 5)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 5).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 5)
+                                     + ".png"));
                 } // else
             } // for
 
@@ -511,12 +472,12 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(8) + 1);
                 gameBoard.set(8, 0);
                 gameBoard.set(4, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(6) + ".png").toExternalForm()));
-                gameIVs.get(4).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
-                gameIVs.get(8).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(8) + ".png").toExternalForm()));
+                gameIVs.get(6).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(6) + ".png"));
+                gameIVs.get(4).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(4) + ".png"));
+                gameIVs.get(8).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(8) + ".png"));
             }
             // checks 1 right pockets of row to see if bead landed into an empty pocket
             // and if so empties said pocket and pocket across board into right main pocket
@@ -525,15 +486,15 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(7) + 1);
                     gameBoard.set(7, 0);
                     gameBoard.set(5, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(7).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(7)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(5).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(5)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6)
+                                     + ".png"));
+                    gameIVs.get(7).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(7)
+                                     + ".png"));
+                    gameIVs.get(5).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(5)
+                                     + ".png"));
                 } // if
             }
             // performs check on pockets  1 - 3
@@ -542,15 +503,15 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
                     gameBoard.set(12 - i, 0);
                     gameBoard.set(i, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i)
-                                     + ".png").toExternalForm()));
-                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(12 - i)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6)
+                                     + ".png"));
+                    gameIVs.get(i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i)
+                                     + ".png"));
+                    gameIVs.get(12 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(12 - i)
+                                     + ".png"));
                 } // if
             } // for
 
@@ -558,8 +519,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 2) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/rightArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(true);
                 } // for
@@ -570,8 +531,8 @@ public class Mancala {
                     } // if
                 } // for
             } // if
-            gameIVs.get(4).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(4) + ".png").toExternalForm()));
+            gameIVs.get(4).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(4) + ".png"));
         });
 
         gameIVs.get(5).setOnMouseClicked(e -> {
@@ -580,14 +541,14 @@ public class Mancala {
             for (int i = 0; i < temp; i++) {
                 if (i > 5) {
                     gameBoard.set(i - 5, gameBoard.get(i - 5) + 1);
-                    gameIVs.get(i - 5).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i - 5)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i - 5).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i - 5)
+                                     + ".png"));
                 } else { // if
                     gameBoard.set(i + 6, gameBoard.get(i + 6) + 1);
-                    gameIVs.get(i + 6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 6)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 6)
+                                     + ".png"));
                 } // else
             } // for
 
@@ -598,15 +559,12 @@ public class Mancala {
                 gameBoard.set(6, gameBoard.get(6) + gameBoard.get(7) + 1);
                 gameBoard.set(7, 0);
                 gameBoard.set(5, 0);
-                gameIVs.get(6).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(6) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(5).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(7).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
-                                                  .toExternalForm()));
+                gameIVs.get(6).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(6) + ".png"));
+                gameIVs.get(5).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(5) + ".png"));
+                gameIVs.get(7).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(7) + ".png"));
             }
             // performs check on pockets  1 - 4
             for (int i = 1; i < 5; i++) {
@@ -614,15 +572,12 @@ public class Mancala {
                     gameBoard.set(6, gameBoard.get(6) + gameBoard.get(12 - i) + 1);
                     gameBoard.set(12 - i, 0);
                     gameBoard.set(i, 0);
-                    gameIVs.get(6).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(12 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(12 - i) + ".png")
-                                                           .toExternalForm()));
+                    gameIVs.get(6).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6) + ".png"));
+                    gameIVs.get(i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i) + ".png"));
+                    gameIVs.get(12 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(12 - i) + ".png"));
                 } // if
             } // for
 
@@ -630,8 +585,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 1) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/rightArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/rightArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(true);
                 } // for
@@ -642,9 +597,8 @@ public class Mancala {
                     } // if
                 } // for
             } // if
-            gameIVs.get(5).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(5) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(5).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(5) + ".png"));
         });
 
         gameIVs.get(7).setOnMouseClicked(e -> {
@@ -654,20 +608,20 @@ public class Mancala {
                 if (i > 3) {
                     if (i > 9) {
                         gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
-                        gameIVs.get(i - 3).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 3)
-                                         + ".png").toExternalForm()));
+                        gameIVs.get(i - 3).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 3)
+                                         + ".png"));
                     } else { // if
                         gameBoard.set(i - 4, gameBoard.get(i - 4) + 1);
-                        gameIVs.get(i - 4).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 4)
-                                         + ".png").toExternalForm()));
+                        gameIVs.get(i - 4).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 4)
+                                         + ".png"));
                     } // else
                 } else { // if
                     gameBoard.set(i + 8, gameBoard.get(i + 8) + 1);
-                    gameIVs.get(i + 8).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 8)
-                                     + ".png").toExternalForm()));
+                    gameIVs.get(i + 8).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 8)
+                                     + ".png"));
                 } // else
             } // for
 
@@ -678,15 +632,12 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
                 gameBoard.set(7, 0);
                 gameBoard.set(5, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(5).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(7).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
-                                                  .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(5).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(5) + ".png"));
+                gameIVs.get(7).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(7) + ".png"));
             }
             // performs check on pockets  8 - 11
             for (int i = 1; i < 5; i++) {
@@ -694,15 +645,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5 - i) + 1);
                     gameBoard.set(5 - i, 0);
                     gameBoard.set(7 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(5 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(5 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(7 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(7 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(5 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(5 - i) + ".png"));
+                    gameIVs.get(7 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(7 + i) + ".png"));
                 } // if
             } // for
 
@@ -710,8 +658,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 5) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/leftArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(false);
                     if (gameBoard.get(i) == 0) {
@@ -722,9 +670,8 @@ public class Mancala {
                     gameIVs.get(i).setDisable(true);
                 } // for
             } // if
-            gameIVs.get(7).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(7) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(7).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(7) + ".png"));
         });
 
         gameIVs.get(8).setOnMouseClicked(e -> {
@@ -734,20 +681,17 @@ public class Mancala {
                 if (i > 2) {
                     if (i > 8) {
                         gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
-                        gameIVs.get(i - 2).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 2) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i - 2).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 2) + ".png"));
                     } else { // if
                         gameBoard.set(i - 3, gameBoard.get(i - 3) + 1);
-                        gameIVs.get(i - 3).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 3) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i - 3).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 3) + ".png"));
                     } // else
                 } else { // if
                     gameBoard.set(i + 9, gameBoard.get(i + 9) + 1);
-                    gameIVs.get(i + 9).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 9) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(i + 9).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 9) + ".png"));
                 } // else
             } // for
 
@@ -758,15 +702,12 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4) + 1);
                 gameBoard.set(8, 0);
                 gameBoard.set(4, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(4).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(4) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(8).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(8) + ".png")
-                                                  .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(4).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(4) + ".png"));
+                gameIVs.get(8).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(8) + ".png"));
             }
             // performs check on pockets  9 - 11
             for (int i = 1; i < 4; i++) {
@@ -774,15 +715,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(4 - i) + 1);
                     gameBoard.set(4 - i, 0);
                     gameBoard.set(8 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(4 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(4 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(8 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(8 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(4 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(4 - i) + ".png"));
+                    gameIVs.get(8 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(8 + i) + ".png"));
                 } // if
             } // for
             // checks pocket 7
@@ -790,23 +728,20 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(5) + 1);
                 gameBoard.set(5, 0);
                 gameBoard.set(7, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(5).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(5) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(7).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(7) + ".png")
-                                                  .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(5).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(5) + ".png"));
+                gameIVs.get(7).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(7) + ".png"));
             } // if
 
             // checks if a row is empty and ends game
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 4) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/leftArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(false);
                     if (gameBoard.get(i) == 0) {
@@ -817,9 +752,8 @@ public class Mancala {
                     gameIVs.get(i).setDisable(true);
                 } // for
             } // if
-            gameIVs.get(8).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(8) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(8).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(8) + ".png"));
         });
 
         gameIVs.get(9).setOnMouseClicked(e -> {
@@ -829,20 +763,17 @@ public class Mancala {
                 if (i > 1) {
                     if (i > 7) {
                         gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
-                        gameIVs.get(i - 1).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 1) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i - 1).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 1) + ".png"));
                     } else { // if
                         gameBoard.set(i - 2, gameBoard.get(i - 2) + 1);
-                        gameIVs.get(i - 2).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 2) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i - 2).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 2) + ".png"));
                     } // if
                 } else { // if
                     gameBoard.set(i + 10, gameBoard.get(i + 10) + 1);
-                    gameIVs.get(i + 10).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 10) + ".png")
-                                                           .toExternalForm()));
+                    gameIVs.get(i + 10).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 10) + ".png"));
                 } // else
             } // for
 
@@ -853,15 +784,12 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3) + 1);
                 gameBoard.set(9, 0);
                 gameBoard.set(3, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(3).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(3) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(9).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(9) + ".png")
-                                                  .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(3).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(3) + ".png"));
+                gameIVs.get(9).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(9) + ".png"));
             }
             // performs check on pockets  10 - 11
             for (int i = 1; i < 3; i++) {
@@ -869,15 +797,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(3 - i) + 1);
                     gameBoard.set(3 - i, 0);
                     gameBoard.set(9 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(3 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(3 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(9 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(9 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(3 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(3 - i) + ".png"));
+                    gameIVs.get(9 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(9 + i) + ".png"));
                 } // if
             } // for
             // checks pocket 7 - 8
@@ -886,15 +811,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
                     gameBoard.set(6 - i, 0);
                     gameBoard.set(6 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(6 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 - i) + ".png"));
+                    gameIVs.get(6 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 + i) + ".png"));
                 } // if
             } // for
 
@@ -902,9 +824,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 3) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/leftArrow.png")
-                                         .toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/leftArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(false);
                     if (gameBoard.get(i) == 0) {
@@ -915,9 +836,8 @@ public class Mancala {
                     gameIVs.get(i).setDisable(true);
                 } // for
             } // if
-            gameIVs.get(9).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(9) + ".png")
-                                              .toExternalForm()));
+            gameIVs.get(9).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(9) + ".png"));
         });
 
         gameIVs.get(10).setOnMouseClicked(e -> {
@@ -927,20 +847,17 @@ public class Mancala {
                 if (i > 0) {
                     if (i > 6) {
                         gameBoard.set(i, gameBoard.get(i) + 1);
-                        gameIVs.get(i).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i) + ".png")
-                                                          .toExternalForm()));
+                        gameIVs.get(i).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i) + ".png"));
                     } else { // if
                         gameBoard.set(i - 1, gameBoard.get(i - 1) + 1);
-                        gameIVs.get(i - 1).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 1) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i - 1).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 1) + ".png"));
                     } // else
                 } else { // if
                     gameBoard.set(i + 11, gameBoard.get(i + 11) + 1);
-                    gameIVs.get(i + 11).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i + 11) + ".png")
-                                                           .toExternalForm()));
+                    gameIVs.get(i + 11).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i + 11) + ".png"));
                 } // else
             } // for
 
@@ -951,30 +868,24 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(2) + 1);
                 gameBoard.set(10, 0);
                 gameBoard.set(2, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(2).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(2) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(10).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(10) + ".png")
-                                                   .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(2).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(2) + ".png"));
+                gameIVs.get(10).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(10) + ".png"));
             }
             // performs check on pocket 11
             if (temp == 1 && gameBoard.get(11) == 1) {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
                 gameBoard.set(1, 0);
                 gameBoard.set(11, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(1).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(1) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(11).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(11) + ".png")
-                                                   .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(1).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(1) + ".png"));
+                gameIVs.get(11).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(11) + ".png"));
             } // if
             // checks pocket 7 - 9
             for (int i = 1; i < 4; i++) {
@@ -982,15 +893,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
                     gameBoard.set(6 - i, 0);
                     gameBoard.set(6 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(6 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 - i) + ".png"));
+                    gameIVs.get(6 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 + i) + ".png"));
                 } // if
             } // for
 
@@ -998,8 +906,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 2) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/leftArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(false);
                     if (gameBoard.get(i) == 0) {
@@ -1010,8 +918,8 @@ public class Mancala {
                     gameIVs.get(i).setDisable(true);
                 } // for
             } // if
-            gameIVs.get(10).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(10) + ".png").toExternalForm()));
+            gameIVs.get(10).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(10) + ".png"));
         });
 
         gameIVs.get(11).setOnMouseClicked(e -> {
@@ -1021,20 +929,17 @@ public class Mancala {
                 if (i > 5) {
                     if (i > 10) {
                         gameBoard.set(i - 11, gameBoard.get(i - 11) + 1);
-                        gameIVs.get(i - 11).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i - 11) + ".png")
-                                                               .toExternalForm()));
+                        gameIVs.get(i - 11).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i - 11) + ".png"));
                     } else { //if
                         gameBoard.set(i + 1, gameBoard.get(i + 1) + 1);
-                        gameIVs.get(i + 1).setImage(new Image(Mancala.class
-                            .getResource("/mancala/m" + gameBoard.get(i + 1) + ".png")
-                                                              .toExternalForm()));
+                        gameIVs.get(i + 1).setImage(new Image(
+                            "file:resources/mancala/m" + gameBoard.get(i + 1) + ".png"));
                     } // else
                 } else { // if
                     gameBoard.set(i, gameBoard.get(i) + 1);
-                    gameIVs.get(i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(i) + ".png")
-                                                      .toExternalForm()));
+                    gameIVs.get(i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(i) + ".png"));
                 } // else
             } // for
 
@@ -1045,15 +950,12 @@ public class Mancala {
                 gameBoard.set(0, gameBoard.get(0) + gameBoard.get(1) + 1);
                 gameBoard.set(11, 0);
                 gameBoard.set(1, 0);
-                gameIVs.get(0).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(1).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(1) + ".png")
-                                                  .toExternalForm()));
-                gameIVs.get(11).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + gameBoard.get(11) + ".png")
-                                                   .toExternalForm()));
+                gameIVs.get(0).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                gameIVs.get(1).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(1) + ".png"));
+                gameIVs.get(11).setImage(new Image(
+                    "file:resources/mancala/m" + gameBoard.get(11) + ".png"));
             }
             // checks pocket 7 - 10
             for (int i = 1; i < 5; i++) {
@@ -1061,15 +963,12 @@ public class Mancala {
                     gameBoard.set(0, gameBoard.get(0) + gameBoard.get(6 - i) + 1);
                     gameBoard.set(6 - i, 0);
                     gameBoard.set(6 + i, 0);
-                    gameIVs.get(0).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(0) + ".png")
-                                                      .toExternalForm()));
-                    gameIVs.get(6 - i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 - i) + ".png")
-                                                          .toExternalForm()));
-                    gameIVs.get(6 + i).setImage(new Image(Mancala.class
-                        .getResource("/mancala/m" + gameBoard.get(6 + i) + ".png")
-                                                          .toExternalForm()));
+                    gameIVs.get(0).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(0) + ".png"));
+                    gameIVs.get(6 - i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 - i) + ".png"));
+                    gameIVs.get(6 + i).setImage(new Image(
+                        "file:resources/mancala/m" + gameBoard.get(6 + i) + ".png"));
                 } // if
             } // for
 
@@ -1077,8 +976,8 @@ public class Mancala {
             checkWinner(gameBoard, gameIVs);
 
             if (temp != 1) {
-                arrow.setImage(new Image(Mancala.class
-                    .getResource("/mancala/leftArrow.png").toExternalForm()));
+                arrow.setImage(new Image(
+                    "file:resources/mancala/leftArrow.png"));
                 for (int i = 1; i < 6; i++) {
                     gameIVs.get(i).setDisable(false);
                     if (gameBoard.get(i) == 0) {
@@ -1089,9 +988,8 @@ public class Mancala {
                     gameIVs.get(i).setDisable(true);
                 } // for
             } // if
-            gameIVs.get(11).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + gameBoard.get(11) + ".png")
-                                               .toExternalForm()));
+            gameIVs.get(11).setImage(new Image(
+                "file:resources/mancala/m" + gameBoard.get(11) + ".png"));
         });
 
         for (int i = 7; i < 12; i++) {
@@ -1398,11 +1296,11 @@ public class Mancala {
             for (int i = 7; i < 12; i++) {
                 x.set(0, x.get(0) + x.get(i));
                 x.set(i, 0);
-                y.get(i).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+                y.get(i).setImage(new Image(
+                    "file:resources/mancala/m" + x.get(i) + ".png"));
             } // for
-            y.get(0).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + x.get(0) + ".png").toExternalForm()));
+            y.get(0).setImage(new Image(
+                "file:resources/mancala/m" + x.get(0) + ".png"));
             getWinnerMenu(x);
         }
         // if topRow is empty move all of top row to right mancala
@@ -1411,11 +1309,11 @@ public class Mancala {
             for (int i = 1; i < 6; i++) {
                 x.set(6, x.get(6) + x.get(i));
                 x.set(i, 0);
-                y.get(i).setImage(new Image(Mancala.class
-                    .getResource("/mancala/m" + x.get(i) + ".png").toExternalForm()));
+                y.get(i).setImage(new Image(
+                    "file:resources/mancala/m" + x.get(i) + ".png"));
             } // for
-            y.get(6).setImage(new Image(Mancala.class
-                .getResource("/mancala/m" + x.get(6) + ".png").toExternalForm()));
+            y.get(6).setImage(new Image(
+                "file:resources/mancala/m" + x.get(6) + ".png"));
             getWinnerMenu(x);
         }
     } // checkWinner

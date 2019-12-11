@@ -26,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 
+import java.util.Scanner;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -53,15 +54,14 @@ public class ArcadeApp extends Application {
     private static String tLine;
     private static ArrayList<String> tList;
     private static File tFile;
-    private String mPath = ArcadeApp.class.getResource("/menu/m.png").toExternalForm();//mancala
-    private String mLabelPath = ArcadeApp.class.getResource("/menu/mTitle.png").toExternalForm();
-    private String gPath = ArcadeApp.class.getResource("/menu/g.png").toExternalForm(); //group1
-    private String gLabelPath = ArcadeApp.class.getResource("/menu/gTitle.png").toExternalForm();
-    private String sPath = ArcadeApp.class.getResource("/menu/score.png").toExternalForm(); //scores
-    private String sLabelPath = ArcadeApp.class.getResource("/menu/sTitle.png").toExternalForm();
-    private String blankImgPath = ArcadeApp.class
-        .getResource("/menu/blankTItle.png").toExternalForm();
-    private String blankSPath = ArcadeApp.class.getResource("/menu/bsTitle.png").toExternalForm();
+    private String mPath = "file:resources/menu/m.png"; //mancala
+    private String mLabelPath = "file:resources/menu/mTitle.png";
+    private String gPath = "file:resources/menu/g.png"; //group1
+    private String gLabelPath = "file:resources/menu/gTitle.png";
+    private String sPath = "file:resources/menu/score.png"; //scores
+    private String sLabelPath = "file:resources/menu/sTitle.png";
+    private String blankImgPath = "file:resources/menu/blankTItle.png";
+    private String blankSPath = "file:resources/menu/bsTitle.png";
 
     /**
      * Sets the mainStage of ArcadeApp.
@@ -82,7 +82,7 @@ public class ArcadeApp extends Application {
     /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        String titleStr = ArcadeApp.class.getResource("/menu/mainTitle.png").toExternalForm();
+        String titleStr = "file:resources/menu/mainTitle.png";
 
         setMainStage(stage);
         GridPane gpane = new GridPane();
