@@ -222,7 +222,6 @@ public class ArcadeApp extends Application {
         vbox.getChildren().addAll(r1, r2);
 
         r2T.setOnFinished(e -> {
-                System.out.println("finished");
                 vbox.getChildren().addAll(titleIV, prompt, gpane);
                 vbox.setMargin(titleIV, titlePad);
                 vbox.setStyle(style);
