@@ -29,9 +29,9 @@ that the Markdown is transformed into nice looking HTML.
 
 3. **PROB:** We ran into problems with setting up tetris functionality as well as issues in mancala with the gridpane however we are near solutions and progress should exponentially increase as we progress.
 
-## WED 2019-12-11 @ 3:30 PM EST
+## WED 2019-12-11 @ 3:00 PM EST
 
-1. **DONE:** Created fully functional mancala and tetris as well as a score/highscore recorder.
+1. **DONE:** Created fully functional mancala and tetris as well as a score/highscore recorder. RE-SUBMIT: @ 2:41 PM = Intro animation has been added!
 
 2. **TODO** N/A.
 
