@@ -1,5 +1,16 @@
 package cs1302.arcade;
 
+import java.lang.InterruptedException;
+import javafx.scene.effect.Reflection;
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import javafx.scene.image.WritableImage;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,7 +36,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
-
+import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -62,6 +74,12 @@ public class ArcadeApp extends Application {
     private String sLabelPath = "file:resources/menu/sTitle.png";
     private String blankImgPath = "file:resources/menu/blankTItle.png";
     private String blankSPath = "file:resources/menu/bsTitle.png";
+    ImageView titleIV;
+    Rectangle r1;
+    Rectangle r2;
+    VBox vbox;
+    ScaleTransition r1T;
+    ScaleTransition r2T;
 
     /**
      * Sets the mainStage of ArcadeApp.
@@ -86,7 +104,7 @@ public class ArcadeApp extends Application {
 
         setMainStage(stage);
         GridPane gpane = new GridPane();
-        VBox vbox = new VBox();
+        vbox = new VBox();
         HBox hbox = new HBox();
 
 //gpane.setGridLinesVisible(true);
@@ -135,6 +153,9 @@ public class ArcadeApp extends Application {
         gpane.add(sIV, 1, 1);
         gpane.add(mIV, 2, 1);
 
+// animation attempt
+
+
 // =-=-=-=-=-=-=-= mouse events =-=-=-=-=-=-=-=-=-=
 // group1Game
         gIV.setOnMouseEntered(e -> {
@@ -179,19 +200,44 @@ public class ArcadeApp extends Application {
             stage.setResizable(false);
         });
 
-        vbox.getChildren().addAll(titleIV, prompt, gpane);
-        vbox.setMargin(titleIV, titlePad);
-        vbox.setStyle(style);
+        r1 = new Rectangle(0, 1, 700, 1);
+        r1.setFill(Color.BLACK);
+        r2 = new Rectangle(0, 699, 700, 1);
+        r2.setFill(Color.web("#aa4543"));
+
+        ScaleTransition r1T = new ScaleTransition(Duration.seconds(2), r1);
+        r1T.setToY(1400);
+        r1T.setCycleCount(1);
+        r1T.play();
+
+
+        ScaleTransition r2T = new ScaleTransition(Duration.seconds(3), r2);
+        r2T.setToY(-1400);
+        r2T.setCycleCount(1);
+
+        r1T.setOnFinished(e -> {
+                r2T.play();
+            });
+
+        vbox.getChildren().addAll(r1, r2);
+
+        r2T.setOnFinished(e -> {
+                System.out.println("finished");
+                vbox.getChildren().addAll(titleIV, prompt, gpane);
+                vbox.setMargin(titleIV, titlePad);
+                vbox.setStyle(style);
+            });
 
         Scene scene = new Scene(vbox, 700, 700);
+
         setMainScene(scene);
+
 //scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
         stage.setTitle("cs1302-arcade");
         stage.setScene(scene);
         stage.sizeToScene();
         stage.setResizable(false);
         stage.show();
-
     } // start
 
     /**
