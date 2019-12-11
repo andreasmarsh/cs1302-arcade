@@ -72,17 +72,17 @@ public class Tetris {
     //private static ImageView nextIV;
 
     // strings with image locations
-    private String BG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
+    private String bG = Tetris.class.getResource("/tetris/tetrisBG.png").toExternalForm();
     private String menuStr = Tetris.class.getResource("/tetris/tetMenu.png").toExternalForm();
     private String controlsStr = Tetris.class
         .getResource("/tetris/tetControls.png").toExternalForm();
-    private String IStr = Tetris.class.getResource("/tetris/blockI.png").toExternalForm();
-    private String JStr = Tetris.class.getResource("/tetris/blockJ.png").toExternalForm();
-    private String LStr = Tetris.class.getResource("/tetris/blockL.png").toExternalForm();
-    private String OStr = Tetris.class.getResource("/tetris/blockO.png").toExternalForm();
-    private String SStr = Tetris.class.getResource("/tetris/blockS.png").toExternalForm();
-    private String TStr = Tetris.class.getResource("/tetris/blockT.png").toExternalForm();
-    private String ZStr = Tetris.class.getResource("/tetris/blockZ.png").toExternalForm();
+    private String iStr = Tetris.class.getResource("/tetris/blockI.png").toExternalForm();
+    private String jStr = Tetris.class.getResource("/tetris/blockJ.png").toExternalForm();
+    private String lStr = Tetris.class.getResource("/tetris/blockL.png").toExternalForm();
+    private String oStr = Tetris.class.getResource("/tetris/blockO.png").toExternalForm();
+    private String sStr = Tetris.class.getResource("/tetris/blockS.png").toExternalForm();
+    private String tStr = Tetris.class.getResource("/tetris/blockT.png").toExternalForm();
+    private String zStr = Tetris.class.getResource("/tetris/blockZ.png").toExternalForm();
 
     /**
      * Constructor of Tetris. Creates the roots and sets the stage and scene.
@@ -116,20 +116,20 @@ public class Tetris {
         menuIV.setX(490);
         menuIV.setY(280);
         menuIV.setOnMouseEntered(e -> {
-                tetScene.setCursor(Cursor.HAND);
-            });
+            tetScene.setCursor(Cursor.HAND);
+        });
         menuIV.setOnMouseExited(e -> {
-                tetScene.setCursor(Cursor.DEFAULT);
-            });
+            tetScene.setCursor(Cursor.DEFAULT);
+        });
         menuIV.setOnMouseClicked(getExitMenu());
         controlsIV.setX(490);
         controlsIV.setY(350);
         controlsIV.setOnMouseEntered(e -> {
-                tetScene.setCursor(Cursor.HAND);
-            });
+            tetScene.setCursor(Cursor.HAND);
+        });
         controlsIV.setOnMouseExited(e -> {
-                tetScene.setCursor(Cursor.DEFAULT);
-            });
+            tetScene.setCursor(Cursor.DEFAULT);
+        });
         controlsIV.setOnMouseClicked(getControlMenu());
 
         scoreTxt = new Text("Score: 0");
@@ -145,13 +145,17 @@ public class Tetris {
         //currentBlock = new Block("Z"); // test code for specific block
         pane.getChildren().addAll(currentBlock.r1, currentBlock.r2,
                                   currentBlock.r3, currentBlock.r4);
-
         turns = 0;
         gravity = new Timer();
         startGravity(gravity, currentBlock, scoreTxt, levelTxt, 500);
 
     } // Tetris()
 
+    /**
+     * writes player's input name to tetScores.txt.
+     *
+     * @param name the player inputed name
+     */
     public void tetrisSaveScore(String name) {
         try {
             File file = new File("tetScores.txt");
@@ -160,6 +164,7 @@ public class Tetris {
             output.append(score + " : " + name);
             output.close();
         } catch (IOException e) {
+            System.out.print("");
         }
     } // tetrisSaveScore
 
@@ -179,9 +184,9 @@ public class Tetris {
                 "Object: \n" +
                 "The object of the game is to fill all empty space" +
                 " \nwithin a row. Your score will increment up" +
-                " \nas you fill a row. Once a row is filled"+
+                " \nas you fill a row. Once a row is filled" +
                 " \nthe row will clear and the blocks above it will fall." +
-                " \nEvery 3 rows you fill you will move on to the next level."+
+                " \nEvery 3 rows you fill you will move on to the next level." +
                 " \nEach level will increase the speed of the following blocks. \n \n" +
                 "Controls: \n" +
                 "1. You may use WASD or Arrow Keys to move the falling block. \n" +
@@ -215,9 +220,9 @@ public class Tetris {
 
             newWindow.show();
             newWindow.setOnCloseRequest(close -> {
-                    Tetris tet = new Tetris();
-                    newWindow.close();
-                });
+                Tetris tet = new Tetris();
+                newWindow.close();
+            });
         }; // controlMenu
         return controlMenu;
     } // getControlMenu()
@@ -289,11 +294,11 @@ public class Tetris {
      * @return VBox the root of the tetris scene.
      */
     public VBox getRoot() {
-        String styleBG = "-fx-background-image: url(\'" + BG + "\')";
+        String styleBG = "-fx-background-image: url(\'" + bG + "\')";
 
-            root.getChildren().addAll(pane);
+        root.getChildren().addAll(pane);
 
-            root.getChildren();
+        root.getChildren();
         root.setStyle(styleBG);
         return root;
     } // getRoot()
@@ -326,8 +331,10 @@ public class Tetris {
 
     /**
      * Handles the Timer and TimerTask that runs the game.
-     * @param Timer which schedules the TimerTask
+     * @param gravity Timer which schedules the TimerTask
      * @param block the initial block of the game
+     * @param scoreTxt text that displays score
+     * @param levelTxt text that displays level
      * @param timePeriod controls the speed at which the blocks fall
      */
     private void startGravity(Timer gravity, Block block,
@@ -392,31 +399,36 @@ public class Tetris {
             }, 0, timePeriod); // end of timer.schedule(timertask, 0, 300);
     } // startGravity
 
+    /**
+     * Takes in a block and return image to display.
+     * @param block the type of block to display
+     * @return output the image to be displayed
+     */
     private Image displayNext(Block block) {
         System.out.println("in displayN");
         String imageType = block.getType();
-        Image output = new Image(IStr);
-        switch(imageType) {
+        Image output = new Image(iStr);
+        switch (imageType) {
         case "I":
-            output = new Image(IStr);
+            output = new Image(iStr);
             break;
         case "J":
-            output = new Image(JStr);
+            output = new Image(jStr);
             break;
         case "L":
-            output = new Image(LStr);
+            output = new Image(lStr);
             break;
         case "S":
-            output = new Image(SStr);
+            output = new Image(sStr);
             break;
         case "Z":
-            output = new Image(ZStr);
+            output = new Image(zStr);
             break;
         case "T":
-            output = new Image(TStr);
+            output = new Image(tStr);
             break;
         case "O":
-            output = new Image(OStr);
+            output = new Image(oStr);
             break;
         } // switch-case
         return output;
@@ -616,8 +628,8 @@ public class Tetris {
 
         Button save = new Button("Save");
         Button menu = new Button("Return to Main Menu");
-        TextField winnerName = new TextField("Enter Winner's Name");
 
+        TextField winnerName = new TextField("Enter Winner's Name");
         HBox goHbox = new HBox();
         goHbox.getChildren().addAll(gameOverTxt);
         goHbox.setAlignment(Pos.CENTER);
@@ -701,7 +713,7 @@ public class Tetris {
      * Ensures that blocks can not overlap with other blocks when
      * attempting to enter their space from the left or right.
      * @return true if the block will collide with another
-     * @param specified block that is being moved
+     * @param block specified block that is being moved
      */
     private boolean sideCollision(Block block) {
         Double r1x = block.r1.getX();
@@ -721,14 +733,14 @@ public class Tetris {
                 grid[(r3x.intValue() / 50) + 1][(r3y.intValue() / 50)] == true ||
                 grid[(r4x.intValue() / 50) + 1][(r4y.intValue() / 50)] == true) {
                 return true;
-            }// if
+            } // if
         } catch (ArrayIndexOutOfBoundsException a) {
             if (grid[(r1x.intValue() / 50) - 1][(r1y.intValue() / 50)] == true ||
                 grid[(r2x.intValue() / 50) - 1][(r2y.intValue() / 50)] == true ||
                 grid[(r3x.intValue() / 50) - 1][(r3y.intValue() / 50)] == true ||
                 grid[(r4x.intValue() / 50) - 1][(r4y.intValue() / 50)] == true) {
                 return true;
-            }// if
+            } // if
         }
 
         try {
@@ -744,7 +756,7 @@ public class Tetris {
                 grid[(r3x.intValue() / 50) + 1][(r3y.intValue() / 50)] == true ||
                 grid[(r4x.intValue() / 50) + 1][(r4y.intValue() / 50)] == true) {
                 return true;
-            }// if
+            } // if
         }
         return false;
     } // sideCollision
@@ -802,34 +814,34 @@ public class Tetris {
      */
     private void playerInput(Block block) {
         this.tetScene.setOnKeyPressed(e -> {
-                switch(e.getCode()) {
-                case RIGHT:
-                case D:
-                    if (sideCollision(block)) {
-                        break;
-                    } else {
-                        block.moveRight();
-                        break;
-                    }
-                case LEFT:
-                case A:
-                    if (sideCollision(block)) {
-                        break;
-                    } else {
-                        block.moveLeft();
-                        break;
-                    }
-                case DOWN:
-                case S:
-                    if (!blockCollided(block)) {
-                        block.moveDown();
-                    }
+            switch (e.getCode()) {
+            case RIGHT:
+            case D:
+                if (sideCollision(block)) {
                     break;
-                case UP:
-                case W:
-                    //System.out.println("you've pressed up"); code for debugging
-                    rotateBlock(block);
-                } // switch case
-            });
+                } else {
+                    block.moveRight();
+                    break;
+                }
+            case LEFT:
+            case A:
+                if (sideCollision(block)) {
+                    break;
+                } else {
+                    block.moveLeft();
+                    break;
+                }
+            case DOWN:
+            case S:
+                if (!blockCollided(block)) {
+                    block.moveDown();
+                }
+                break;
+            case UP:
+            case W:
+                //System.out.println("you've pressed up"); code for debugging
+                rotateBlock(block);
+            } // switch case
+        });
     } // playerInput(block)
 } // END OF CLASS

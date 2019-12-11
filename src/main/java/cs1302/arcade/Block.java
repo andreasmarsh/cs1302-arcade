@@ -29,7 +29,7 @@ public class Block {
         r3 = new Rectangle(size - 1, size - 1); // an outline around each
         r4 = new Rectangle(size - 1, size - 1); // square of the block
         position = 1;
-        switch(name) {
+        switch (name) {
         case "I":
             type = "I";
             makeTypeILJ(r1, r2, r3, r4, type);
@@ -81,6 +81,7 @@ public class Block {
  * @param r2 the second square of the block
  * @param r3 the third square of the block
  * @param r4 the fourth square of the block
+ * @param type the string related to shape of configuration
  */
     private static void makeTypeILJ(Rectangle r1, Rectangle r2, Rectangle r3,
                                     Rectangle r4, String type) {
@@ -139,6 +140,7 @@ public class Block {
  * @param r2 the second square of the block
  * @param r3 the third square of the block
  * @param r4 the fourth square of the block
+ * @param type the string related to shape of configuration
  */
     private static void makeTypeSZT(Rectangle r1, Rectangle r2, Rectangle r3,
                                     Rectangle r4, String type) {
@@ -201,7 +203,7 @@ public class Block {
 
     /**
      * Moves the specified square to the right one.
-     * @param specified square
+     * @param r the specified square
      */
     private static void moveSquareRight(Rectangle r) {
         // this if statement blocks the sqaures from going out of left-bounds
@@ -584,11 +586,11 @@ public class Block {
     public void moveDown() {
         if (r1.getY() + 50 < 700 && r2.getY() + 50 < 700 &&
             r3.getY() + 50 < 700 && r4.getY() + 50 < 700) {
-        moveSquareDown(r1);
-        moveSquareDown(r2);
-        moveSquareDown(r3);
-        moveSquareDown(r4);
-        }
+            moveSquareDown(r1);
+            moveSquareDown(r2);
+            moveSquareDown(r3);
+            moveSquareDown(r4);
+        } // if
     } // moveDown()
 
     /**
@@ -597,8 +599,8 @@ public class Block {
      */
     private static void moveSquareUp(Rectangle r) {
         if (r.getY() - 50 > 0) {
-            r.setY(r.getY() -50);
-        }
+            r.setY(r.getY() - 50);
+        } // if
     } // moveSquareUp
 
 } // END OF CLASS

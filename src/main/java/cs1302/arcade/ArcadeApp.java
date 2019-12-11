@@ -63,15 +63,23 @@ public class ArcadeApp extends Application {
         .getResource("/menu/blankTItle.png").toExternalForm();
     private String blankSPath = ArcadeApp.class.getResource("/menu/bsTitle.png").toExternalForm();
 
+    /**
+     * Sets the mainStage of ArcadeApp.
+     * @param stage the stage to be set as mainStage
+     */
     private void setMainStage(Stage stage) {
         ArcadeApp.mainStage = stage;
     }
 
+    /**
+     * Sets the mainScene of ArcadeApp.
+     * @param scene the scene to be set as mainScene
+     */
     private void setMainScene(Scene scene) {
         ArcadeApp.mainScene = scene;
     }
 
-/** {@inheritDoc} */
+    /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
         String titleStr = ArcadeApp.class.getResource("/menu/mainTitle.png").toExternalForm();
@@ -81,7 +89,7 @@ public class ArcadeApp extends Application {
         VBox vbox = new VBox();
         HBox hbox = new HBox();
 
-        //gpane.setGridLinesVisible(true);
+//gpane.setGridLinesVisible(true);
 
 // =-=-=-=-=-=-=-= title =-=-=-=-=-=-=-=-=-=
 // this section will eventually be put in a seperate method to
@@ -130,53 +138,46 @@ public class ArcadeApp extends Application {
 // =-=-=-=-=-=-=-= mouse events =-=-=-=-=-=-=-=-=-=
 // group1Game
         gIV.setOnMouseEntered(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.HAND);
-                gTitle.setImage(gLabel);
-            });
+            stage.getScene().getRoot().setCursor(Cursor.HAND);
+            gTitle.setImage(gLabel);
+        });
         gIV.setOnMouseExited(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
-                gTitle.setImage(blankImg); // on exit remove label
-            });
+            stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+            gTitle.setImage(blankImg); // on exit remove label
+        });
         gIV.setOnMouseClicked(e -> {
-                Tetris tGame = new Tetris();
-                //tScene = new Scene(tGame.getRoot(), 700, 700);
-                //stage.setScene(tScene);
-                //stage.setResizable(false);
-            });
+            Tetris tGame = new Tetris();
+            //tScene = new Scene(tGame.getRoot(), 700, 700);
+            //stage.setScene(tScene);
+            //stage.setResizable(false);
+        });
 // scores
         sIV.setOnMouseEntered(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.HAND);
-                sTitle.setImage(sLabel);
-            });
+            stage.getScene().getRoot().setCursor(Cursor.HAND);
+            sTitle.setImage(sLabel);
+        });
         sIV.setOnMouseExited(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
-                sTitle.setImage(blankSImg);
-            });
+            stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+            sTitle.setImage(blankSImg);
+        });
         sIV.setOnMouseClicked(e -> {
-                getScores();
-            });
+            getScores();
+        });
 // mancala
         mIV.setOnMouseEntered(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.HAND);
-                mTitle.setImage(mLabel);
-            });
+            stage.getScene().getRoot().setCursor(Cursor.HAND);
+            mTitle.setImage(mLabel);
+        });
         mIV.setOnMouseExited(e -> {
-                stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
-                mTitle.setImage(blankImg);
-            });
+            stage.getScene().getRoot().setCursor(Cursor.DEFAULT);
+            mTitle.setImage(blankImg);
+        });
         mIV.setOnMouseClicked(e -> {
-
-                Mancala mGame = new Mancala();
-                Scene mScene = new Scene(mGame.getRoot(), 700, 700);
-                stage.setScene(mScene);
-                stage.setResizable(false);
-                //stage.getScene().setRoot(mGame.getRoot());
-/*              vbox.getChildren().clear();
-                VBox test = new VBox();
-                test.setStyle(mStyle);
-                Scene mScene = new Scene(test);
-*/
-           });
+            Mancala mGame = new Mancala();
+            Scene mScene = new Scene(mGame.getRoot(), 700, 700);
+            stage.setScene(mScene);
+            stage.setResizable(false);
+        });
 
         vbox.getChildren().addAll(titleIV, prompt, gpane);
         vbox.setMargin(titleIV, titlePad);
@@ -194,77 +195,90 @@ public class ArcadeApp extends Application {
     } // start
 
     // see tetris lines 155
+    /**
+     * creates a .txt file to manage highscores.
+     */
     private void getScores() {
         try {
-        File tFile = new File("tetScores.txt");
+            File tFile = new File("tetScores.txt");
 
-        BufferedReader tReader = new BufferedReader(new FileReader(tFile));
+            BufferedReader tReader = new BufferedReader(new FileReader(tFile));
 
-        ArrayList<String> tList = new ArrayList<String>();
+            ArrayList<String> tList = new ArrayList<String>();
 
+            String tLine = tReader.readLine();
 
-
-        String tLine = tReader.readLine();
-
-
-        while (tLine != null) {
-            tList.add(tLine);
-        }
-        tReader.close();
-        tList.sort((a, b) -> {
+            while (tLine != null) {
+                tList.add(tLine);
+            }
+            tReader.close();
+            tList.sort((a, b) -> {
                 int num1 = Integer.parseInt(a.split(" : ")[0]);
                 int num2 = Integer.parseInt(b.split(" : ")[0]);
                 return Integer.compare(num1, num2);
             });
 
-        String tScores = Arrays.deepToString(tList.toArray());
+            String tScores = Arrays.deepToString(tList.toArray());
 
-        Stage newWindow = new Stage();
+            Stage newWindow = new Stage();
 
-        // sets exit text and creates buttons
-        Text controls = new Text("TETRIS HIGHSCORES:\n" + tScores);
+            // sets exit text and creates buttons
+            Text controls = new Text("TETRIS HIGHSCORES:\n" + tScores);
 
-        // adds controls to controlBox
-        HBox controlBox = new HBox();
-        controlBox.getChildren().addAll(controls);
+            // adds controls to controlBox
+            HBox controlBox = new HBox();
+            controlBox.getChildren().addAll(controls);
 
-        controlBox.setAlignment(Pos.TOP_CENTER);
-        Scene control = new Scene(controlBox, 420, 280);
+            controlBox.setAlignment(Pos.TOP_CENTER);
+            Scene control = new Scene(controlBox, 420, 280);
 
-        // New window of stage
-        newWindow.setMaxWidth(420);
-        newWindow.setMaxHeight(280);
-        newWindow.setMinWidth(420);
-        newWindow.setMinHeight(280);
+            // New window of stage
+            newWindow.setMaxWidth(420);
+            newWindow.setMaxHeight(280);
+            newWindow.setMinWidth(420);
+            newWindow.setMinHeight(280);
 
-        newWindow.setTitle("High Scores");
-        newWindow.sizeToScene();
-        newWindow.setScene(control);
-        newWindow.setResizable(false);
+            newWindow.setTitle("High Scores");
+            newWindow.sizeToScene();
+            newWindow.setScene(control);
+            newWindow.setResizable(false);
 
-        // modality
-        newWindow.initModality(Modality.APPLICATION_MODAL);
+            // modality
+            newWindow.initModality(Modality.APPLICATION_MODAL);
 
-        newWindow.show();
-        /*newWindow.setOnCloseRequest(close -> {
+            newWindow.show();
+            /*newWindow.setOnCloseRequest(close -> {
 
-                newWindow.close();
-            });
-        */
+              newWindow.close();
+              });
+            */
         } catch (IOException e) {
+            System.out.print("");
         }
-        }
+    }
 
-    static public Stage getMainStage() {
+    /**
+     * returns main stage of ArcadeApp.
+     * @return ArcadeApp.mainStage
+     */
+    public static Stage getMainStage() {
         return ArcadeApp.mainStage;
-    } // getStage()
+    } // getMainStage()
 
-    static public Scene getMainScene() {
+    /**
+     * returns mancala scene.
+     * @return ArcadeApp.mainScene
+     */
+    public static Scene getMainScene() {
         return ArcadeApp.mainScene;
-    }
+    } // getMainScene
 
-    static public Scene getTScene() {
+    /**
+     * returns tetris scene.
+     * @return ArcadeApp.tScene
+     */
+    public static Scene getTScene() {
         return ArcadeApp.tScene;
-    }
+    } // getTScene
 
 } // ArcadeApp
