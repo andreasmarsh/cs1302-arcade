@@ -1025,13 +1025,12 @@ public class Mancala {
         try {
             File file = new File("manScores.txt");
             BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
-            output.newLine();
             output.append(score + ":" + name);
             output.close();
         } catch (IOException e) {
             System.out.print("");
         }
-    } // tetrisSaveScore
+    } // manSaveScore
 
 
     /**
